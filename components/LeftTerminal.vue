@@ -1,6 +1,9 @@
 <template>
     <div id="terminal">
-        <div><FishView /></div>
+        <NavBar />
+        <div>
+            <FishView />
+        </div>
     </div>
 </template>
 
@@ -11,9 +14,15 @@
 <style scoped>
 
 #terminal {
+    width: 100%;
     flex: 1;
-    border: 10px solid white;
-    overflow: hidden;
+    border: 4px solid white;
+    overflow: auto;
+}
+
+.navbar-div {
+    height: 10%;
+    border-bottom: 4px solid white;
 }
 
 </style>

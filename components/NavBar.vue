@@ -1,24 +1,15 @@
 <template>
-    <div class="navbar-full" id="navbar-full">
-        <div class="navbar-div" id="navbar-div">
-            <img src="../assets/navbar/home.svg" id="icon" />
+    <div id="navbar">
+        <div class="navbar-item">
+            <NuxtLink to="/">
+                <img src="../assets/navbar/home.svg" class="icon"/>
+            </NuxtLink>
         </div>
-        <div class="navbar-div" id="navbar-div">
-            <img src="../assets/navbar/graphics.svg" width="64" height="64" id="icon" />
-        </div>
-        <div class="navbar-div" id="navbar-div">
-            <img src="../assets/navbar/sounds.svg" width="64" height="64" id="icon" />
-        </div>
-        <div class="navbar-div" id="navbar-div">
-            <img src="../assets/navbar/dev.svg" width="64" height="64" id="icon" />
-        </div>
-        <div class="navbar-div" id="navbar-div">
-            <img src="../assets/navbar/photo.svg" width="64" height="64" id="icon" />
-        </div>
-        <div class="navbar-div no-border" id="navbar-div">
-            <img src="../assets/navbar/graphics.svg" width="64" height="64" id="icon" />
+        <div style="position: absolute; top: 9%;">
+            <NuxtLink to="/"><p>home</p></NuxtLink>
         </div>
     </div>
+    
 </template>
 
 <script lang="ts" setup>
@@ -31,40 +22,28 @@ const fullbarExpanded = () => {
 
 <style scoped>
 
-#icon {
-    transition: transform 0.15s ease-out;
-    filter: invert(1);
+#navbar {
+    height: 10%;
     width: 100%;
-    height: 100%;
-}
-
-#navbar-full {
-    position: relative;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
-    bottom: 0;
-    width: 100%;
-    height: 10vh;
-    background-color: var(--background-primary);
-    overflow: hidden;
+    border-bottom: 4px solid var(--ui-primary);
 }
 
-#navbar-div {
-    position: relative;
+.navbar-item {
+    display: inline-block;
+    height: 80%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-primary);
-    cursor: pointer;
+    padding: 0 1%;
 }
 
-#navbar-div:hover #icon {
-    transform: scale(0.8);
+.icon {
+    filter: invert(1);
+    width: 50px;
 }
+
 
 </style>

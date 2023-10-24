@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
     ssr: false,
     css: ['~/assets/global.css'],
-    // app: {
-    //     baseURL: '/'
-    // }
+    app: {
+        baseURL: '/',
+        pageTransition: { name: 'page', mode: 'out-in' }
+    }
 })
