@@ -1,0 +1,87 @@
+:root {
+    --background-primary: #000000;
+    --background-secondary: rgb(21, 255, 45);
+    --text-primary: #ffffff;
+    --ui-primary: #ffffff;
+    --error-primary: #ff0000;
+    --accent-primary: #4cca25;
+    --accent-secondary: #14DB7A;
+    --accent-tertiary: #14DB9C;
+}
+
+@font-face {
+    font-family: 'grid';
+    src: url('/fonts/Gridular-Regular.otf');
+}
+
+@font-face {
+    font-family: 'atmos-regular';
+    src: url('/fonts/atmos-grotest-reg.otf');
+}
+
+@font-face {
+    font-family: 'grid';
+    src: url('/fonts/atmos-grotesk-light.otf');
+}
+
+p {
+    font-family: 'grid';
+    color: var(--text-primary);
+    font-size: 1.5vw;
+    margin: auto;
+    font-display: swap;
+}
+
+h1 {
+    font-family: 'grid';
+    color: var(--text-primary);
+    font-size: 4vw;
+    margin: auto;
+    font-display: swap;
+}
+
+h2 {
+    font-family: 'grid';
+    color: var(--text-primary);
+    font-size: 3vw;
+    margin: auto;
+    font-display: swap;
+}
+
+h3 {
+    font-family: 'grid';
+    color: var(--text-primary);
+    font-size: 2.2vw;
+    margin: auto;
+    font-display: swap;
+}
+
+h4 {
+    font-family: 'grid';
+    color: var(--text-primary);
+    font-size: 1.8vw;
+    margin: auto;
+    font-display: swap;
+}
+
+.glowing-border {
+    --border-width: 4px;
+    margin: 20px;
+    position: relative;
+    display: flex;
+    background: #000000;
+    border-radius: var(--border-width);
+}
+.glowing-border::after {
+    position: absolute;
+    content: "";
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * var(--border-width));
+    animation: moveGradient 4s alternate infinite;
+}

@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    margin: 10%;
+}
+
+#text-centered {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 10vh;
+}
+
+.skill {
+    border: 1px solid var(--ui-main-color);
+    display: flex; 
+    flex-basis: calc(50% - 40px);  
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    transition: transform 180ms ease-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.skill-bg {
+    border: 1px solid var(--ui-main-color);
+    display: flex; 
+    flex-basis: calc(50% - 40px);  
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    transition: transform 180ms ease-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+#skills-grid > *:nth-child(1):hover {
+    transform: perspective(900px) rotateY(24deg) rotatex(-12deg);
+}
+#skills-grid > *:nth-child(2):hover {
+    transform: perspective(900px) rotateY(24deg) rotatex(12deg);
+}
+#skills-grid > *:nth-child(3):hover {
+    transform: perspective(900px) rotateY(-24deg) rotatex(-12deg);
+}
+#skills-grid > *:nth-child(4):hover {
+    transform: perspective(900px) rotateY(-24deg) rotatex(12deg);
+}
+
+.skill > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    transform-style: preserve-3d;
+}
+
+.skill > div > * {
+    transform-style: preserve-3d;
+}
