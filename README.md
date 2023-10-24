@@ -1,8 +1,4 @@
-# weather retrieval by city 
-
-![](https://cdn.discordapp.com/attachments/701606472815083633/1159952257761149038/img.png?ex=6532e4b9&is=65206fb9&hm=c8bb18befa74cf4ed8b9d434d6661225cc771e50d3b375ffa39f5a790ae08c74&)
-
-TODO validation logic 
+# My portfolio / experience
 
 ## Setup shit below
 
