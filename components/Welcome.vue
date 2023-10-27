@@ -1,17 +1,14 @@
 <template>
-    <div class="welcome">
+    <div class="welcome" id="welcome" ref="welcome">
         <div id="welcomeText" ref="welcomeText">
             <div id="big" ref="big">
-                <h1>WELCOME </h1>
-            </div>
-            <div id="med" ref="med">
-                <h3>I'm Hudson, a multimedia artist from Tennessee</h3>
+                <h1>WELCOME</h1>
             </div>
         </div>
         <div id="skillBox" ref="skillBox">
             <NuxtLink to="/dev" id="skill-bg">
                 <div id="skill-itself">
-                    <h4>Development</h4>
+                    <h4>DEVELOPMENT</h4>
                 </div>
             </NuxtLink>
             <NuxtLink to="/graphics" id="skill-bg">
@@ -40,9 +37,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-const welcomeText = ref<HTMLElement | null>(null);
-const skillBox = ref<HTMLElement | null>(null);
-const resume = ref<HTMLElement | null>(null);
+let welcomeText = ref<HTMLElement | null>(null);
+let skillBox = ref<HTMLElement | null>(null);
+let resume = ref<HTMLElement | null>(null);
+let welcome = ref<HTMLElement | null>(null);
 
 onMounted(() => {
     cooldownTimeout = setTimeout(() => {
@@ -54,6 +52,9 @@ onMounted(() => {
     cooldownTimeout = setTimeout(() => {
         resume.value?.classList.add('active');
     }, 1800);
+    cooldownTimeout = setTimeout(() => {
+        welcome.value?.classList.add('active');
+    }, 2000);
 });
 
 
@@ -69,12 +70,19 @@ let cooldownTimeout = null;
     height: inherit;
 }
 
-.welcome {
+
+#welcome {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex: 1;
+    transition: border .6s ease-in-out;
+}
+
+
+#welcome.active {
+    border: 4px solid var(--ui-primary);
 }
 
 #welcomeText {
@@ -137,6 +145,7 @@ let cooldownTimeout = null;
     cursor: pointer;
     margin: 2%;
     text-decoration: none;
+    padding: 16px;
 }
 
 #skill-itself {

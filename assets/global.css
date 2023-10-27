@@ -10,22 +10,12 @@
 }
 
 @font-face {
-    font-family: 'grid';
-    src: url('/fonts/Gridular-Regular.otf');
-}
-
-@font-face {
-    font-family: 'atmos-regular';
-    src: url('/fonts/atmos-grotest-reg.otf');
-}
-
-@font-face {
-    font-family: 'grid';
-    src: url('/fonts/atmos-grotesk-light.otf');
+    font-family: 'bloop';
+    src: url('/fonts/bloop.ttf');
 }
 
 p {
-    font-family: 'grid';
+    font-family: 'bloop';
     color: var(--text-primary);
     font-size: 1.5vw;
     margin: auto;
@@ -33,7 +23,7 @@ p {
 }
 
 h1 {
-    font-family: 'grid';
+    font-family: 'bloop';
     color: var(--text-primary);
     font-size: 4vw;
     margin: auto;
@@ -41,7 +31,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'grid';
+    font-family: 'bloop';
     color: var(--text-primary);
     font-size: 3vw;
     margin: auto;
@@ -49,7 +39,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'grid';
+    font-family: 'bloop';
     color: var(--text-primary);
     font-size: 2.2vw;
     margin: auto;
@@ -57,9 +47,17 @@ h3 {
 }
 
 h4 {
-    font-family: 'grid';
+    font-family: 'bloop';
     color: var(--text-primary);
     font-size: 1.8vw;
+    margin: auto;
+    font-display: swap;
+}
+
+h5 {
+    font-family: 'bloop';
+    color: var(--text-primary);
+    font-size: .5vw;
     margin: auto;
     font-display: swap;
 }
