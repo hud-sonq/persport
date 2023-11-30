@@ -1,69 +1,111 @@
 <template>
-    <div class="welcome" id="welcome" ref="welcome">
-        <div id="welcomeText" ref="welcomeText">
+    <div class="deco deco-top-left" v-if="!motd">
+        <div>
+            <img class="invert" style="cursor: pointer;" src="../assets/decos/svg/bang_with_triangle.svg"  @click="enableMotd()">
+        </div>
+    </div>
+    <div class="deco deco-bottom-right" v-if="!links">
+        <div>
+            <img class="invert" style="width: 100%; cursor: pointer;" src="../assets/decos/svg/dashes2.svg" @click="enableLinks">
+        </div>
+    </div>
+    <div class="welcome" id="welcome" ref="welcome" >
+        <div id="welcomeText" ref="welcomeText" class="active">
             <div id="big" ref="big">
-                <h1>WELCOME</h1>
+                <h1 class="stackit-text">WELCOME</h1>
             </div>
         </div>
-        <div id="skillBox" ref="skillBox">
-            <NuxtLink to="/dev" id="skill-bg">
+        <div id="skillBox" ref="skillBox" class="active">
+            <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left">
                 <div id="skill-itself">
                     <h4>DEVELOPMENT</h4>
                 </div>
             </NuxtLink>
-            <NuxtLink to="/graphics" id="skill-bg">
+            <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right">
                 <div id="skill-itself">
-                    <h4>Graphics & 3D</h4>
+                    <h4>GRAPHICS AND 3D</h4>
                 </div>
             </NuxtLink>
-            <NuxtLink to="/photo-video" id="skill-bg">
+            <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left">
                 <div id="skill-itself">
-                    <h4>Photo / Video</h4>
+                    <h4>SOUND DESIGN</h4>
                 </div>
             </NuxtLink>
-            <NuxtLink to="/sound" id="skill-bg">
+            <NuxtLink to="/resume" id="skill-bg" class="stackit">
                 <div id="skill-itself">
-                    <h4>Sound Design</h4>
+                    <h4>RESUME</h4>
                 </div>
             </NuxtLink>
         </div>
-        <div id="resume" ref="resume">
-            <NuxtLink to="/resume">
-                <p>I just want to see a resume...</p>
-            </NuxtLink>
+    </div>
+    <div v-if="motd || links" class="motd stackit">
+        <div v-if="motd" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
+            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
+            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
+            <p style="cursor: pointer; position: absolute; right: 0; top: 0; height: 4%; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary); padding: 2px; border: 1px solid var(--ui-primary);" @click="enableMotd()">X</p>
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                <div style="padding: 16px; text-align: center;">
+                    <p>Im Hudson. I'd like to help make compelling user experiences for your business.</p>
+                </div>
+            </div>
+        </div>
+        <div v-if="links" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
+            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
+            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
+            <p style="cursor: pointer; position: absolute; right: 0; top: 0; height: 4%; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary); padding: 2px; border: 1px solid var(--ui-primary);" @click="enableLinks()">X</p>
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                <div style="padding: 16px; text-align: center;">
+                    <p>Contact me here:</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-let welcomeText = ref<HTMLElement | null>(null);
-let skillBox = ref<HTMLElement | null>(null);
-let resume = ref<HTMLElement | null>(null);
-let welcome = ref<HTMLElement | null>(null);
 
-onMounted(() => {
-    cooldownTimeout = setTimeout(() => {
-        welcomeText.value?.classList.add('active');
-    }, 600);
-    cooldownTimeout = setTimeout(() => {
-        skillBox.value?.classList.add('active');
-    }, 1000);
-    cooldownTimeout = setTimeout(() => {
-        resume.value?.classList.add('active');
-    }, 1800);
-    cooldownTimeout = setTimeout(() => {
-        welcome.value?.classList.add('active');
-    }, 2000);
-});
-
-
-let cooldownTimeout = null;
-
+const motd = ref(false);
+function enableMotd() {
+    motd.value = !motd.value;
+}
+const links = ref(false);
+function enableLinks() {
+    links.value = !links.value;
+}
 </script>
 
 
 <style scoped>
+
+.motd {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+}
+
+.invert {
+    width: 8%;
+    filter: invert(1);
+}
+.deco-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    margin: 1%;
+}
+
+.deco-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2%;
+    width: 20%;
+}
 
 .link {
     text-decoration: none;
@@ -77,13 +119,10 @@ let cooldownTimeout = null;
     align-items: center;
     justify-content: center;
     flex: 1;
-    transition: border .6s ease-in-out;
+    transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
 }
 
 
-#welcome.active {
-    border: 4px solid var(--ui-primary);
-}
 
 #welcomeText {
     position: relative;
@@ -92,8 +131,6 @@ let cooldownTimeout = null;
     overflow: auto;
     justify-content: center;
     opacity: 0;
-    top: 50%;
-    transition: opacity .6s ease-in-out, top .6s ease-in-out;
 }
 
 #big {
@@ -103,6 +140,7 @@ let cooldownTimeout = null;
     text-align: center;
     opacity: 1;
     pointer-events: none;
+    padding: 12px;
 }
 
 
@@ -118,7 +156,6 @@ let cooldownTimeout = null;
 #welcomeText.active {
     opacity: 1;
     pointer-events: all;
-    top: 0%;
 }
 
 #skillBox {
@@ -129,6 +166,7 @@ let cooldownTimeout = null;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
+    margin: 5%;
 }
 
 #skillBox.active {
@@ -140,7 +178,7 @@ let cooldownTimeout = null;
 
 #skill-bg {
     border: 4px solid var(--ui-primary);
-    transition: transform 180ms ease-out, background-color 300ms ease-in-out;
+    transition: transform 180ms ease-out, background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
     transform-style: preserve-3d;
     cursor: pointer;
     margin: 2%;
@@ -153,6 +191,10 @@ let cooldownTimeout = null;
     transform-style: preserve-3d;
     cursor: pointer;
     text-align: center;
+}
+
+.resume-highlighter {
+    border: 4px solid var(--ui-secondary);
 }
 
 #skill-bg:hover {

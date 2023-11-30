@@ -1,11 +1,184 @@
 <template>
-    <div>
-        <p>Welcome to dev</p>
+  <div>
+    <div class="split-container active">
+      <div class="left stackit">
+        <div class="top-bar">
+          <div class="top-bar-div">
+            <p>Browse Development Projects</p>
+          </div>
+          <div class="top-bar-div stackit" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px; margin: 0;">
+            <a href="https://github.com/hud-sonq" target="_blank">
+              <img src="../logos/gh_white.svg" class="gh-svg">
+            </a>
+          </div>
+          <div class="top-bar-arrows">
+            <img @click="MoveProjectLeft()" src="../clickables/horizontal-arrow.png" style="height: 80%; transform: rotate(180deg); padding-left: 1%; border-left: 4px solid var(--accent-primary); cursor: pointer;">
+            <img @click="MoveProjectRight()" src="../clickables/horizontal-arrow.png" style="height: 80%; padding-left: 1%; cursor: pointer;">
+          </div>
+        </div>
+        <DevProjects2d />
+      </div>
+      <div class="right stackit">
+        <div class="top-bar">
+          <!-- <div class="top-bar-div">
+            <a href="https://github.com/hud-sonq" target="_blank">
+              <img src="../logos/gh_white.svg">
+            </a>
+          </div>  -->
+          <div class="top-bar-div" style="min-width: 30%; overflow: hidden;">
+            <div class="active-app-div">
+              <h4 style="font-size: 1em;">Interact:</h4>
+              <h2 style="color: var(--accent-secondary); font-size: 2.5em;">{{activeApp}}</h2>
+            </div>
+          </div> 
+          <div class="top-bar-div" style="min-width: 70%;">
+            <p style="font-size: 1em;">{{ activeAppDescriptionArray[activeAppDescriptionIndex] }}</p>
+          </div> 
+        </div>
+        <div class="content">
+          <div class="move-left-button">
+            <img @click="moveAppLeft()" src="../clickables/horizontal-arrow.png" class="move-left-png">
+          </div>
+          <WeatherBox v-if="activeApp === 'Weather'" ref="Weather"/>
+          <div class="move-right-button">
+            <img @click="moveAppRight()" src="../clickables/horizontal-arrow.png" class="move-right-png">
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
+  
+<script lang="ts" setup>
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
-<script>
+let currentIndex = 0;
+const totalItems = 4;
+let activeApp = ref<string>('Weather');
+let activeAppIndex = ref<number>(0);
+let apps = ref<string[]>(['Weather', '3D', 'DSP']);
+let activeAppDescription = ref<string>('');
+let activeAppDescriptionIndex = ref<number>(0);
+let activeAppDescriptionArray = ref<string[]>(['- Type in a city to get its current weather conditions. Watch out: ChatGPT likes to make odd comments about the weather.', 'Interact with this 3D model I made.', 'Check out these audio-reactive cubes.']);
+
+
+function moveAppLeft() {
+  currentIndex = (currentIndex + 1) % totalItems;
+  activeApp.value = apps.value[currentIndex];
+  activeAppDescriptionIndex.value = currentIndex;
+  console.log('goleft: ', currentIndex, 'app:', apps.value[currentIndex]);
+}
+function moveAppRight() {
+  currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+  activeApp.value = apps.value[currentIndex];
+  activeAppDescriptionIndex.value = currentIndex;
+  console.log('goright: ', currentIndex, 'app:', apps.value[currentIndex])
+}
+
 </script>
+  
+  
+<style>
 
-<style scoped>
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  height: 15%;
+  overflow: hidden;
+}
+
+.top-bar-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-right: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+  max-height: 100%;
+}
+
+.top-bar-div-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.gh-svg {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+}
+
+.active-app-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-left-cherry {
+  width: 15%; 
+  border-right: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+}
+
+.all-projects-container {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+}
+
+.project {
+  margin: 3%;
+}
+
+.move-left-button {
+  position: absolute;
+  left: 0;
+  border-top: 4px solid var(--ui-primary);
+  border-right: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+  right: 90%;
+}
+
+.move-right-button {
+  position: absolute;
+  right: 0;
+  left: 90%;
+  border-top: 4px solid var(--ui-primary);
+  border-left: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+}
+
+.move-left-png {
+  transform: rotate(180deg);
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.move-right-png {
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.top-bar-arrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 5%;
+}
+
+
+
 </style>

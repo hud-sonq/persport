@@ -1,5 +1,14 @@
 <template>
-  <Welcome />
+  <div>
+    <div class="split-container active">
+      <div class="left stackit">
+        <LeftTerminal/>
+      </div>
+      <div class="right stackit">
+        <Welcome />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -7,4 +16,5 @@
 
 
 <style>
+
 </style>

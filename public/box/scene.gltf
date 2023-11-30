@@ -400,12 +400,12 @@
       "name": "Tesseract",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
-          0.00532518,
-          0.0,
-          1.0,
+          0,
+          255,
+          0,
           0.5
         ],
-        "metallicFactor": 0.0,
+        "metallicFactor": 0.2,
         "roughnessFactor": 0.0
       }
     }

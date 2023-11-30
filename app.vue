@@ -1,24 +1,51 @@
 <template>
   <NavBar />
-  <div class="split-container active">
-    <div class="left">
-      <!-- <NavBar /> -->
-      <LeftTerminal/>
-    </div>
-    <div class="right">
-      <NuxtPage />
-    </div>
+  <!-- <div class="loading-container" ref="loadingIcon" v-if="loading">
+    <h1 style="color: white;">LOADING</h1>
+  </div> -->
+  <div ref="mainPage" id="main" class="">
+    <NuxtPage/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { vue3dLoader } from "vue-3d-loader";
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
 let cooldownTimeout = null;
 let bar = ref<HTMLElement | null>(null);
+let loadingIcon = ref<HTMLElement | null>(null);
+let mainPage = ref<HTMLElement | null>(null);
 let width = window.innerWidth;
 let height = window.innerHeight;
+let loading = ref(false);
+
+const route = useRoute();
+
+onMounted(() => {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  console.log(isMobile);
+
+  if (isMobile) {
+    // Add CSS for mobile devices
+    const style = document.createElement('style');
+    style.innerHTML = `
+      body {
+        background-color: #ffffff;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+});
+// watch(() => route.path, () => {
+//   console.log(route.path);
+//   mainPage.value?.classList.add('load-engaged');
+//   loading.value = true;
+//   setTimeout(() => {
+//     mainPage.value?.classList.remove('load-engaged');
+//     loading.value = false;
+//   }, 1000);
+// },);
 
 function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immediate?: boolean) {
   let timeout: NodeJS.Timeout | null;
@@ -36,31 +63,15 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
   };
 }
 
-window.addEventListener(
-  "resize",
-  debounce(function() {
-    width = (window.innerWidth);
-    height = (window.innerHeight);
-    console.log(`Width: ${width}, Height: ${height}`);
-  }, 250)
-);
-
-onMounted(() => {
-  cooldownTimeout = setTimeout(() => {
-      bar.value?.classList.add('active');
-  }, 2000);
-});
 </script>
 
 
 <style>
 
-body {
-    background-color: var(--background-primary);
-    overflow: hidden;
+#main {
+  opacity: 1;
 }
-
-.page-enter-active,
+/* .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;
 }
@@ -68,52 +79,100 @@ body {
 .page-leave-to {
   opacity: 0;
   filter: blur(1rem);
+} */
+
+.page-leave-active {
+  animation: pageOut 1s;
 }
 
-.split-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.page-enter-active {
+  animation: pageOut 1.2s reverse;
+}
+
+@keyframes pageOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    rotate: 0deg;
+  }
+  50% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 1;
+    rotate: 0deg;
+  }
+  55% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 1;
+  }
+  60% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 1;
+  }
+  65% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 0;
+  }
+  70% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 1;
+  }
+  75% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 0;
+  }
+  80% {
+    background-color: white;
+    filter: brightness(500);
+    transform: scale(.2);
+    opacity: 1;
+    rotate: 180deg;
+  }
+  100% {
+    transform: scale(.2);
+    background-color: white;
+    filter: brightness(500);
+    opacity: 1;
+    rotate: 180deg;
+  }
+}
+
+
+#main.load-engaged {
+  opacity: 0;
+}
+
+.loading-container {
   height: 100vh;
-  max-height: 100vh;
-  overflow: auto;
-  opacity: 0;
-}
-
-.split-container.active {
+  width: 90vw;
+  display: flex;
+  margin: 3%;
+  padding-bottom: 5%;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid white;
   opacity: 1;
 }
 
-.left {
-  display: flex;
-  flex-direction: column;
-  margin: 3%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
 
-.right {
-  display: flex;
-  flex-direction: column;
-  margin: 3%;
-  max-width: 100%;
-  overflow-x: hidden;
+body {
+  background-color: var(--background-primary);
+  overflow: hidden;
 }
 
 
-.centered-bar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 4px;
-  background-color: rgb(255, 255, 255);
-  opacity: 0;
-  transition: opacity 1.8s ease-in-out;
-}
 
-.centered-bar.active {
-  opacity: 1;
-}
 
 
 
