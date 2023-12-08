@@ -1,30 +1,11 @@
 <template>
   <div>
     <div class="split-container active">
-      <div class="left stackit">
-        <div class="top-bar">
-          <div class="top-bar-div">
-            <p>Browse Development Projects</p>
-          </div>
-          <div class="top-bar-div stackit" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px; margin: 0;">
-            <a href="https://github.com/hud-sonq" target="_blank">
-              <img src="../logos/gh_white.svg" class="gh-svg">
-            </a>
-          </div>
-          <div class="top-bar-arrows">
-            <img @click="MoveProjectLeft()" src="../clickables/horizontal-arrow.png" style="height: 80%; transform: rotate(180deg); padding-left: 1%; border-left: 4px solid var(--accent-primary); cursor: pointer;">
-            <img @click="MoveProjectRight()" src="../clickables/horizontal-arrow.png" style="height: 80%; padding-left: 1%; cursor: pointer;">
-          </div>
-        </div>
+      <div class="left stackit" style="display: flex; flex-direction: column;">
         <DevProjects2d />
       </div>
       <div class="right stackit">
         <div class="top-bar">
-          <!-- <div class="top-bar-div">
-            <a href="https://github.com/hud-sonq" target="_blank">
-              <img src="../logos/gh_white.svg">
-            </a>
-          </div>  -->
           <div class="top-bar-div" style="min-width: 30%; overflow: hidden;">
             <div class="active-app-div">
               <h4 style="font-size: 1em;">Interact:</h4>
@@ -75,6 +56,7 @@ function moveAppRight() {
   activeAppDescriptionIndex.value = currentIndex;
   console.log('goright: ', currentIndex, 'app:', apps.value[currentIndex])
 }
+
 
 </script>
   

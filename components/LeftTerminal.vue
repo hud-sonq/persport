@@ -21,8 +21,11 @@
         <div class="qr-bottom-left">
           <img src="../assets/decos/qr/linktree.png" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
         </div>
-        <div class="graph-top-left">
-          <img src="../assets/decos/svg/graph1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+        <div class="deco-top-left">
+          <img src="../assets/decos/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+        </div>
+        <div class="deco-bottom-right">
+          <img src="../assets/decos/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
         </div>
     </div>
 </template>
@@ -68,7 +71,6 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
     const h = window.innerHeight/4;
     const xPercent = x / w;
     const xDeg = xPercent * .3;
-    console.log(xDeg);
     rotation.value = {
       x: 0,
       y: xDeg,
@@ -84,12 +86,12 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 
 <style scoped>
 
-.graph-top-left {
+.deco-top-left {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 20%;
-  height: 20%;
+  top: -15%;
+  left: -3%;
+  width: 35%;
+  height: 35%;
   margin: 1%;
 }
 
@@ -99,6 +101,16 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   left: 0;
   margin: 2%;
   width: 8%;
+}
+
+.deco-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: -3%;
+  margin: 2%;
+  width: 35%;
+  transform: rotate(180deg);
+
 }
 
 #terminal {

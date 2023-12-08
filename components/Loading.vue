@@ -26,7 +26,6 @@
   
   <style scoped>
   .loading-container {
-    /* Position the loading container in the center of the page */
     position: fixed;
     top: 0;
     left: 0;

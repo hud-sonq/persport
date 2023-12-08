@@ -70,33 +70,6 @@ function retry() {
   city.value = '';
 }
 
-  // TODO a more universal function including validation logic
-  //
-  // const tryWeather = async() => {
-  //   if (!this.cityInput) {
-  //     this.error = 'Please enter a city name';
-  //     return;
-  //   }
-  //   if (!/^[a-zA-Z\s]+$/.test(this.cityInput)) {
-  //     this.error = 'City name can only contain letters and spaces';
-  //     return;
-  //   }
-  //   if (this.cityInput.length > 50) {
-  //     this.error = 'City name is too long';
-  //     return;
-  //   }
-  //   try {
-  //     const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
-  //       params: {
-  //         q: this.cityInput,
-  //         appid: 'e06dc55f9b9b31d73cf02d23310554d2',
-  //       },
-  //     });
-  //     this.weatherData = response.data;
-  //   } catch (error) {
-  //     this.error = 'Invalid city name';
-  //   }
-  // };
 
 </script>
     
@@ -105,15 +78,17 @@ function retry() {
 .weather-box {
   border: 4px solid var(--ui-primary);
   padding: 5%;
-  max-width: 55%;
+  width: 100%;
 }
 
 .weather-input {
   display: grid;
+  width: 100%;
 }
 
 .weather-result {
   display: grid;
+  max-width: 80%;
 }
 
 .centered-child {

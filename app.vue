@@ -1,51 +1,46 @@
 <template>
   <NavBar />
-  <!-- <div class="loading-container" ref="loadingIcon" v-if="loading">
-    <h1 style="color: white;">LOADING</h1>
-  </div> -->
-  <div ref="mainPage" id="main" class="">
-    <NuxtPage/>
-  </div>
+  <NuxtPage />
 </template>
 
 <script lang="ts" setup>
 import { vue3dLoader } from "vue-3d-loader";
 import { ref, onMounted, watch } from 'vue';
 
-let cooldownTimeout = null;
-let bar = ref<HTMLElement | null>(null);
-let loadingIcon = ref<HTMLElement | null>(null);
-let mainPage = ref<HTMLElement | null>(null);
-let width = window.innerWidth;
-let height = window.innerHeight;
-let loading = ref(false);
+// let cooldownTimeout = null;
+// let bar = ref<HTMLElement | null>(null);
+// let loadingIcon = ref<HTMLElement | null>(null);
+// let mainPage = ref<HTMLElement | null>(null);
+// let width = window.innerWidth;
+// let height = window.innerHeight;
+// let loading = ref(false);
 
-const route = useRoute();
+// const route = useRoute();
 
-onMounted(() => {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  console.log(isMobile);
+// onMounted(() => {
+//   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+//   console.log(isMobile);
 
-  if (isMobile) {
-    // Add CSS for mobile devices
-    const style = document.createElement('style');
-    style.innerHTML = `
-      body {
-        background-color: #ffffff;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-});
-// watch(() => route.path, () => {
-//   console.log(route.path);
-//   mainPage.value?.classList.add('load-engaged');
-//   loading.value = true;
-//   setTimeout(() => {
-//     mainPage.value?.classList.remove('load-engaged');
-//     loading.value = false;
-//   }, 1000);
-// },);
+//   if (isMobile) {
+//     // Add CSS for mobile devices
+//     const style = document.createElement('style');
+//     style.innerHTML = `
+//       body {
+//         background-color: #ffffff;
+//       }
+//     `;
+//     document.head.appendChild(style);
+//   }
+// });
+// // watch(() => route.path, () => {
+// //   console.log(route.path);
+// //   mainPage.value?.classList.add('load-engaged');
+// //   loading.value = true;
+// //   setTimeout(() => {
+// //     mainPage.value?.classList.remove('load-engaged');
+// //     loading.value = false;
+// //   }, 1000);
+// // },);
 
 function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immediate?: boolean) {
   let timeout: NodeJS.Timeout | null;
@@ -82,11 +77,11 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
 } */
 
 .page-leave-active {
-  animation: pageOut 1s;
+  animation: pageOut .6s;
 }
 
 .page-enter-active {
-  animation: pageOut 1.2s reverse;
+  animation: pageOut .6s reverse;
 }
 
 @keyframes pageOut {
@@ -98,49 +93,49 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
   50% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 1;
     rotate: 0deg;
   }
   55% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 1;
   }
   60% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 1;
   }
   65% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 0;
   }
   70% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 1;
   }
   75% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 0;
   }
   80% {
     background-color: white;
     filter: brightness(500);
-    transform: scale(.2);
+    transform: scale(.04);
     opacity: 1;
     rotate: 180deg;
   }
   100% {
-    transform: scale(.2);
+    transform: scale(.04);
     background-color: white;
     filter: brightness(500);
     opacity: 1;

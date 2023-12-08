@@ -1,19 +1,17 @@
 <template>
     <div class="deco deco-top-left" v-if="!motd">
-        <div>
-            <img class="invert" style="cursor: pointer;" src="../assets/decos/svg/bang_with_triangle.svg"  @click="enableMotd()">
+        <div class="invert">
+            <img style="cursor: pointer;" src="../assets/decos/svg/bang_with_triangle.svg"  @click="enableMotd()">
         </div>
     </div>
     <div class="deco deco-bottom-right" v-if="!links">
-        <div>
-            <img class="invert" style="width: 100%; cursor: pointer;" src="../assets/decos/svg/dashes2.svg" @click="enableLinks">
+        <div class="invert">
+            <img style="cursor: pointer;" src="../assets/decos/svg/mail1.svg"  @click="enableLinks()">
         </div>
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
         <div id="welcomeText" ref="welcomeText" class="active">
-            <div id="big" ref="big">
-                <h1 class="stackit-text">WELCOME</h1>
-            </div>
+            <h1 class="stackit-text">WELCOME</h1>
         </div>
         <div id="skillBox" ref="skillBox" class="active">
             <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left">
@@ -38,7 +36,7 @@
             </NuxtLink>
         </div>
     </div>
-    <div v-if="motd || links" class="motd stackit">
+    <div v-if="motd || links" class="motd">
         <div v-if="motd" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
             <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
@@ -56,6 +54,7 @@
             <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                 <div style="padding: 16px; text-align: center;">
                     <p>Contact me here:</p>
+                    <ContactForm />
                 </div>
             </div>
         </div>
@@ -87,9 +86,10 @@ function enableLinks() {
 }
 
 .invert {
-    width: 8%;
     filter: invert(1);
+    width: 64px;
 }
+
 .deco-top-left {
     position: absolute;
     top: 0;
@@ -103,8 +103,7 @@ function enableLinks() {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 2%;
-    width: 20%;
+    margin: 1%;
 }
 
 .link {
@@ -120,9 +119,8 @@ function enableLinks() {
     justify-content: center;
     flex: 1;
     transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
+    max-width: 95%;
 }
-
-
 
 #welcomeText {
     position: relative;
@@ -131,6 +129,7 @@ function enableLinks() {
     overflow: auto;
     justify-content: center;
     opacity: 0;
+    max-width: 100%;
 }
 
 #big {
@@ -141,6 +140,7 @@ function enableLinks() {
     opacity: 1;
     pointer-events: none;
     padding: 12px;
+    max-width: 100%;
 }
 
 

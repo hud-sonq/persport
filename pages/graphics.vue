@@ -2,11 +2,11 @@
   <div class="split-container active">
     <div class="left">
       <div class="test">
-        <GraphicsAnd3d />
+        <GraphicGallery />
       </div>
     </div>
     <div class="right">
-      <div class="container">
+      <div class="text-container">
         <h2 class="heading-text stackit-text">Graphics and 3D</h2>
         <p style="text-align: center; padding: 12px;">- - - - </p>
         <p>- My graphic / 3D design falls under a niche genre of digital art called "metalheart." I am inspired by y2k design and retro imaginations of sci fi environments / UIs.</p>
@@ -19,7 +19,7 @@
   </div>
 </template>
   
-<script>
+<script setup lang="ts">
 
 </script>
   
@@ -29,7 +29,7 @@
   margin: 5%;
 }
 
-.container {
+.text-container {
   padding: 40px 5%;
   overflow: auto;
   
