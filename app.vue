@@ -7,41 +7,6 @@
 import { vue3dLoader } from "vue-3d-loader";
 import { ref, onMounted, watch } from 'vue';
 
-// let cooldownTimeout = null;
-// let bar = ref<HTMLElement | null>(null);
-// let loadingIcon = ref<HTMLElement | null>(null);
-// let mainPage = ref<HTMLElement | null>(null);
-// let width = window.innerWidth;
-// let height = window.innerHeight;
-// let loading = ref(false);
-
-// const route = useRoute();
-
-// onMounted(() => {
-//   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-//   console.log(isMobile);
-
-//   if (isMobile) {
-//     // Add CSS for mobile devices
-//     const style = document.createElement('style');
-//     style.innerHTML = `
-//       body {
-//         background-color: #ffffff;
-//       }
-//     `;
-//     document.head.appendChild(style);
-//   }
-// });
-// // watch(() => route.path, () => {
-// //   console.log(route.path);
-// //   mainPage.value?.classList.add('load-engaged');
-// //   loading.value = true;
-// //   setTimeout(() => {
-// //     mainPage.value?.classList.remove('load-engaged');
-// //     loading.value = false;
-// //   }, 1000);
-// // },);
-
 function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immediate?: boolean) {
   let timeout: NodeJS.Timeout | null;
   return function(this: T) {
@@ -57,7 +22,6 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
     if (callNow) func.apply(context, args);
   };
 }
-
 </script>
 
 

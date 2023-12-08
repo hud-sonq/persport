@@ -12,7 +12,7 @@
       <div class="acnt-title">
         <div>
           <h2>Accountonomics</h2>
-          <h4>Frontend Engineer</h4>
+          <h4>Frontend Designer</h4>
         </div>
         <div class="acnt-gif">
           <a href="https://accountonomics.com" target="_blank">

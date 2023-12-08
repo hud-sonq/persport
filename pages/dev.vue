@@ -71,6 +71,7 @@ function moveAppRight() {
 }
 
 .top-bar {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
