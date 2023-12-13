@@ -5,24 +5,36 @@
         <DevProjects2d />
       </div>
       <div class="right stackit">
-        <div class="top-bar">
-          <div class="top-bar-div" style="min-width: 30%; overflow: hidden;">
-            <div class="active-app-div">
-              <h4 style="font-size: 1em;">Interact:</h4>
-              <h2 style="color: var(--accent-secondary); font-size: 2.5em;">{{activeApp}}</h2>
+        <!-- <div v-if="!signedIn" class="sign-in-required">
+            <div class="sign-in-card stackit">
+              <NuxtLink to="/auth/account" style="text-decoration: none;">
+                <div>
+                  <img src="/deco/svg/emptybody.svg" style="filter: invert(1)">
+                  <span style="margin-left: 12px;">Sign in / Sign up</span>
+                </div>
+              </NuxtLink>
             </div>
-          </div> 
-          <div class="top-bar-div" style="min-width: 70%;">
-            <p style="font-size: 1em;">{{ activeAppDescriptionArray[activeAppDescriptionIndex] }}</p>
-          </div> 
-        </div>
-        <div class="content">
-          <div class="move-left-button">
-            <img @click="moveAppLeft()" src="../clickables/horizontal-arrow.png" class="move-left-png">
+        </div> -->
+        <div>
+          <div class="top-bar">
+            <div class="top-bar-div" style="min-width: 30%; overflow: hidden;">
+              <div class="active-app-div">
+                <h4 style="font-size: 1em;">Interact:</h4>
+                <h2 style="color: var(--accent-secondary); font-size: 2.5em;">{{activeApp}}</h2>
+              </div>
+            </div> 
+            <div class="top-bar-div" style="min-width: 70%;">
+              <p style="font-size: 1em;">{{ activeAppDescriptionArray[activeAppDescriptionIndex] }}</p>
+            </div> 
           </div>
-          <WeatherBox v-if="activeApp === 'Weather'" ref="Weather"/>
-          <div class="move-right-button">
-            <img @click="moveAppRight()" src="../clickables/horizontal-arrow.png" class="move-right-png">
+          <div class="content">
+            <div class="move-left-button">
+              <img @click="moveAppLeft()" src="../clickables/horizontal-arrow.png" class="move-left-png">
+            </div>
+            <WeatherBox v-if="activeApp === 'Weather'" ref="Weather"/>
+            <div class="move-right-button">
+              <img @click="moveAppRight()" src="../clickables/horizontal-arrow.png" class="move-right-png">
+            </div>
           </div>
         </div>
       </div>
@@ -34,11 +46,15 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
+let signedIn = ref<boolean>(false);
+let route = useRoute();
+let router = useRouter();
+
 let currentIndex = 0;
 const totalItems = 4;
 let activeApp = ref<string>('Weather');
 let activeAppIndex = ref<number>(0);
-let apps = ref<string[]>(['Weather', '3D', 'DSP']);
+let apps = ref<string[]>(['Weather', 'To-do', 'DSP']);
 let activeAppDescription = ref<string>('');
 let activeAppDescriptionIndex = ref<number>(0);
 let activeAppDescriptionArray = ref<string[]>(['- Type in a city to get its current weather conditions. Watch out: ChatGPT likes to make odd comments about the weather.', 'Interact with this 3D model I made.', 'Check out these audio-reactive cubes.']);
@@ -63,6 +79,26 @@ function moveAppRight() {
   
 <style>
 
+.sign-in-required {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 30%;
+  text-align: center;
+}
+
+
+.sign-in-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: var(--accent-primary);
+  border-radius: 4px;
+  padding: 4%;
+  cursor: pointer;
+}
+
 .content {
   display: flex;
   justify-content: center;
@@ -75,7 +111,7 @@ function moveAppRight() {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  height: 15%;
+  height: 25%;
   overflow: hidden;
 }
 

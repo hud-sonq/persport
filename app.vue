@@ -129,10 +129,4 @@ body {
   background-color: var(--background-primary);
   overflow: hidden;
 }
-
-
-
-
-
-
 </style>

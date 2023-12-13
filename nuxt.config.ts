@@ -11,12 +11,13 @@ export default defineNuxtConfig({
     },
     ssr: false,
     runtimeConfig: {
-        apiSecret: '',
+        openaiSecret: '',
         mongoURI: '',
         authSecret: '',
+        owSecret: '',
         public: {
-            ow: '',
-        }
+            apiBase: '',
+          }
     },
     css: ['~/assets/global.css'],
     app: {
@@ -32,5 +33,7 @@ export default defineNuxtConfig({
             type: "authjs",
         }
     },
-
+    tailwindcss: {
+        cssPath: false,
+    },
 })

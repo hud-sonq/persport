@@ -1,12 +1,12 @@
 <template>
     <div class="deco deco-top-left" v-if="!motd">
         <div class="invert">
-            <img style="cursor: pointer;" src="../assets/decos/svg/bang_with_triangle.svg"  @click="enableMotd()">
+            <img style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMotd()">
         </div>
     </div>
     <div class="deco deco-bottom-right" v-if="!links">
         <div class="invert">
-            <img style="cursor: pointer;" src="../assets/decos/svg/mail1.svg"  @click="enableLinks()">
+            <img style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableLinks()">
         </div>
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
@@ -17,6 +17,7 @@
             <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left">
                 <div id="skill-itself">
                     <h4>DEVELOPMENT</h4>
+                    <span> + PLAYGROUND </span>
                 </div>
             </NuxtLink>
             <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right">
@@ -38,22 +39,30 @@
     </div>
     <div v-if="motd || links" class="motd">
         <div v-if="motd" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
-            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
-            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <p style="cursor: pointer; position: absolute; right: 0; top: 0; height: 4%; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary); padding: 2px; border: 1px solid var(--ui-primary);" @click="enableMotd()">X</p>
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
+            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableMotd()">
+                <div style="padding: 2px;">
+                    <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">
+                </div>            
+            </div>
             <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                 <div style="padding: 16px; text-align: center;">
-                    <p>Im Hudson. I'd like to help make compelling user experiences for your business.</p>
+                    <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I am eager to provide <span style="color: var(--accent-primary);">creative innovation</span> for your website or business!</span>
                 </div>
             </div>
         </div>
         <div v-if="links" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
-            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
-            <img src="../assets/decos/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <p style="cursor: pointer; position: absolute; right: 0; top: 0; height: 4%; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary); padding: 2px; border: 1px solid var(--ui-primary);" @click="enableLinks()">X</p>
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
+            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableLinks()">
+                <div style="padding-top: 2px;">
+                    <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">
+                </div>            
+            </div>
             <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                 <div style="padding: 16px; text-align: center;">
-                    <p>Contact me here:</p>
+                    <p>Send me a message:</p>
                     <ContactForm />
                 </div>
             </div>

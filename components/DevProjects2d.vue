@@ -29,6 +29,14 @@
         <img src="../acnt/synopsis.png" style="width: 100%; padding-left: 12px;">
       </div>
     </div>
+    <div class="project">
+      <div>
+        <div>
+          <h2>Dinos Ocean Cleanup</h2>
+          <h4>Sound design, map design</h4>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -50,6 +50,9 @@ onMounted(() => {
     if (route.path === '/resume') {
       filepath = basePath + "blueball.glb";
     }
+    if (route.path === '/auth/account') {
+      filepath = basePath + "blueball.glb";
+    }
 });
 
 const enablePan = false;
@@ -78,13 +81,19 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
     };
   }, 50);
 };
-
-
-
-
 </script>
 
 <style scoped>
+
+.deco-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  animation: bangblink .6s infinite;
+}
 
 .deco-top-left {
   position: absolute;

@@ -8,11 +8,20 @@
   --accent-primary: #4cca25;
   --accent-secondary: #4ef2ea;
   --accent-tertiary: #1485db;
+  --accent-quaternary: #ffc013;
 }
 
 @font-face {
   font-family: 'bloop';
   src: url('/fonts/bloop.ttf');
+}
+
+span {
+  font-family: 'bloop';
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin: auto;
+  font-display: swap;
 }
 
 p {

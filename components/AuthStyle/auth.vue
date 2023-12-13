@@ -1,5 +1,5 @@
 <template>
-  <div style="border: 4px solid var(--ui-primary); padding: 24px; background: var(--accent-primary);">
+  <div style="border: 4px solid var(--ui-primary); padding: 24px; background: var(--accent-primary); width: 100%;">
     <h1>{{title}}</h1>
     <slot />
   </div>

@@ -15,6 +15,7 @@
     <div v-if="weatherData" class="centered-child">
       <div class="weather-result">
         <p>The temperature in {{ weatherData.name }} is {{ (weatherData.main.temp *1.8 ) + 32 }}°F. It's {{ weatherData.weather[0].description }}. {{ funnyMessage }} </p>
+        <!-- <p>{{ funnyBotResponse }}</p> -->
         <form @submit.prevent="retry">
           <button @click="retry" style="background-color: var(--accent-secondary); margin-top: 8px; padding: 10%; width: 100%; cursor: pointer;">
             <h3>Go Again</h3>
@@ -29,14 +30,15 @@
 const config = useRuntimeConfig();
 import { ref } from 'vue';
 import axios from 'axios';
+import OpenAI from "openai";
 
-const apiKey = config.public.ow;
+const apiKey = config.owSecret;
+const secretApiKey = config.public.secret;
 const city = ref('');
 const weatherData = ref(null);
 const responseError = ref(null);
 
 const getWeather = () => {
-  console.log(apiKey);
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=${apiKey}`;
   axios
     .get(apiUrl)
@@ -48,6 +50,30 @@ const getWeather = () => {
       responseError.value = error.response.data.message;
     });
 };
+
+// const funnyBot = new OpenAI({
+//   apiKey: secretApiKey,
+//   dangerouslyAllowBrowser: true
+// });
+
+// const funnyBotResponse = await funnyBot.chat.completions.create({
+//   model: "gpt-3.5-turbo",
+//   messages: [
+//     {
+//       "role": "system",
+//       "content": "Explain this weather status, but in a funny and interesting way."
+//     },
+//     {
+//       "role": "user",
+//       "content": "heavy hail",
+//     }
+//   ],
+//   temperature: 0,
+//   max_tokens: 1024,
+//   top_p: 1,
+//   frequency_penalty: 0,
+//   presence_penalty: 0,
+// });
 
 const funnyMessages = ref([
   'Keep your socks tied.',
@@ -78,7 +104,7 @@ function retry() {
 .weather-box {
   border: 4px solid var(--ui-primary);
   padding: 5%;
-  width: 100%;
+  width: 50%;
 }
 
 .weather-input {

@@ -45,7 +45,7 @@ const fullbarExpanded = () => {
     background-color: var(--accent-primary);
     top: 0;
     height: 3%;
-    width: 45%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,6 +95,15 @@ const fullbarExpanded = () => {
 .icon {
     width: 64px;
     transform: scale(0.5);
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.deco {
+    width: 64px;
+    height: 64px;
 }
 
 
