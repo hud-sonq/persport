@@ -2,7 +2,8 @@
   <div class="split-container active">
     <div class="left">
       <div class="test">
-        <GraphicGallery />
+        <ClickableGallery v-if="initialClick" v-bind="props" />
+        <ScrollableGallery v-bind="props"/>
       </div>
     </div>
     <div class="right">
@@ -20,6 +21,44 @@
 </template>
   
 <script setup lang="ts">
+const props = {
+  leftImages: [
+    "/2dgallery/compressed/embryosis.png",
+    "/2dgallery/compressed/destructivecold-min.png",
+    "/2dgallery/compressed/iphone1-min.png",
+    "/2dgallery/compressed/water-min.jpg",
+    "/2dgallery/compressed/break2-min.jpg",
+    "/2dgallery/compressed/entrance-min.png",
+    "/2dgallery/compressed/trials-min.png"
+  ],
+  leftImagesTitles: [
+    "EMBRYOSIS",
+    "DESTRUCTIVE COLD",
+    "IPHONE WALLPAPER 1",
+    "SHALLOW WATERS",
+    "BREAK!",
+    "TRACK COVER 1",
+    "TRACK COVER 2"
+  ],
+  rightImages: [
+  "/2dgallery/compressed/init-min.jpg",
+  "/2dgallery/compressed/offgrid-min.jpg",
+  "/2dgallery/compressed/spacehobbies-min.jpg",
+  "/2dgallery/compressed/ako-min.png",
+  "/2dgallery/compressed/sc1-min.png",
+  "/2dgallery/compressed/0085.png",
+  "/2dgallery/compressed/cubedup.png"
+  ],
+  rightImagesTitles: [
+    "INIT",
+    "OFF GRID!",
+    "SPACE HOBBIES!",
+    "SPOTIFY ARTIST BANNER",
+    "TRIO",
+    "SPACE CANDY",
+    "PREP"
+  ], 
+}
 
 </script>
   

@@ -1,10 +1,27 @@
 <template>
     <div id="terminal" ref="terminal" class="active">
-        <div class="active" ref="prlxHouse" @mousemove="parallaxTest">
-            <vue3dLoader 
+        <div class="active house" ref="prlxHouse" @mousemove="parallaxTest" >
+            <div v-if="!resizedBefore">
+              <vue3dLoader
+              :width="width"
+              :height="height"
+              :filePath="filepath"
+              :cameraPosition="{ x: 35, y:0, z: 0}"
+              :backgroundColor=0
+              :backgroundAlpha="0"
+              :scale="{x:1, y:1, z:1}"
+              :rotation="rotation"
+              :controlsOptions="{
+              enablePan,
+              enableZoom,
+              enableRotate,
+              }"
+              :autoplay="false"
+              style="width: 100%; height: 100%"
+            />
+            </div>
+            <vue3dLoader v-if="resizedBefore"
             :filePath="filepath"
-            :width="width"
-            :height="height"
             :cameraPosition="{ x: 35, y:0, z: 0}"
             :backgroundColor=0
             :backgroundAlpha="0"
@@ -16,6 +33,7 @@
             enableRotate,
             }"
             :autoplay="false"
+            style="width: 100%; height: 100%"
             />
         </div>
         <div class="qr-bottom-left">
@@ -33,7 +51,10 @@
 <script setup lang="ts">
 import { vue3dLoader } from "vue-3d-loader";
 import { ref, onMounted } from 'vue';
+import { boolean } from "zod";
+let resizedBefore = false;
 let terminal = ref<HTMLElement | null>(null);
+let prlxHouse = ref<HTMLElement | null>(null);
 let cooldownTimeout = null;
 const route = useRoute();
 
@@ -42,6 +63,9 @@ let filepath = "";
 
 const [width, height] = [ref(0), ref(0)];
 onMounted(() => {
+    window.addEventListener('resize', () => {
+      resizedBefore = true;
+    });
     width.value = document.querySelector('#terminal')?.parentElement?.clientWidth ?? 512;
     height.value = document.querySelector('#terminal')?.parentElement?.clientHeight ?? 512;
     if (route.path === '/') {
@@ -54,6 +78,7 @@ onMounted(() => {
       filepath = basePath + "blueball.glb";
     }
 });
+
 
 const enablePan = false;
 const enableZoom = false;
@@ -84,6 +109,11 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 </script>
 
 <style scoped>
+
+.house {
+  height: 100%;
+  width: 100%;
+}
 
 .deco-top-right {
   position: absolute;
@@ -126,6 +156,8 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
     overflow: hidden;
     opacity: 0;
     transition: opacity .6s ease-in-out, border .6s ease-in-out;
+    height: 100%;
+    width: 100%;
 }
 
 #terminal.active {

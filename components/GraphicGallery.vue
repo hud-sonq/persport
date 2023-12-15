@@ -9,7 +9,7 @@
             <img src="../assets/2d/compressed/destructivecold-min.png" alt="" />
             <div class="overlay"><h4>DESTRUCTIVE COLD</h4></div>
         </div>
-        <div class="image-item">
+        <div class="image-item" data-image-name="imageId" @click="() => emit('imageclick', { image: imageId })">
             <img src="../assets/2d/compressed/iphone1-min.png" alt="" />
             <div class="overlay"><h4>IPHONE WALLPAPER 1</h4></div>
         </div>
@@ -64,6 +64,11 @@
 </template>
 
 <script>
+
+// const urls = ["..."];
+
+// const images = Object.fromEntries(url.map(url => [url.match(/\/(.+)\./)[1], url]));
+// cubedup: "../assets/2d/compressed/cubedup.png"
 
 </script>
 

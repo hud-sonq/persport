@@ -5,7 +5,7 @@
         <DevProjects2d />
       </div>
       <div class="right stackit">
-        <!-- <div v-if="!signedIn" class="sign-in-required">
+        <div v-if="!signedIn" class="sign-in-required">
             <div class="sign-in-card stackit">
               <NuxtLink to="/auth/account" style="text-decoration: none;">
                 <div>
@@ -14,8 +14,8 @@
                 </div>
               </NuxtLink>
             </div>
-        </div> -->
-        <div>
+        </div>
+        <div v-if="signedIn">
           <div class="top-bar">
             <div class="top-bar-div" style="min-width: 30%; overflow: hidden;">
               <div class="active-app-div">
