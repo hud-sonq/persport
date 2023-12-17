@@ -72,13 +72,10 @@ function moveAppRight() {
   activeAppDescriptionIndex.value = currentIndex;
   console.log('goright: ', currentIndex, 'app:', apps.value[currentIndex])
 }
-
-
 </script>
   
   
 <style>
-
 .sign-in-required {
   display: flex;
   flex-direction: column;
@@ -197,7 +194,4 @@ function moveAppRight() {
   height: 100%;
   margin-left: 5%;
 }
-
-
-
 </style>

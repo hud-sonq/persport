@@ -1,12 +1,18 @@
 <template>
-    <div class="deco deco-top-left" v-if="!motd">
+    <div class="deco deco-top-left" v-if="!showMessage">
         <div class="invert">
-            <img style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMotd()">
+            <img :class="{ 'deco-blink': !leftMessageSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMessage()">
         </div>
     </div>
-    <div class="deco deco-bottom-right" v-if="!links">
+    <div class="deco-top-right">
+        <img style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)" src="/deco/svg/uiline1.svg">
+    </div>
+    <div class="deco-bottom-left">
+        <img style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)" src="/deco/svg/uiline1.svg">
+    </div>
+    <div class="deco deco-bottom-right" v-if="!showForm">
         <div class="invert">
-            <img style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableLinks()">
+            <img :class="{ 'deco-blink': !rightFormSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableForm()">
         </div>
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
@@ -37,11 +43,12 @@
             </NuxtLink>
         </div>
     </div>
-    <div v-if="motd || links" class="motd">
-        <div v-if="motd" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
+    <div v-if="showMessage || showForm" class="motd">
+        <div v-if="showMessage" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableMotd()">
+            <LogoSlider />
+            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableMessage()">
                 <div style="padding: 2px;">
                     <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">
                 </div>            
@@ -52,10 +59,10 @@
                 </div>
             </div>
         </div>
-        <div v-if="links" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
+        <div v-if="showForm" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableLinks()">
+            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableForm()">
                 <div style="padding-top: 2px;">
                     <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">
                 </div>            
@@ -73,19 +80,35 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 
-const motd = ref(false);
-function enableMotd() {
-    motd.value = !motd.value;
+let leftMessageSeen = ref(false);
+let rightFormSeen = ref(false);
+if (localStorage.getItem('leftMessageSeen')) {
+    leftMessageSeen.value = true;
+} 
+if (localStorage.getItem('rightFormSeen')) {
+    rightFormSeen.value = true;
 }
-const links = ref(false);
-function enableLinks() {
-    links.value = !links.value;
+
+let showMessage = ref<boolean>(false);
+function enableMessage() {
+    showMessage.value = !showMessage.value;
+    if (!localStorage.getItem('leftMessageSeen') || localStorage.getItem('leftMessageSeen') === 'false') {
+        localStorage.setItem('leftMessageSeen', 'true');
+        leftMessageSeen.value = true;
+    }
+}
+let showForm = ref<boolean>(false);
+function enableForm() {
+    showForm.value = !showForm.value;
+    if (!localStorage.getItem('rightFormSeen') || localStorage.getItem('rightFormSeen') === 'false') {
+        localStorage.setItem('rightFormSeen', 'true');
+        rightFormSeen.value = true;
+    }
 }
 </script>
 
 
 <style scoped>
-
 .motd {
     position: absolute;
     top: 50%;
@@ -108,6 +131,24 @@ function enableLinks() {
     margin: 1%;
 }
 
+.deco-top-right {
+    position: absolute;
+    top: 1%;
+    right: -3%;
+    width: 35%;
+    margin: 1%;
+    transform: rotate(180deg) scaleY(-1);
+}
+
+.deco-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: -3%;
+    width: 35%;
+    margin: 2%;
+    transform: scaleY(-1);
+}
+
 .deco-bottom-right {
     position: absolute;
     bottom: 0;
@@ -115,11 +156,14 @@ function enableLinks() {
     margin: 1%;
 }
 
+.greyed-out {
+    opacity: .2;
+}
+
 .link {
     text-decoration: none;
     height: inherit;
 }
-
 
 #welcome {
     display: flex;

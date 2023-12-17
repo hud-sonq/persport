@@ -2,8 +2,8 @@
   <div class="split-container active">
     <div class="left">
       <div class="test">
-        <ClickableGallery v-if="initialClick" v-bind="props" />
-        <ScrollableGallery v-bind="props"/>
+        <HorizontalGallery v-bind="props" />
+        <VerticalGallery v-bind="props"/>
       </div>
     </div>
     <div class="right">

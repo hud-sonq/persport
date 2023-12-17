@@ -1,6 +1,6 @@
 <template>
   <div style="text-align: center; border-bottom: 4px solid var(--ui-primary);">
-    <p>Project Of Focus</p>
+    <p>Projects / Experience</p>
   </div>
   <div class="top-bar-div stackit" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px; margin: 0;">
     <a href="https://github.com/hud-sonq" target="_blank">
@@ -12,29 +12,33 @@
       <div class="acnt-title">
         <div>
           <h2>Accountonomics</h2>
-          <h4>Frontend Designer</h4>
+          <h4>Frontend Developer</h4>
         </div>
         <div class="acnt-gif">
-          <a href="https://accountonomics.com" target="_blank">
-            <img src="../acnt/loading.gif" style="height: 100%; padding-left: 12px;">
-          </a>
+          <div style="position: fixed; height: 64px; right: 7%;">
+            <a href="https://accountonomics.com" target="_blank">
+              <img src="../acnt/loading.gif" style="height: 100%; padding-left: 12px;">
+            </a>
+          </div>
         </div>
       </div>
       <div class="acnt-description">
-        <p style="margin: 2%;">- Accountonomics is a team-based educational webgame that puts students in charge of a business, and their decisions drive results in a simulated competitive market. They are responsible for accounting for their actions.</p>
-        <p style="margin: 2%;">- Most of the project's code was developed in 2020; in early 2023, I began to assist with devlopment by adding a glossary center, a dark mode, a working journal entry component, and several general ui/ux improvements.</p>
-        <p style="margin: 2%; border-bottom: 1px solid var(--ui-primary); padding-bottom: 12px;">- Our team hopes to release this game to the public by Q4 2024.</p>
+        <p style="margin: 2%;"> <span style="color: red;">My current project of focus.</span> Accountonomics is a team-based educational webgame that puts students in charge of a business, and their decisions drive results in a simulated competitive market. They are responsible for accounting for their actions.</p>
+        <p style="margin: 2%;">Most of the project's code was developed in 2020; in early 2023, I began to assist with devlopment by adding a glossary center, a dark mode, a working journal entry component, and several general ui/ux improvements.</p>
+        <p style="margin: 2%; border-bottom: 4px solid var(--ui-primary); padding-bottom: 12px;">Our team hopes to release this game to the public by Q4 2024.</p>
       </div>
-      <div class="acnt-pic">
-        <img src="../acnt/synopsis.png" style="width: 100%; padding-left: 12px;">
+      <div>
+        <img src="../acnt/synopsis.png" style="width: 100%; height: 100%;">
       </div>
     </div>
     <div class="project">
+      <div style="padding-bottom: 12px; border-bottom: 4px solid var(--ui-primary);">
+        <h2>Dinos Ocean Cleanup</h2>
+        <h4>Sound design, map design</h4>
+      </div>
       <div>
-        <div>
-          <h2>Dinos Ocean Cleanup</h2>
-          <h4>Sound design, map design</h4>
-        </div>
+        <p style="margin: 2%;">Dinos Ocean Cleanup is a 2D platformer game that me and a friend made at a hackathon lasdt year. It's made with Pygame. The player controls a dinosaur who must clean up the ocean by collecting trash with his vacuum.</p>
+        <p style="margin: 2%;">I was responsible for creating the sound effects and music for the game, as well as designing the map.</p>
       </div>
     </div>
   </div>
@@ -50,13 +54,10 @@
   height: 10%;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
   padding-bottom: 12px;
 }
 
-.acnt-pic {
-  max-height: 2px; 
-}
 
 .acnt-gif {
   height: 100%;
@@ -113,6 +114,8 @@
 
 .project {
   padding: 4%;
+  background-color: var(--accent-primary);
+  border: 4px solid var(--ui-primary);
 }
 
 .move-left-button {

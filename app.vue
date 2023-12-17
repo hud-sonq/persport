@@ -1,11 +1,24 @@
 <template>
   <NavBar />
-  <NuxtPage />
+  <div id="main" ref="main" class="">
+    <NuxtPage />
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { vue3dLoader } from "vue-3d-loader";
 import { ref, onMounted, watch } from 'vue';
+
+let main = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  let mainElement = main.value as HTMLElement;
+  mainElement.classList.add('load-engaged');
+  setTimeout(() => {
+    mainElement.classList.remove('load-engaged');
+  }, 1000);
+});
+
 
 function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immediate?: boolean) {
   let timeout: NodeJS.Timeout | null;
@@ -26,6 +39,10 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
 
 
 <style>
+.load-engaged {
+  animation: pageOut 1s reverse;
+  animation-iteration-count: 1;
+}
 
 #main {
   opacity: 1;
@@ -47,6 +64,7 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
 .page-enter-active {
   animation: pageOut .6s reverse;
 }
+
 
 @keyframes pageOut {
   0% {

@@ -127,10 +127,9 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 
 .deco-top-left {
   position: absolute;
-  top: -15%;
+  top: 1%;
   left: -3%;
   width: 35%;
-  height: 35%;
   margin: 1%;
 }
 
