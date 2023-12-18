@@ -9,15 +9,15 @@
   </div>
   <div class="all-projects-container">
     <div class="project">
-      <div class="acnt-title">
+      <div class="project-title-area">
         <div>
           <h2>Accountonomics</h2>
           <h4>Frontend Developer</h4>
         </div>
-        <div class="acnt-gif">
+        <div class="project-deco">
           <div style="position: fixed; height: 64px; right: 7%;">
             <a href="https://accountonomics.com" target="_blank">
-              <img src="../acnt/loading.gif" style="height: 100%; padding-left: 12px;">
+              <img src="/deco/png/acnt_loading.gif" style="height: 100%; padding-left: 12px;">
             </a>
           </div>
         </div>
@@ -28,17 +28,30 @@
         <p style="margin: 2%; border-bottom: 4px solid var(--ui-primary); padding-bottom: 12px;">Our team hopes to release this game to the public by Q4 2024.</p>
       </div>
       <div>
-        <img src="../acnt/synopsis.png" style="width: 100%; height: 100%;">
+        <img src="/deco/png/acnt_synopsis.png" style="width: 100%; height: 100%;">
       </div>
     </div>
     <div class="project">
-      <div style="padding-bottom: 12px; border-bottom: 4px solid var(--ui-primary);">
-        <h2>Dinos Ocean Cleanup</h2>
-        <h4>Sound design, map design</h4>
+      <div class="project-title-area">
+        <div>
+          <h2>Dino's Ocean Cleanup</h2>
+          <h4>Sound design, map design</h4>
+        </div>
+        <div class="project-deco">
+          <div style="position: fixed; height: 64px; right: 7%;">
+            <a href="" target="_blank">
+              <img src="/deco/png/dino.png" style="height: 100%; padding-left: 12px;">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="acnt-description">
+        <p style="margin: 2%;"> <span style="color: red;">My current project of focus.</span> Accountonomics is a team-based educational webgame that puts students in charge of a business, and their decisions drive results in a simulated competitive market. They are responsible for accounting for their actions.</p>
+        <p style="margin: 2%;">Most of the project's code was developed in 2020; in early 2023, I began to assist with devlopment by adding a glossary center, a dark mode, a working journal entry component, and several general ui/ux improvements.</p>
+        <p style="margin: 2%; border-bottom: 4px solid var(--ui-primary); padding-bottom: 12px;">Our team hopes to release this game to the public by Q4 2024.</p>
       </div>
       <div>
-        <p style="margin: 2%;">Dinos Ocean Cleanup is a 2D platformer game that me and a friend made at a hackathon lasdt year. It's made with Pygame. The player controls a dinosaur who must clean up the ocean by collecting trash with his vacuum.</p>
-        <p style="margin: 2%;">I was responsible for creating the sound effects and music for the game, as well as designing the map.</p>
+        <img src="/deco/png/acnt_synopsis.png" style="width: 100%; height: 100%;">
       </div>
     </div>
   </div>
@@ -50,8 +63,7 @@
 
 <style>
 
-.acnt-title {
-  height: 10%;
+.project-title-area {
   display: flex;
   flex-direction: row;
   border-bottom: 4px solid var(--ui-primary);
@@ -59,9 +71,8 @@
 }
 
 
-.acnt-gif {
+.project-deco {
   height: 100%;
-  width: 100%;
   max-width: 100%;
   max-height: 100%;
   justify-self: flex-end;
