@@ -12,15 +12,16 @@
   --contrast-primary: #3b3b3b;
 }
 
+
 @font-face {
   font-family: 'bloop';
-  src: url('/fonts/spleen.otf');
+  src: url('/fonts/aex.ttf');
 }
 
 span {
   font-family: 'bloop';
   color: var(--text-primary);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: auto;
   font-display: swap;
 }
@@ -28,7 +29,7 @@ span {
 p {
   font-family: 'bloop';
   color: var(--text-primary);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: auto;
   font-display: swap;
 }
@@ -36,7 +37,7 @@ p {
 h1 {
   font-family: 'bloop';
   color: var(--text-primary);
-  font-size: 4rem;
+  font-size: 3.4rem;
   margin: auto;
   font-display: swap;
 }
@@ -44,7 +45,7 @@ h1 {
 h2 {
   font-family: 'bloop';
   color: var(--text-primary);
-  font-size: 3rem;
+  font-size: 1.8rem;
   margin: auto;
   font-display: swap;
 }
@@ -52,7 +53,7 @@ h2 {
 h3 {
   font-family: 'bloop';
   color: var(--text-primary);
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   margin: auto;
   font-display: swap;
 }
@@ -60,7 +61,7 @@ h3 {
 h4 {
   font-family: 'bloop';
   color: var(--text-primary);
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   margin: auto;
   font-display: swap;
 }

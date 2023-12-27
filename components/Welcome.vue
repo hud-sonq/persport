@@ -79,6 +79,18 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { vue3dLoader } from 'vue-3d-loader';
+
+const [width, height] = [ref(512), ref(512)];
+const filepath = '/scenes/4some.glb';
+const enablePan = false;
+const enableZoom = false;
+const enableRotate = false;
+const rotation = ref();
+
+
+
+
 
 let leftMessageSeen = ref(false);
 let rightFormSeen = ref(false);
@@ -237,6 +249,7 @@ function enableForm() {
     margin: 2%;
     text-decoration: none;
     padding: 16px;
+    flex-grow: 100%;
 }
 
 #skill-itself {
@@ -274,6 +287,25 @@ function enableForm() {
 #resume.active {
     opacity: 1;
     transition: opacity 1.8s ease-in-out
+}
+
+.scene {
+    position: absolute;
+    top: -10%;
+    left: -4%;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+}
+
+.scene-bottom {
+    position: absolute;
+    top: 10%;
+    right: -6%;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+    transform: scaleX(-1) scaleY(-1);
 }
 
 </style>

@@ -64,6 +64,12 @@ const props = {
   
 <style scoped>
 
+@media (max-width: 600px) {
+  .right {
+    display: none;
+  }
+}
+
 .test {
   margin: 5%;
 }

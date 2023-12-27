@@ -46,7 +46,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-let signedIn = ref<boolean>(false);
+let signedIn = ref<boolean>(true);
 let route = useRoute();
 let router = useRouter();
 
@@ -75,7 +75,28 @@ function moveAppRight() {
 </script>
   
   
-<style>
+<style scoped>
+@media (max-width: 600px) {
+  span {
+    font-size: 1em;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 15px;
+  }
+  h3 {
+    font-size: 13px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
 .sign-in-required {
   display: flex;
   flex-direction: column;

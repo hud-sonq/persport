@@ -1,50 +1,35 @@
 <template>
     <div id="terminal" ref="terminal" class="active">
-        <div class="active house" ref="prlxHouse" @mousemove="parallaxTest" >
-            <div v-if="!resizedBefore">
-              <vue3dLoader
-              :width="width"
-              :height="height"
-              :filePath="filepath"
-              :cameraPosition="{ x: 35, y:0, z: 0}"
-              :backgroundColor=0
-              :backgroundAlpha="0"
-              :scale="{x:1, y:1, z:1}"
-              :rotation="rotation"
-              :controlsOptions="{
-              enablePan,
-              enableZoom,
-              enableRotate,
-              }"
-              :autoplay="false"
-              style="width: 100%; height: 100%"
-            />
-            </div>
-            <vue3dLoader v-if="resizedBefore"
-            :filePath="filepath"
-            :cameraPosition="{ x: 35, y:0, z: 0}"
-            :backgroundColor=0
-            :backgroundAlpha="0"
-            :scale="{x:1, y:1, z:1}"
-            :rotation="rotation"
-            :controlsOptions="{
-            enablePan,
-            enableZoom,
-            enableRotate,
-            }"
-            :autoplay="false"
-            style="width: 100%; height: 100%"
-            />
+      <div class="qr-bottom-left">
+        <img src="/deco/png/linktree.png" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+      </div>
+      <div class="deco-top-left">
+        <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+      </div>
+      <div class="deco-bottom-right">
+        <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+      </div>
+      <div class="active house" ref="prlxHouse" @mousemove="parallaxTest" >
+        <div>
+          <vue3dLoader
+          :width="width"
+          :height="height"
+          :filePath="filepath"
+          :cameraPosition="{ x: 35, y:0, z: 0}"
+          :backgroundColor=0
+          :backgroundAlpha="0"
+          :scale="{x:1, y:1, z:1}"
+          :rotation="rotation"
+          :controlsOptions="{
+          enablePan,
+          enableZoom,
+          enableRotate,
+          }"
+          :autoplay="false"
+          style="width: 100%; height: 100%"
+          />
         </div>
-        <div class="qr-bottom-left">
-          <img src="../assets/decos/qr/linktree.png" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
-        </div>
-        <div class="deco-top-left">
-          <img src="../assets/decos/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
-        </div>
-        <div class="deco-bottom-right">
-          <img src="../assets/decos/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
-        </div>
+      </div>
     </div>
 </template>
 
@@ -58,7 +43,7 @@ let prlxHouse = ref<HTMLElement | null>(null);
 let cooldownTimeout = null;
 const route = useRoute();
 
-let basePath = "../nate/";
+let basePath = "../scenes/";
 let filepath = "";
 
 const [width, height] = [ref(0), ref(0)];
@@ -119,10 +104,11 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   position: absolute;
   top: 0;
   right: 0;
-  height: 10%;
+  height: 130px;
   display: flex;
   justify-content: center;
-  animation: bangblink .6s infinite;
+  border: 4px solid var(--ui-primary);
+  overflow: hidden;
 }
 
 .deco-top-left {
@@ -152,11 +138,11 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 }
 
 #terminal {
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity .6s ease-in-out, border .6s ease-in-out;
-    height: 100%;
-    width: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .6s ease-in-out, border .6s ease-in-out;
+  height: 100%;
+  width: 100%;
 }
 
 #terminal.active {

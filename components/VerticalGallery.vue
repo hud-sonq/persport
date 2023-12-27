@@ -35,7 +35,7 @@ const emits = defineEmits(['click']);
 
 </script>
 
-<style>
+<style scoped>
 .container {
   padding: 40px 5%;
   overflow: auto;

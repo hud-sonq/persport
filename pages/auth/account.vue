@@ -5,55 +5,60 @@
     </div>
     <div class="right">
       <div class="centered-login" v-if="!signupClicked">
-        <AuthStyleAuth title="Login" class="stackit">
-          <UForm :state="formState" :schema="SigninSchema" @submit="handleSignin" @submit.prevent="handleSignin">
-            <div style="padding-bottom: 6px; padding-top: 6px;">
-              <UFormGroup name="email">
-                <UInput type="email" v-model="formState.email" placeholder="Email"/>
-              </UFormGroup>
-            </div>
-            <div style="padding-bottom: 6px; padding-top: 6px;">
-              <UFormGroup name="password">
-                <UInput type="password" v-model="formState.password" placeholder="Password"/>
-              </UFormGroup>
-            </div>
-            <div style="display: flex; justify-content: flex-start;">
-              <div style="display: flex; flex-direction: column; align-items: center; padding-right: 14px;">
-                <button style="background-color: var(--accent-secondary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" :loading="isLoading" type="submit" block><span>Sign in</span></button>
+        <div style="width: fit-content">
+          <AuthStyleAuth title="Login" class="stackit">
+            <UForm :state="formState" :schema="SigninSchema" @submit="handleSignin" @submit.prevent="handleSignin">
+              <div style="padding-bottom: 6px; padding-top: 6px;">
+                <UFormGroup name="email">
+                  <UInput type="email" v-model="formState.email" placeholder="Email"/>
+                </UFormGroup>
               </div>
-              <div>
-                <button @click="{signupClicked=true;}" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" :loading="isLoading" type="submit" block><span>Sign up</span></button>
+              <div style="padding-bottom: 6px; padding-top: 6px;">
+                <UFormGroup name="password">
+                  <UInput type="password" v-model="formState.password" placeholder="Password"/>
+                </UFormGroup>
               </div>
-            </div>
-          </UForm>
-        </AuthStyleAuth>
+              <div style="display: flex; justify-content: flex-start;">
+                <div style="display: flex; flex-direction: column; align-items: center; padding-right: 14px;">
+                  <button style="background-color: var(--accent-secondary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" :loading="isLoading" type="submit" block><span>Sign in</span></button>
+                </div>
+                <div>
+                  <button @click="{signupClicked=true;}" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" :loading="isLoading" type="submit" block><span>Sign up</span></button>
+                </div>
+              </div>
+            </UForm>
+          </AuthStyleAuth>
+        </div>
       </div>
       <div class="centered-login" v-if="signupClicked">
-        <AuthStyleAuth title="Signup" class="stackit">
-          <UForm :state="suformState" :schema="SignupSchema" @submit="handleSuSubmit">
-            <div style="padding-bottom: 6px; padding-top: 6px;">
-              <UFormGroup name="name">
-                <UInput type="name" v-model="suformState.name" placeholder="Name"/>
-              </UFormGroup>
-            </div>
-            <div style="padding-bottom: 6px; padding-top: 6px;">
-              <UFormGroup name="email">
-                <UInput v-model="suformState.email" placeholder="Email" />
-              </UFormGroup>
-            </div>
-            <div style="padding-bottom: 6px; padding-top: 6px;">
-              <UFormGroup name="password">
-                <UInput v-model="suformState.password" placeholder="Password"/>
-              </UFormGroup>
-            </div>
-            <div style="padding-bottom: 6px; padding-top: 6px;">
-              <UFormGroup name="passwordConfirm">
-                <UInput v-model="suformState.passwordConfirm" placeholder="Confirm Password"/>
-              </UFormGroup>
-            </div>
-            <button type="submit" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" block><span>Register</span></button>
-          </UForm>
-        </AuthStyleAuth>
+        <div style="width: fit-content">
+          <AuthStyleAuth title="Signup" class="stackit">
+            <UForm :state="suformState" :schema="SignupSchema" @submit="handleSuSubmit">
+              <div style="padding-bottom: 6px; padding-top: 6px;">
+                <UFormGroup name="name">
+                  <UInput type="name" v-model="suformState.name" placeholder="Name" />
+                </UFormGroup>
+              </div>
+              <div style="padding-bottom: 6px; padding-top: 6px;">
+                <UFormGroup name="email">
+                  <UInput v-model="suformState.email" placeholder="Email" />
+                </UFormGroup>
+              </div>
+              <div style="padding-bottom: 6px; padding-top: 6px;">
+                <UFormGroup name="password">
+                  <UInput v-model="suformState.password" placeholder="Password"/>
+                </UFormGroup>
+              </div>
+              <div style="padding-bottom: 6px; padding-top: 6px;">
+                <UFormGroup name="passwordConfirm">
+                  <UInput v-model="suformState.passwordConfirm" placeholder="Confirm Password"/>
+                </UFormGroup>
+              </div>
+              <button type="submit" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" block><span>Register</span></button>
+              <button @clic="backToSignin()" style="background-color: var(--accent-secondary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" block><span>back to login</span></button>
+            </UForm>
+          </AuthStyleAuth>
+        </div>
       </div>
     </div>
   </div>
@@ -66,6 +71,10 @@ import SignupSchema from '~/schemas/Signup.schema';
 import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
 
 let signupClicked = ref(false)
+function backToSignin() {
+  signupClicked.value = !signupClicked.value;
+}
+const signupSuccess = ref(false)
 const router = useRouter()
 const isLoading = ref(false)
 
@@ -80,6 +89,7 @@ const suformState = reactive({
   password: undefined,
   passwordConfirm: undefined,
 })
+
 const {signIn} = useAuth()
 async function handleSignin(event: FormSubmitEvent<z.output<typeof SigninSchema>>) {
   try {
@@ -102,7 +112,6 @@ async function handleSignin(event: FormSubmitEvent<z.output<typeof SigninSchema>
   }
 }
 
-
 async function handleSuSubmit(event: FormSubmitEvent<z.output<typeof SignupSchema>>) {
   try {
     isLoading.value = true;
@@ -116,7 +125,7 @@ async function handleSuSubmit(event: FormSubmitEvent<z.output<typeof SignupSchem
       description: 'Account created successfully',
       timeout: 2000
     })
-    useRouter().push('/auth/signin')
+    signupClicked.value = false;
   } catch(e: any) {
     useToast().add({
       title: 'Error',
@@ -126,9 +135,6 @@ async function handleSuSubmit(event: FormSubmitEvent<z.output<typeof SignupSchem
     isLoading.value = false;
   }
 }
-
-
-
 </script>
 
 <style>
