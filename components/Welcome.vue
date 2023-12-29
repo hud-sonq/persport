@@ -23,7 +23,10 @@
             <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left">
                 <div id="skill-itself">
                     <h4>DEVELOPMENT</h4>
-                    <span> + PLAYGROUND </span>
+                    <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
+                        <span style="position: absolute; left: 35%;"> + </span>
+                        <img src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+                    </div>
                 </div>
             </NuxtLink>
             <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right">
@@ -47,7 +50,6 @@
         <div v-if="showMessage" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <LogoSlider />
             <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableMessage()">
                 <div style="padding: 2px;">
                     <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">

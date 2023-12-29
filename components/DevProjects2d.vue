@@ -132,6 +132,7 @@
   justify-content: center;
   padding: 4px;
   border-bottom: 4px solid var(--ui-primary);
+  border-right: 4px solid var(--ui-primary);
   max-height: 100%;
 }
 

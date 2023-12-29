@@ -12,15 +12,15 @@ const messageSchema = new Schema(
     {
         name: {
             type: String,
-            required: true,
+            required: false,
         },
         company: {
             type: String,
-            required: true,
+            required: false,
         },
         contact: {
             type: String,
-            required: true,
+            required: false,
         },
         message: {
             type: String,

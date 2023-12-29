@@ -104,7 +104,7 @@ function retry() {
 .weather-box {
   border: 4px solid var(--ui-primary);
   padding: 5%;
-  width: 50%;
+  width: 90%;
 }
 
 .weather-input {

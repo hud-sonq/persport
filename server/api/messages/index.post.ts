@@ -1,6 +1,6 @@
 import {Validator}  from '#nuxt-server-utils';
 import MessageSchema from '~/schemas/Message.schema';
-import { Message } from '~/server/models/Message.model'; // Fix: Import 'Message' from the correct file path
+import { Message } from '~/server/models/Message.model'; 
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -10,4 +10,5 @@ export default defineEventHandler(async (event) => {
   const message = await Message.create({
     ...body
   })
+  console.log(message);
 })

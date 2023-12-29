@@ -75,19 +75,23 @@ h5 {
 }
 
 input::placeholder {
-  padding-left: 2px;
+  text-align: center;
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-family: 'bloop';
-  font-size: 1rem;
+  font-size: .7rem;
   font-display: swap;
 }
 
 input {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-family: 'bloop';
-  font-size: 1rem;
+  font-size: .7rem;
   font-display: swap;
+  text-align: center;
+  background-color: var(--contrast-primary);
+  padding: 4px;
+  border: 2px solid var(--text-primary);
 }
 
 .split-container {

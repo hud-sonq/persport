@@ -15,27 +15,8 @@
               </NuxtLink>
             </div>
         </div>
-        <div v-if="signedIn">
-          <div class="top-bar">
-            <div class="top-bar-div" style="min-width: 30%; overflow: hidden;">
-              <div class="active-app-div">
-                <h4 style="font-size: 1em;">Interact:</h4>
-                <h2 style="color: var(--accent-secondary); font-size: 2.5em;">{{activeApp}}</h2>
-              </div>
-            </div> 
-            <div class="top-bar-div" style="min-width: 70%;">
-              <p style="font-size: 1em;">{{ activeAppDescriptionArray[activeAppDescriptionIndex] }}</p>
-            </div> 
-          </div>
-          <div class="content">
-            <div class="move-left-button">
-              <img @click="moveAppLeft()" src="../clickables/horizontal-arrow.png" class="move-left-png">
-            </div>
-            <WeatherBox v-if="activeApp === 'Weather'" ref="Weather"/>
-            <div class="move-right-button">
-              <img @click="moveAppRight()" src="../clickables/horizontal-arrow.png" class="move-right-png">
-            </div>
-          </div>
+        <div v-if="signedIn" class="content">
+          <WeatherBox/>
         </div>
       </div>
     </div>
@@ -59,7 +40,6 @@ let activeAppDescription = ref<string>('');
 let activeAppDescriptionIndex = ref<number>(0);
 let activeAppDescriptionArray = ref<string[]>(['- Type in a city to get its current weather conditions. Watch out: ChatGPT likes to make odd comments about the weather.', 'Interact with this 3D model I made.', 'Check out these audio-reactive cubes.']);
 
-
 function moveAppLeft() {
   currentIndex = (currentIndex + 1) % totalItems;
   activeApp.value = apps.value[currentIndex];
@@ -76,7 +56,7 @@ function moveAppRight() {
   
   
 <style scoped>
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   span {
     font-size: 1em;
   }
@@ -94,6 +74,9 @@ function moveAppRight() {
   }
   p {
     font-size: 12px;
+  }
+  .split-container {
+    flex-direction: column;
   }
 }
 

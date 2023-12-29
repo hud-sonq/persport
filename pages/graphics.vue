@@ -10,7 +10,7 @@
       <div class="text-container">
         <h2 class="heading-text stackit-text">Graphics and 3D</h2>
         <p style="text-align: center; padding: 12px;">- - - - </p>
-        <p>- My graphic / 3D design falls under a niche genre of digital art called "metalheart." I am inspired by y2k design and retro imaginations of sci fi environments / UIs.</p>
+        <p>- My graphic / 3D design falls under a genre of digital art called "metalheart." I am inspired by y2k design and retro imaginations of sci fi environments / UIs.</p>
         <p style="text-align: center; padding: 12px;">- - - - </p>
         <p>- I use Blender for 3D modeling and rendering, Adobe Illustrator for vector work, and Adobe Photoshop for 2d design.</p>
         <p style="text-align: center; padding: 12px;">- - - - </p>
