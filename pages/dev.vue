@@ -57,33 +57,21 @@ function moveAppRight() {
   
 <style scoped>
 @media (max-width: 768px) {
-  span {
-    font-size: 1em;
-  }
-  h1 {
-    font-size: 20px;
-  }
-  h2 {
-    font-size: 15px;
-  }
-  h3 {
-    font-size: 13px;
-  }
-  h4 {
-    font-size: 12px;
-  }
-  p {
-    font-size: 12px;
-  }
   .split-container {
     flex-direction: column;
+  }
+  .right {
+    display: none;
+  }
+  .left {
+    margin: 0;
   }
 }
 
 .sign-in-required {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   height: 100%;
   width: 30%;
   text-align: center;
@@ -102,6 +90,7 @@ function moveAppRight() {
 
 .content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;

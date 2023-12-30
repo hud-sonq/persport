@@ -7,7 +7,6 @@
           <form @submit.prevent="getWeather" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <input v-model="city" @input="searchCity" placeholder="ENTER A CITY" style="min-width: 100%;"/>
             <button @click="getWeather" style="background-color: var(--accent-secondary); margin-top: 8px; padding: 10%; width: 100%; cursor: pointer;"><h3>Go</h3></button>
-            <p v-if="responseError" style="color: red;">{{ responseError }}!</p>
           </form>
         </div>
       </div>
@@ -104,7 +103,6 @@ function retry() {
 .weather-box {
   border: 4px solid var(--ui-primary);
   padding: 5%;
-  width: 90%;
 }
 
 .weather-input {

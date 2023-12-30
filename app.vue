@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBarMobile />
   <div id="main" ref="main" class="">
     <NuxtPage />
   </div>
@@ -36,6 +36,8 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
   };
 }
 </script>
+
+
 
 
 <style>

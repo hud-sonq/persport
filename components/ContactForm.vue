@@ -6,11 +6,6 @@
             </UFormGroup>
         </div>
         <div style="padding-bottom: 6px; padding-top: 6px;">
-            <UFormGroup name="email">
-                <UInput v-model="contactFormState.company" placeholder="Your company" />
-            </UFormGroup>
-        </div>
-        <div style="padding-bottom: 6px; padding-top: 6px;">
             <UFormGroup name="password">
                 <UInput v-model="contactFormState.contact" placeholder="Your email"/>
             </UFormGroup>
@@ -18,6 +13,11 @@
         <div style="padding-bottom: 6px; padding-top: 6px;">
             <UFormGroup name="passwordConfirm">
                 <UInput v-model="contactFormState.message" placeholder="Your message"/>
+            </UFormGroup>
+        </div>
+        <div style="padding-bottom: 6px; padding-top: 6px;">
+            <UFormGroup name="email">
+                <UInput v-model="contactFormState.company" placeholder="Company (optional)" />
             </UFormGroup>
         </div>
         <button type="submit" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" block>
@@ -62,3 +62,14 @@ async function handleContactFormSubmit(event: FormSubmitEvent<z.output<typeof Me
 }
 
 </script>
+
+<style scoped>
+p {
+    font-family: bloop;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+</style>

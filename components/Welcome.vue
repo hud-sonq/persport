@@ -12,36 +12,36 @@
     </div>
     <div class="deco deco-bottom-right" v-if="!showForm">
         <div class="invert">
-            <img :class="{ 'deco-blink': !rightFormSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableForm()">
+            <img :class="{ 'deco-blink': !rightFormSeen, 'greyed-out': rightFormSeen }" style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableForm()">
         </div>
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
         <div id="welcomeText" ref="welcomeText" class="active">
-            <h1 class="stackit-text">WELCOME</h1>
+            <h1 class="stackit-text welcome-h1">WELCOME</h1>
         </div>
         <div id="skillBox" ref="skillBox" class="active">
             <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left">
                 <div id="skill-itself">
-                    <h4>DEVELOPMENT</h4>
+                    <span>DEVELOPMENT</span>
                     <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
-                        <span style="position: absolute; left: 35%;"> + </span>
-                        <img src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+                        <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
+                        <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
                     </div>
                 </div>
             </NuxtLink>
             <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right">
                 <div id="skill-itself">
-                    <h4>GRAPHICS AND 3D</h4>
+                    <span>GRAPHICS AND 3D</span>
                 </div>
             </NuxtLink>
             <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left">
                 <div id="skill-itself">
-                    <h4>SOUND DESIGN</h4>
+                    <span>SOUND DESIGN</span>
                 </div>
             </NuxtLink>
             <NuxtLink to="/resume" id="skill-bg" class="stackit">
                 <div id="skill-itself">
-                    <h4>RESUME</h4>
+                    <span>RESUME</span>
                 </div>
             </NuxtLink>
         </div>
@@ -123,6 +123,28 @@ function enableForm() {
 
 
 <style scoped>
+
+@media (max-width: 768px) {
+    span {
+        font-size: .5rem;
+    }
+    h1 {
+        font-size: 1.7rem;
+        text-shadow:
+    .3rem .3rem 0px var(--accent-primary),
+    .6rem .6rem 0px var(--accent-tertiary);
+    }
+    .weather-icon-addition {
+        display: none;
+    }
+    .weather-icon-itself {
+        display: none;
+    }
+    .deco {
+        opacity: 1;
+    }
+    
+}
 .motd {
     position: absolute;
     top: 50%;

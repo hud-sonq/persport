@@ -5,7 +5,10 @@
           <LeftTerminal/>
         </div>
         <div class="right">
-          <h1> Resume </h1>
+          <div class="resume-container">
+            <h1> Resume </h1>
+            <div class="title"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -16,5 +19,17 @@
   
   
   <style scoped>
+  @media (max-width: 768px) {
+    .left {
+      display: none;
+    }
+  }
+  .resume-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+  }
   
   </style>

@@ -11,6 +11,8 @@
       </div>
       <div class="active house" ref="prlxHouse" @mousemove="parallaxTest" >
         <div>
+          <img v-if="tempSoundPage" src="/deco/svg/sound_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+          <img v-if="resumeIconPage" src="/deco/svg/guy_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
           <vue3dLoader
           :width="width"
           :height="height"
@@ -43,6 +45,8 @@ let prlxHouse = ref<HTMLElement | null>(null);
 let cooldownTimeout = null;
 const route = useRoute();
 
+let resumeIconPage = false;
+let tempSoundPage = false;
 let basePath = "../scenes/";
 let filepath = "";
 
@@ -57,10 +61,13 @@ onMounted(() => {
       filepath = basePath + "handcube1.glb";
     }
     if (route.path === '/resume') {
-      filepath = basePath + "blueball.glb";
+      resumeIconPage = true;
     }
     if (route.path === '/auth/account') {
       filepath = basePath + "blueball.glb";
+    }
+    if (route.path === '/sound') {
+      tempSoundPage = true;
     }
 });
 

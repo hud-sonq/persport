@@ -17,6 +17,9 @@
   font-family: 'bloop';
   src: url('/fonts/aex.ttf');
 }
+input:focus::placeholder {
+  opacity: 30%;
+}
 
 span {
   font-family: 'bloop';
@@ -90,8 +93,8 @@ input {
   font-display: swap;
   text-align: center;
   background-color: var(--contrast-primary);
-  padding: 4px;
   border: 2px solid var(--text-primary);
+  padding: 4px;
 }
 
 .split-container {

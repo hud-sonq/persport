@@ -88,6 +88,20 @@
 </script>
 
 <style scoped>
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.1rem;
+  }
+  h4 {
+    font-size: .75rem;
+  }
+  p {
+    font-size: .6rem;
+  }
+  .project-deco {
+    display: none;
+  }
+}
 
 .acnt-img {
   height: 100%;
