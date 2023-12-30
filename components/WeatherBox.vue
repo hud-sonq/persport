@@ -3,99 +3,64 @@
     <div class="centered-child">
       <div v-if="!weatherData" class="weather-input">
         <h4>WEATHER RETRIEVAL</h4>
-        <div style="max-width: 100%; overflow: hidden;">
-          <form @submit.prevent="getWeather" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <input v-model="city" @input="searchCity" placeholder="ENTER A CITY" style="min-width: 100%;"/>
-            <button @click="getWeather" style="background-color: var(--accent-secondary); margin-top: 8px; padding: 10%; width: 100%; cursor: pointer;"><h3>Go</h3></button>
-          </form>
-        </div>
+        <UForm :state="state" :schema="WeatherSchema" @submit="fetchWeatherGptDescription">
+          <div style="padding-bottom: 6px; padding-top: 6px;">
+              <UFormGroup name="name">
+                  <UInput type="name" v-model="state.city" placeholder="ENTER A CITY" />
+              </UFormGroup>
+          </div>
+          <button type="submit" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" block>
+              <span>GO</span>
+          </button>
+        </UForm>
+      </div>
+      <div v-if="isLoading" style="display: inline; padding-left: 12px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="10" height="10" x="1" y="1" fill="currentColor" rx="1"><animate id="svgSpinnersBlocksShuffle20" fill="freeze" attributeName="x" begin="0;svgSpinnersBlocksShuffle27.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle21" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle24.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle22" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle25.end" dur="0.2s" values="13;1"></animate><animate id="svgSpinnersBlocksShuffle23" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle26.end" dur="0.2s" values="13;1"></animate></rect><rect width="10" height="10" x="1" y="13" fill="currentColor" rx="1"><animate id="svgSpinnersBlocksShuffle24" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle20.end" dur="0.2s" values="13;1"></animate><animate id="svgSpinnersBlocksShuffle25" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle21.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle26" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle22.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle27" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle23.end" dur="0.2s" values="13;1"></animate></rect></svg>
       </div>
     </div>
     <div v-if="weatherData" class="centered-child">
-      <div class="weather-result">
-        <p>The temperature in {{ weatherData.name }} is {{ (weatherData.main.temp *1.8 ) + 32 }}°F. It's {{ weatherData.weather[0].description }}. {{ funnyMessage }} </p>
-        <!-- <p>{{ funnyBotResponse }}</p> -->
-        <form @submit.prevent="retry">
-          <button @click="retry" style="background-color: var(--accent-secondary); margin-top: 8px; padding: 10%; width: 100%; cursor: pointer;">
-            <h3>Go Again</h3>
-          </button>
-        </form>
-      </div>
+      <h4>{{ weatherData }}</h4>
     </div>
   </div>
 </template>
     
-<script setup>
-const config = useRuntimeConfig();
+<script setup lang="ts">
 import { ref } from 'vue';
-import axios from 'axios';
-import OpenAI from "openai";
+import WeatherSchema from '~/schemas/Weather.schema';
+import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
+import { z } from 'zod';
 
-const apiKey = config.owSecret;
-const secretApiKey = config.public.secret;
-const city = ref('');
-const weatherData = ref(null);
-const responseError = ref(null);
 
-const getWeather = () => {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=${apiKey}`;
-  axios
-    .get(apiUrl)
-    .then((response) => {
-      weatherData.value = response.data;
-    })
-    .catch((error) => {
-      console.error('Error fetching weather data:', error);
-      responseError.value = error.response.data.message;
-    });
-};
+const state = reactive({
+  city: '',
+});
+const weatherData = ref('');
+let isLoading = ref(false);
+let message = ref<string>('');
 
-// const funnyBot = new OpenAI({
-//   apiKey: secretApiKey,
-//   dangerouslyAllowBrowser: true
-// });
-
-// const funnyBotResponse = await funnyBot.chat.completions.create({
-//   model: "gpt-3.5-turbo",
-//   messages: [
-//     {
-//       "role": "system",
-//       "content": "Explain this weather status, but in a funny and interesting way."
-//     },
-//     {
-//       "role": "user",
-//       "content": "heavy hail",
-//     }
-//   ],
-//   temperature: 0,
-//   max_tokens: 1024,
-//   top_p: 1,
-//   frequency_penalty: 0,
-//   presence_penalty: 0,
-// });
-
-const funnyMessages = ref([
-  'Keep your socks tied.',
-  'If you eat some poop, you will die.',
-  'The is also a chance of nuclear war.',
-  'Craziest weather this town has ever had.',
-  'Don\'t forget to bring toothpaste.',
-  'Do not forget to eat fruit.',
-]);
-const funnyMessage = ref('');
-const getRandomMessage = () => {
-  const index = Math.floor(Math.random() * funnyMessages.value.length);
-  funnyMessage.value = funnyMessages.value[index];
-};
-getRandomMessage();
-
-function retry() {
-  weatherData.value = null;
-  responseError.value = null;
-  city.value = '';
+async function fetchWeatherGptDescription(event: FormSubmitEvent<z.output<typeof WeatherSchema>>) {
+  try {
+      isLoading.value = true;
+      console.log(isLoading);
+      fetch('/api/weathers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(state),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        weatherData.value = data;
+      })
+    } catch (error) {
+        console.error('errr ', error);
+    } finally {
+        isLoading.value = false;
+    }
 }
-
-
+const responseError = ref(null);
 </script>
     
 <style scoped>

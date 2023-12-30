@@ -3,8 +3,6 @@ import type { Document } from 'mongoose';
 
 export interface WeatherDocument extends Document {
     city: string;
-    temperature: number;
-    description: string;
     owner: string;
 }
 
@@ -14,17 +12,14 @@ const WeatherSchema = new Schema(
             type: String,
             required: true,
         },
-        temperature: {
-            type: Number,
-            required: true,
-        },
         description: {
             type: String,
-            required: true,
+            required: false,
         },
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'User',
+            required: false,
         }
     },
     {
