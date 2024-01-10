@@ -3,7 +3,7 @@
     <div class="column" v-for="columnStrip in [leftImages, rightImages]">
       <div v-for="image in columnStrip" class="image-item">
         <img :src="image.src" alt=""/>
-        <div class="overlay"><h4>{{image.title}}</h4></div>
+        <div class="overlay" @click="$emit('click', image.src)"><h4>{{image.title}}</h4></div>
       </div>
     </div>
   </div>

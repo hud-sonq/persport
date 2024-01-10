@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; justify-content: center;">
+  <div style="display: flex; justify-content: center;" class="mobile-v">
       <div id="navbar" class="">
           <div class="navbar-item">
               <NuxtLink to="/" class="link">
@@ -39,6 +39,16 @@ const fullbarExpanded = () => {
 </script>
 
 <style scoped>
+.mobile-v {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .mobile-v {
+    display: none;
+  }
+}
+
 
 #navbar {
   position: fixed;

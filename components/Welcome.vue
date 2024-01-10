@@ -46,28 +46,29 @@
             </NuxtLink>
         </div>
     </div>
-    <div v-if="showMessage || showForm" class="motd">
-        <div v-if="showMessage" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
+    <div v-if="showMessage || showForm" class="motd stackit">
+        <div v-if="showMessage" class="message">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableMessage()">
+            <LogoSlider />
+            <div class="close-x" @click="enableMessage()">
                 <div style="padding: 2px;">
-                    <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">
-                </div>            
+                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
+                </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                <div style="padding: 16px; text-align: center;">
+            <div class="message-text-container">
+                <div>
                     <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I am eager to provide <span style="color: var(--accent-primary);">creative innovation</span> for your website or business!</span>
                 </div>
             </div>
         </div>
-        <div v-if="showForm" style="background: var(--background-primary); border: 2px solid var(--ui-primary); height: 300px; width: 420px; z-index: 9999;">
+        <div v-if="showForm" class="message">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <div style="cursor: pointer; position: absolute; right: 0; top: 0; text-align: center; font-size: 16px; font-weight: bold; color: var(--ui-primary);" @click="enableForm()">
+            <div class="close-x" @click="enableForm()">
                 <div style="padding-top: 2px;">
-                    <img src="/deco/svg/closebox.svg" style="height: 32px; width: 32px; filter: invert(1);">
-                </div>            
+                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
+                </div>
             </div>
             <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                 <div style="padding: 16px; text-align: center;">
@@ -80,20 +81,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { vue3dLoader } from 'vue-3d-loader';
-
-const [width, height] = [ref(512), ref(512)];
-const filepath = '/scenes/4some.glb';
-const enablePan = false;
-const enableZoom = false;
-const enableRotate = false;
-const rotation = ref();
-
-
-
-
-
 let leftMessageSeen = ref(false);
 let rightFormSeen = ref(false);
 if (localStorage.getItem('leftMessageSeen')) {
@@ -102,7 +89,6 @@ if (localStorage.getItem('leftMessageSeen')) {
 if (localStorage.getItem('rightFormSeen')) {
     rightFormSeen.value = true;
 }
-
 let showMessage = ref<boolean>(false);
 function enableMessage() {
     showMessage.value = !showMessage.value;
@@ -145,12 +131,37 @@ function enableForm() {
     }
     
 }
+
+.message-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+.close-x {
+    cursor: pointer; 
+    position: absolute; 
+    right: 0; 
+    top: 0; 
+    text-align: center; 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: var(--ui-primary);
+}
+.message {
+    background: var(--background-primary); 
+    border: 2px solid var(--ui-primary); 
+    z-index: 9999;
+    height: 100%;
+}
 .motd {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 80%;
+    width: 80%;
+    height: 60%;
 }
 
 .invert {
@@ -273,7 +284,7 @@ function enableForm() {
     margin: 2%;
     text-decoration: none;
     padding: 16px;
-    flex-grow: 100%;
+    flex-grow: 50%;
 }
 
 #skill-itself {

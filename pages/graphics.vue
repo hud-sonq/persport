@@ -1,20 +1,27 @@
 <template>
   <div class="split-container active">
     <div class="left">
-      <div class="test">
-        <HorizontalGallery v-bind="props" />
-        <VerticalGallery v-bind="props"/>
+      <div class="image-gallery">
+        <VerticalGallery @click="handlePhotoClicked" v-bind="props"/>
       </div>
     </div>
     <div class="right">
-      <div class="text-container">
-        <h2 class="heading-text stackit-text">Graphics and 3D</h2>
+      <div class="text-container" v-if="!clickedPhoto">
+        <div class="heading-container">
+          <h2 class="heading-text stackit-text">Graphics and 3D <img src="/deco/svg/pyramid.svg" style="height: 30px; filter: invert(1);"></h2>
+        </div>
         <p style="text-align: center; padding: 12px;">- - - - </p>
-        <p>- My graphic / 3D design falls under a niche genre of digital art called "metalheart." I am inspired by y2k design and retro imaginations of sci fi environments / UIs.</p>
+        <p>- I like abstract sci fi art! My graphic and 3D design falls under a niche genre of digital art called "metalheart." I am inspired by y2k design and retro imaginations of sci fi environments / UIs.</p>
         <p style="text-align: center; padding: 12px;">- - - - </p>
         <p>- I use Blender for 3D modeling and rendering, Adobe Illustrator for vector work, and Adobe Photoshop for 2d design.</p>
-        <p style="text-align: center; padding: 12px;">- - - - </p>
-        <p>- Please enjoy these abstract 3d forms and UIs. Want to see your product with this kind of styling? Contact me.</p>
+      </div>
+      <div class="large-lightroom" v-if="clickedPhoto">
+        <div class="image-itself">
+          <div class="close-button" @click="clickedPhoto = null">
+            <img src="/deco/svg/closebox.svg" style="height: 30px; filter: invert(1);">
+          </div>
+          <img :src="clickedPhoto" style="width: 100%; height: 100%;"/>
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +67,10 @@ const props = {
   ], 
 }
 
+const clickedPhoto = ref(null);
+const handlePhotoClicked = (photo: any) => {
+  clickedPhoto.value = photo;
+}
 </script>
   
 <style scoped>
@@ -69,76 +80,39 @@ const props = {
   }
 }
 
-.test {
-  margin: 5%;
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.large-lightroom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+}
+
+.image-itself {
+  margin: 6px;
+  border: 4px solid var(--accent-secondary);
+}
+.heading-container {
+  height: 10%;
+}
+.image-gallery {
+  margin: 1%;
 }
 
 .text-container {
   padding: 40px 5%;
   overflow: auto;
-  
+  height: 100%;
 }
 
 .heading-text {
-  margin-bottom: 2rem;
-  font-size: 2rem;
+  text-align: center;
 }
-
-.heading-text h4 {
-  font-weight: 100;
-}
-
-.image-gallery {
-  /* Mobile first */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.image-gallery .column {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.image-item img {
-  width: 100%;
-  border-radius: 5px;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media only screen and (min-width: 768px) {
-  .image-gallery {
-    flex-direction: row;
-  }
-}
-
-.image-item {
-  position: relative;
-  cursor: pointer;
-}
-
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(82, 255, 96, 0.502);
-  top: 0;
-  left: 0;
-  transition: all 0.1s 0.1s ease-in-out;
-  color: #fff;
-  /* center overlay content */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-}
-
-.image-item:hover .overlay {
-  opacity: 1;
-}
-
-
-
 </style>
