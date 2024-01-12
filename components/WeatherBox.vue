@@ -30,11 +30,11 @@
       </div>
     </div>
     <div class="valid-entries-ex" v-if="errorMessage || postWasError">
-      <div class="title-text">
-        <h3>some valid entries to try:</h3>
-        <h4>- atlanta</h4>
-        <h4>- london</h4>
-        <h4>- los angeles</h4>
+      <div>
+        <h3 style="color: var(--error-primary)">some valid entries to try:</h3>
+        <h4 style="color: var(--error-primary)">- atlanta</h4>
+        <h4 style="color: var(--error-primary)">- london</h4>
+        <h4 style="color: var(--error-primary)">- los angeles</h4>
       </div>
     </div>
   </div>
@@ -80,7 +80,6 @@ async function fetchWeatherGptDescription(event: FormSubmitEvent<z.output<typeof
 </script>
     
 <style scoped>
-
 .weather-deco {
   position: fixed;
   right: 0;
@@ -125,7 +124,6 @@ async function fetchWeatherGptDescription(event: FormSubmitEvent<z.output<typeof
   border: 2px solid var(--ui-primary);
 }
 
-
 .weather-box-container {
   display: flex;
   flex-direction: column;
@@ -136,5 +134,23 @@ async function fetchWeatherGptDescription(event: FormSubmitEvent<z.output<typeof
   overflow: hidden;
 }
 
+.valid-entries-ex {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  border-top: 4px solid var(--ui-primary);
+}
+
+@media(max-width: 768px) {
+  .weather-box-container {
+    background-color: var(--contrast-primary);
+  }
+
+  .weather-box {
+    width: 85%;
+  }
+}
 </style>
     

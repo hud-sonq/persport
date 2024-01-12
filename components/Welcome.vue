@@ -16,37 +16,39 @@
         </div>
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
-        <div id="welcomeText" ref="welcomeText" class="active">
-            <h1 class="stackit-text welcome-h1">WELCOME</h1>
-        </div>
-        <div id="skillBox" ref="skillBox" class="active">
-            <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left">
-                <div id="skill-itself">
-                    <span>DEVELOPMENT</span>
-                    <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
-                        <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
-                        <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+        <div class="welcome-container">
+            <div id="welcomeText" ref="welcomeText" class="active">
+                <h1 class="stackit-text welcome-h1">WELCOME</h1>
+            </div>
+            <div id="skillBox" ref="skillBox" class="active">
+                <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left skill-link-div">
+                    <div id="skill-itself">
+                        <span>DEVELOPMENT</span>
+                        <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
+                            <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
+                            <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+                        </div>
                     </div>
-                </div>
-            </NuxtLink>
-            <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right">
-                <div id="skill-itself">
-                    <span>GRAPHICS AND 3D</span>
-                </div>
-            </NuxtLink>
-            <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left">
-                <div id="skill-itself">
-                    <span>SOUND DESIGN</span>
-                </div>
-            </NuxtLink>
-            <NuxtLink to="/resume" id="skill-bg" class="stackit">
-                <div id="skill-itself">
-                    <span>RESUME</span>
-                </div>
-            </NuxtLink>
+                </NuxtLink>
+                <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right skill-link-div">
+                    <div id="skill-itself">
+                        <span>GRAPHICS AND 3D</span>
+                    </div>
+                </NuxtLink>
+                <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left skill-link-div">
+                    <div id="skill-itself">
+                        <span>SOUND</span>
+                    </div>
+                </NuxtLink>
+                <NuxtLink to="/resume" id="skill-bg" class="stackit skill-link-div">
+                    <div id="skill-itself">
+                        <span>RESUME</span>
+                    </div>
+                </NuxtLink>
+            </div>
         </div>
     </div>
-    <div v-if="showMessage || showForm" class="motd stackit">
+    <div v-if="showMessage || showForm" class="motd">
         <div v-if="showMessage" class="message">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
@@ -109,7 +111,6 @@ function enableForm() {
 
 
 <style scoped>
-
 @media (max-width: 768px) {
     span {
         font-size: .5rem;
@@ -132,6 +133,19 @@ function enableForm() {
     
 }
 
+span {
+    font-weight: bold;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
+    max-width: 95%;
+}
 .message-text-container {
     display: flex;
     align-items: center;
@@ -166,7 +180,7 @@ function enableForm() {
 
 .invert {
     filter: invert(1);
-    width: 64px;
+    width: 50px;
 }
 
 .deco-top-left {
@@ -243,16 +257,6 @@ function enableForm() {
     max-width: 100%;
 }
 
-
-#med {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    opacity: 1;
-    pointer-events: none;
-}
-
 #welcomeText.active {
     opacity: 1;
     pointer-events: all;
@@ -267,6 +271,7 @@ function enableForm() {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
     margin: 5%;
+    width: 100%;
 }
 
 #skillBox.active {
@@ -274,7 +279,6 @@ function enableForm() {
     pointer-events: all;
     top: 0%;
 }
-
 
 #skill-bg {
     border: 4px solid var(--ui-primary);
@@ -284,7 +288,6 @@ function enableForm() {
     margin: 2%;
     text-decoration: none;
     padding: 16px;
-    flex-grow: 50%;
 }
 
 #skill-itself {
@@ -292,6 +295,10 @@ function enableForm() {
     transform-style: preserve-3d;
     cursor: pointer;
     text-align: center;
+}
+
+.skill-link-div {
+    object-fit: scale-down;
 }
 
 .resume-highlighter {
@@ -323,24 +330,4 @@ function enableForm() {
     opacity: 1;
     transition: opacity 1.8s ease-in-out
 }
-
-.scene {
-    position: absolute;
-    top: -10%;
-    left: -4%;
-    height: 100%;
-    width: 100%;
-    z-index: -10;
-}
-
-.scene-bottom {
-    position: absolute;
-    top: 10%;
-    right: -6%;
-    height: 100%;
-    width: 100%;
-    z-index: -10;
-    transform: scaleX(-1) scaleY(-1);
-}
-
 </style>

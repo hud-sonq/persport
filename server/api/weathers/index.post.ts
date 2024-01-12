@@ -68,23 +68,19 @@ const openai = new OpenAI({
 });
 const owApiKey = config.owSecret;
 
-export default defineEventHandler(async (event) => {
+export default rateLimitWrapper(eventHandler(async (event) => {
   const body = await readBody(event); // will only be a city for now
   Validator.validateSchema(WeatherSchema, body);
   
   let gptResponse;
   let openWeatherResponse: any;
-
-  const getOpenWeather = rateLimitWrapper(async () => {
+  
+  const getOpenWeather = async () => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${body.city}&units=metric&appid=${owApiKey}`;
     const response = await axios.get(apiUrl);
     openWeatherResponse = response.data;
     console.log('WEATHER REQUESTED \n', openWeatherResponse);
-  }, {
-    interval: 1000,
-    threshold: 4.9,
-    cb: () => 'rate limit reached'
-  });
+  }
   try {
     await getOpenWeather();
     const theWeatherCity = openWeatherResponse.name;
@@ -103,4 +99,11 @@ export default defineEventHandler(async (event) => {
   } catch (e) {
     return (e as any).response.data.message;
   }
-})
+}), {
+  interval: 1000, 
+  threshold: 5,
+  cb: (info, args) => {
+    console.log(`Rate limit reached. Temperature: ${info.temperature}, Wait: ${info.wait}`);
+  },
+});
+

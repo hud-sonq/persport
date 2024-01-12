@@ -6,7 +6,7 @@
             </UFormGroup>
         </div>
         <div style="padding-bottom: 6px; padding-top: 6px;">
-            <UFormGroup name="email">
+            <UFormGroup name="contact">
                 <UInput v-model="contactFormState.contact" placeholder="Your email"/>
             </UFormGroup>
         </div>
@@ -20,7 +20,7 @@
                 <UInput v-model="contactFormState.message" placeholder="Your message"/>
             </UFormGroup>
         </div>
-        <div class="submit-button">
+        <div class="submit-button" v-if="!success">
             <button type="submit" style="background-color: var(--accent-quaternary); height: 32px; font-family: bloop; color: var(--text-secondary); cursor: pointer;" block>
                 <span>SEND</span>
             </button>
@@ -40,10 +40,11 @@ import { ref } from 'vue';
 
 const isLoading = ref(false);
 let message = ref<string>('');
+let success = ref<boolean>(false);
 let contactFormState = ref({
     name: undefined, 
-    company: undefined,
     contact: undefined,
+    company: undefined,
     message: undefined
 });
 async function handleContactFormSubmit(event: FormSubmitEvent<z.output<typeof MessageSchema>>) {
@@ -57,7 +58,8 @@ async function handleContactFormSubmit(event: FormSubmitEvent<z.output<typeof Me
             },
             watch: false
         });
-        message.value = 'Message sent successfully!';
+        message.value = 'Thanks!';
+        success.value = true;
     } catch (error) {
         console.error(error);
         message.value = 'Something went wrong. Please try again.';
@@ -66,7 +68,6 @@ async function handleContactFormSubmit(event: FormSubmitEvent<z.output<typeof Me
 </script>
 
 <style scoped>
-
 p {
     font-family: bloop;
     font-size: 1.5rem;
@@ -74,5 +75,4 @@ p {
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
-
 </style>

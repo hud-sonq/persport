@@ -1,5 +1,5 @@
 <template>
-  <NavBarMobile />
+  <NavBar />
   <div id="main" ref="main" class="">
     <NuxtPage />
   </div>

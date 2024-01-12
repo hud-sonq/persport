@@ -11,8 +11,6 @@
       </div>
       <div class="active house" ref="prlxHouse" @mousemove="parallaxTest" >
         <div>
-          <img v-if="tempSoundPage" src="/deco/svg/sound_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
-          <img v-if="resumeIconPage" src="/deco/svg/guy_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
           <vue3dLoader
           :width="width"
           :height="height"
@@ -22,6 +20,7 @@
           :backgroundAlpha="0"
           :scale="{x:1, y:1, z:1}"
           :rotation="rotation"
+          :cameraFov="160"
           :controlsOptions="{
           enablePan,
           enableZoom,
@@ -37,47 +36,32 @@
 
 <script setup lang="ts">
 import { vue3dLoader } from "vue-3d-loader";
-import { ref, onMounted } from 'vue';
-import { boolean } from "zod";
-let resizedBefore = false;
+
 let terminal = ref<HTMLElement | null>(null);
 let prlxHouse = ref<HTMLElement | null>(null);
 let cooldownTimeout = null;
 const route = useRoute();
 
-let resumeIconPage = false;
-let tempSoundPage = false;
 let basePath = "../scenes/";
 let filepath = "";
 
 const [width, height] = [ref(0), ref(0)];
 onMounted(() => {
-    window.addEventListener('resize', () => {
-      resizedBefore = true;
-    });
     width.value = document.querySelector('#terminal')?.parentElement?.clientWidth ?? 512;
     height.value = document.querySelector('#terminal')?.parentElement?.clientHeight ?? 512;
     if (route.path === '/') {
       filepath = basePath + "handcube1.glb";
     }
-    if (route.path === '/resume') {
-      resumeIconPage = true;
-    }
     if (route.path === '/auth/account') {
       filepath = basePath + "blueball.glb";
     }
-    if (route.path === '/sound') {
-      tempSoundPage = true;
-    }
 });
 
-
+// 3d loader options
 const enablePan = false;
 const enableZoom = false;
-const enableRotate = false;
+const enableRotate = true;
 const rotation = ref();
-
-
 rotation.value = {
   x: 0,
   y: .55,
@@ -101,7 +85,6 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 </script>
 
 <style scoped>
-
 .house {
   height: 100%;
   width: 100%;
@@ -141,7 +124,6 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   margin: 2%;
   width: 35%;
   transform: rotate(180deg);
-
 }
 
 #terminal {
@@ -154,19 +136,6 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 
 #terminal.active {
   opacity: 1;
-}
-
-#fishView {
-  opacity: 0;
-  transition: opacity 2s ease-in-out;
-  height: 100%;
-  width: 100%;
-}
-
-#fishView.active {
-  opacity: 1;
-  height: 100%;
-  width: 100%;
 }
 
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="split-container active">
-      <div class="left">
-        <LeftTerminal/>
+      <div class="left" style="overflow: hidden;">
+        <IconWallpaper v-bind="wallpaperProps" />
       </div>
       <div class="right">
         <h1> Sound </h1>
@@ -15,6 +15,10 @@
 </template>
   
 <script lang="ts" setup>
+const wallpaperProps = {
+  image: '/deco/svg/sound_icon.svg',
+  angle: -40
+}
 </script>
 
 
@@ -24,5 +28,4 @@
     display: none;
   }
 }
-
 </style>

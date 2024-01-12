@@ -1,19 +1,40 @@
 <template>
   <div class="split-container active">
     <div class="left">
-      <div class="image-gallery">
+      <div class="click-to-view-container">
+        <div class="click-to-view" v-if="!viewable" @click="viewable = !viewable">
+          <div>
+            <h4>click to view</h4>
+          </div>
+          <div style="padding-left: 8px;">
+            <img src="/deco/svg/bang.svg" style="filter: invert(1); height: 16px;">
+          </div>
+        </div>
+      </div>
+      <div class="image-gallery" v-if="viewable">
+        <h4 class="mobile-tip" style="padding-top: 8px; padding-bottom: 8px;">tap an image to see the title</h4>
+        <h4 class="desktop-tip" style="padding-top: 8px; padding-bottom: 8px;">hover an image to see the title</h4>
         <VerticalGallery @click="handlePhotoClicked" v-bind="props"/>
       </div>
     </div>
     <div class="right">
-      <div class="text-container" v-if="!clickedPhoto">
-        <div class="heading-container">
-          <h2 class="heading-text stackit-text">Graphics and 3D <img src="/deco/svg/pyramid.svg" style="height: 30px; filter: invert(1);"></h2>
+      <div v-if="!clickedPhoto">
+        <div class="deco-top-left">
+          <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
         </div>
-        <p style="text-align: center; padding: 12px;">- - - - </p>
-        <p>- I like abstract sci fi art! My graphic and 3D design falls under a niche genre of digital art called "metalheart." I am inspired by y2k design and retro imaginations of sci fi environments / UIs.</p>
-        <p style="text-align: center; padding: 12px;">- - - - </p>
-        <p>- I use Blender for 3D modeling and rendering, Adobe Illustrator for vector work, and Adobe Photoshop for 2d design.</p>
+        <div class="deco-bottom-right">
+          <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+        </div>
+      </div>
+      <div class="bullets" v-if="!clickedPhoto">
+        <div style="text-align: center; padding-bottom: 16px; border-bottom: 2px solid var(--ui-primary)">
+            <h2>Graphics and 3D <img src="/deco/svg/pyramid.svg" style="height: 30px; filter: invert(1);"></h2>
+        </div>
+        <p style="padding-bottom: 16px; padding-top: 16px; border-bottom: 2px solid var(--ui-primary)">- abstract sci fi art</p>
+        <p style="padding-bottom: 16px; padding-top: 16px; border-bottom: 2px solid var(--ui-primary)">- logo design</p>
+        <p style="padding-bottom: 16px; padding-top: 16px; border-bottom: 2px solid var(--ui-primary)">- 3D modeling</p>
+        <p style="padding-bottom: 16px; padding-top: 16px; border-bottom: 2px solid var(--ui-primary)">- vector work</p>
+        <p style="padding-bottom: 16px; padding-top: 16px; border-bottom: 2px solid var(--ui-primary)">- Adobe suite, blender </p>
       </div>
       <div class="large-lightroom" v-if="clickedPhoto">
         <div class="image-itself">
@@ -32,18 +53,22 @@ const props = {
   leftImages: [
     "/2dgallery/compressed/embryosis.png",
     "/2dgallery/compressed/destructivecold-min.png",
+    "/2dgallery/compressed/greenalpaca.png",
     "/2dgallery/compressed/iphone1-min.png",
     "/2dgallery/compressed/water-min.jpg",
     "/2dgallery/compressed/break2-min.jpg",
+    "/2dgallery/compressed/koipondxyz.png",
     "/2dgallery/compressed/entrance-min.png",
     "/2dgallery/compressed/trials-min.png"
   ],
   leftImagesTitles: [
     "EMBRYOSIS",
     "DESTRUCTIVE COLD",
+    "GREEN ALPACA LOGO",
     "IPHONE WALLPAPER 1",
     "SHALLOW WATERS",
     "BREAK!",
+    "KOIPOND.XYZ OLD LOGO",
     "TRACK COVER 1",
     "TRACK COVER 2"
   ],
@@ -52,20 +77,28 @@ const props = {
   "/2dgallery/compressed/offgrid-min.jpg",
   "/2dgallery/compressed/spacehobbies-min.jpg",
   "/2dgallery/compressed/ako-min.png",
+  "/2dgallery/compressed/kpgif.gif",
   "/2dgallery/compressed/sc1-min.png",
   "/2dgallery/compressed/0085.png",
-  "/2dgallery/compressed/cubedup.png"
+  "/2dgallery/compressed/cubedup.png",
+  "/2dgallery/compressed/scs.png",
+  "/2dgallery/compressed/kpbanner.png",
   ],
   rightImagesTitles: [
     "INIT",
     "OFF GRID!",
     "SPACE HOBBIES!",
     "SPOTIFY ARTIST BANNER",
+    "KOIPOND.XYZ GIF",
     "TRIO",
     "SPACE CANDY",
-    "PREP"
+    "PREP",
+    "SEWANEE COMPUTING SOCIETY",
+    "KOIPOND.XYZ BANNER"
   ], 
 }
+
+const viewable = ref(false);
 
 const clickedPhoto = ref(null);
 const handlePhotoClicked = (photo: any) => {
@@ -74,8 +107,64 @@ const handlePhotoClicked = (photo: any) => {
 </script>
   
 <style scoped>
+.deco-top-left {
+  position: absolute;
+  top: 1%;
+  left: -3%;
+  width: 35%;
+  margin: 1%;
+}
+
+.deco-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: -3%;
+  margin: 2%;
+  width: 35%;
+  transform: rotate(180deg);
+}
+.mobile-tip {
+  display: none;
+}
+
+.bullets {
+  padding: 16px;
+  border: 2px solid var(--ui-primary);
+}
+
+.click-to-view-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.click-to-view {
+  display: flex;
+  flex-direction: row;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media (max-width: 768px) {
   .right {
+    display: none;
+  }
+  .mobile-tip {
+    display: block;
+  }
+  .desktop-tip {
     display: none;
   }
 }
@@ -96,20 +185,24 @@ const handlePhotoClicked = (photo: any) => {
 }
 
 .image-itself {
-  margin: 6px;
-  border: 4px solid var(--accent-secondary);
+  padding: 4px;
+  border: 2px solid var(--accent-secondary);
 }
 .heading-container {
   height: 10%;
+  width: 100%;
+  position: fixed;
 }
 .image-gallery {
   margin: 1%;
+  height: 100%;
 }
 
 .text-container {
   padding: 40px 5%;
   overflow: auto;
-  height: 100%;
+  height: 10%;
+  width: 100%;
 }
 
 .heading-text {

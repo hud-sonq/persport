@@ -3,7 +3,6 @@ export default defineNuxtConfig({
     modules: [
         ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate']}],
         'nuxt-server-utils',
-        '@sidebase/nuxt-auth',
         '@nuxt/ui',
     ],
     imports: {
@@ -26,12 +25,6 @@ export default defineNuxtConfig({
     },
     nitro: {
         plugins: ["~/server/index.ts"],
-    },
-    auth: {
-        baseURL: process.env.AUTH_ORIGIN,
-        provider: {
-            type: "authjs",
-        }
     },
     tailwindcss: {
         cssPath: false,

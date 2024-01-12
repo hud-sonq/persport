@@ -15,11 +15,6 @@ const props = defineProps  <{
   leftImagesTitles: string[];
   rightImages: string[];
   rightImagesTitles: string[];
-
-  // images: {
-  //   src: string;
-  //   title: string;
-  // }[]
 }>()
 const leftImages = props.leftImages.map((image, index) => ({
   src: image,
@@ -31,8 +26,6 @@ const rightImages = props.rightImages.map((image, index) => ({
 }));
 
 const emits = defineEmits(['click']);
-
-
 </script>
 
 <style scoped>
@@ -52,7 +45,6 @@ const emits = defineEmits(['click']);
 }
 
 .image-gallery {
-  /* Mobile first */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -91,7 +83,6 @@ const emits = defineEmits(['click']);
   left: 0;
   transition: all 0.1s 0.1s ease-in-out;
   color: #fff;
-  /* center overlay content */
   display: flex;
   align-items: center;
   justify-content: center;
