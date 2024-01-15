@@ -36,10 +36,10 @@
     <div class="wanna-see-more">
       <h4>Wanna see more?</h4>
       <div class="wanna-see-more-clickable" @click="$emit('go-to-weather')">
-        <img src="/clickables/horizontal-arrow.png" style="height: 24px;">
+        <img src="/deco/png/horizontal_arrow.png" style="height: 24px;">
         <img src="/logos/svg/gpt.svg" style="height: 24px;">
         <h4 style="text-decoration: underline;">GPT infused weather</h4>
-        <img src="/clickables/horizontal-arrow.png" style="height: 24px;">
+        <img src="/deco/png/horizontal_arrow.png" style="height: 24px;">
         <img src="/deco/svg/cloud.svg" style="height: 24px; filter: invert(1)">
       </div>
     </div>
