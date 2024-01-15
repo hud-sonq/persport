@@ -58,17 +58,36 @@ function rateLimitWrapper<Fn extends (...args: any[]) => any>(
 
   return rateLimitedFn as Fn;
 }
-export default rateLimitWrapper(eventHandler(async (event) => {
+
+const messagePoster = eventHandler(async (event) => {
   const body = await readBody(event);
   Validator.validateSchema(MessageSchema, body);
   const message = await Message.create({
     ...body
   })
   console.log(message);
-}), {
+});
+
+export default rateLimitWrapper(messagePoster, {
   interval: 1000, 
   threshold: 5,
   cb: (info, args) => {
     console.log(`Rate limit reached. Temperature: ${info.temperature}, Wait: ${info.wait}`);
-  },
+    return 'The server is experiencing a high volume of requests. Please try again soon.'
+  }
 });
+
+// export default rateLimitWrapper(eventHandler(async (event) => {
+//   const body = await readBody(event);
+//   Validator.validateSchema(MessageSchema, body);
+//   const message = await Message.create({
+//     ...body
+//   })
+//   console.log(message);
+// }), {
+//   interval: 1000, 
+//   threshold: 5,
+//   cb: (info, args) => {
+//     console.log(`Rate limit reached. Temperature: ${info.temperature}, Wait: ${info.wait}`);
+//   }
+// });

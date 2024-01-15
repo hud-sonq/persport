@@ -1,8 +1,8 @@
 <template>
   <div class="split-container active">
     <div class="left">
-      <div class="click-to-view-container">
-        <div class="click-to-view" v-if="!viewable" @click="viewable = !viewable">
+      <div class="click-to-view-container"  @click="viewable = !viewable" v-if="!viewable">
+        <div class="click-to-view">
           <div>
             <h4>click to view</h4>
           </div>
@@ -129,7 +129,7 @@ const handlePhotoClicked = (photo: any) => {
 
 .bullets {
   padding: 16px;
-  border: 2px solid var(--ui-primary);
+  border: 4px solid var(--ui-primary);
 }
 
 .click-to-view-container {
@@ -144,6 +144,8 @@ const handlePhotoClicked = (photo: any) => {
 .click-to-view {
   display: flex;
   flex-direction: row;
+  border: 2px solid var(--ui-primary);
+  padding: 8px;
 }
 .right {
   display: flex;

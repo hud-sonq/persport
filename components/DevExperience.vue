@@ -125,7 +125,7 @@ p {
     font-size: .75rem;
   }
   p {
-    font-size: .7rem;
+    font-size: .8rem;
   }
   .main-title-github-text {
     display: none;

@@ -17,34 +17,54 @@
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
         <div class="welcome-container">
-            <div id="welcomeText" ref="welcomeText" class="active">
-                <h1 class="stackit-text welcome-h1">WELCOME</h1>
-            </div>
-            <div id="skillBox" ref="skillBox" class="active">
-                <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left skill-link-div">
-                    <div id="skill-itself">
-                        <span>DEVELOPMENT</span>
-                        <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
-                            <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
-                            <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+            <div id="bracketable" ref="bracketable">
+                <div class="bracket bracket-top-left"></div>
+                <div class="bracket bracket-bottom-right"></div>
+                <div id="welcomeText" ref="welcomeText" class="">
+                    <h1 class="stackit-text welcome-h1">WELCOME</h1>
+                </div>
+                <div id="skillBox" ref="skillBox" class="">
+                    <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left skill-link-div">
+                        <div class="g-deco">
+                            <div class="dev-dual">
+                                <div><img src="/deco/svg/dev_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                                <div style="padding-left: 2px; padding-right: 3px;"><span>+</span></div>
+                                <div><img src="/deco/svg/cloud.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                            </div>
                         </div>
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right skill-link-div">
-                    <div id="skill-itself">
-                        <span>GRAPHICS AND 3D</span>
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left skill-link-div">
-                    <div id="skill-itself">
-                        <span>SOUND</span>
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/resume" id="skill-bg" class="stackit skill-link-div">
-                    <div id="skill-itself">
-                        <span>RESUME</span>
-                    </div>
-                </NuxtLink>
+                        <div id="skill-itself">
+                            <span>DEVELOPMENT</span>
+                            <!-- <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
+                                <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
+                                <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+                            </div> -->
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right skill-link-div">
+                        <div class="g-deco">
+                            <div><img src="/deco/svg/3d_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>GRAPHICS AND 3D</span>
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left skill-link-div">
+                        <div class="g-deco">
+                            <div><img src="/deco/svg/sound_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>SOUND</span>
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink to="/resume" id="skill-bg" class="stackit skill-link-div">
+                        <div class="g-deco">
+                            <div><img src="/deco/svg/guy_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>RESUME</span>
+                        </div>
+                    </NuxtLink>
+                </div>
             </div>
         </div>
     </div>
@@ -72,8 +92,8 @@
                     <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
                 </div>
             </div>
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                <div style="padding: 16px; text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+                <div style="padding: 16px; text-align: center; width: 100%;">
                     <p>Send me a message:</p>
                     <ContactForm />
                 </div>
@@ -85,6 +105,9 @@
 <script setup lang="ts">
 let leftMessageSeen = ref(false);
 let rightFormSeen = ref(false);
+const welcomeText = ref<HTMLElement | null>(null);
+const skillBox = ref<HTMLElement | null>(null);
+const bracketable = ref<HTMLElement | null>(null);
 if (localStorage.getItem('leftMessageSeen')) {
     leftMessageSeen.value = true;
 } 
@@ -107,10 +130,27 @@ function enableForm() {
         rightFormSeen.value = true;
     }
 }
+
+onMounted(() => {
+    setTimeout(() => {
+        if (bracketable.value) {
+            bracketable.value.classList.add('active');
+        }
+    }, 1300);
+    setTimeout(() => {
+        if (welcomeText.value && skillBox.value) {
+            welcomeText.value.classList.add('active');
+            skillBox.value.classList.add('active');
+        }
+    }, 2000);
+});
 </script>
 
 
 <style scoped>
+span {
+    font-weight: bold;
+}
 @media (max-width: 768px) {
     span {
         font-size: .5rem;
@@ -133,10 +173,65 @@ function enableForm() {
     
 }
 
-span {
-    font-weight: bold;
+.bracket-top-left {
+  position: absolute;
+  border-left: 4px solid var(--ui-primary);
+  border-top: 4px solid var(--ui-primary);
+  top: -8%;
+  left: 3%;
+  height: 20px;
+  width: 20px;
 }
 
+.bracket-bottom-right {
+  position: absolute;
+  border-right: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+  bottom: -6%;
+  right: 2%;
+  height: 20px;
+  width: 20px;
+}
+
+.g-deco {
+    position: absolute;
+    display: flex;
+    bottom: 4px;
+    left: 4px;
+    width: 100%;
+    height: 30%;
+    opacity: 1;
+}
+
+.dev-dual {
+    height: 100%;
+    width: 50%;
+    display: flex;
+}
+
+
+#bracketable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.bracket {
+    opacity: 0;
+}
+
+#bracketable.active > .bracket {
+    opacity: 1;
+    transition: opacity 0s ease-in-out;
+    animation: bangblink 1s linear;
+}
+
+.g-deco.active {
+    opacity: 1;
+    transition: opacity 1.8s ease-in-out
+}
 .welcome-container {
     display: flex;
     flex-direction: column;
@@ -144,7 +239,7 @@ span {
     justify-content: center;
     flex: 1;
     transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
-    max-width: 95%;
+    max-width: 90%;
 }
 .message-text-container {
     display: flex;
@@ -168,6 +263,7 @@ span {
     border: 2px solid var(--ui-primary); 
     z-index: 9999;
     height: 100%;
+    width: 100%;
 }
 .motd {
     position: absolute;
@@ -233,7 +329,8 @@ span {
     justify-content: center;
     flex: 1;
     transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
-    max-width: 95%;
+    max-width: 90%;
+    width: 50%;
 }
 
 #welcomeText {
@@ -271,7 +368,7 @@ span {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
     margin: 5%;
-    width: 100%;
+    width: 90%;
 }
 
 #skillBox.active {

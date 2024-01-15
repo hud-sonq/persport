@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="split-container active">
-      <div class="left" style="overflow: hidden;">
+      <div class="left stackit" style="overflow: hidden;">
         <IconWallpaper v-bind="wallpaperProps" />
       </div>
-      <div class="right">
+      <div class="right stackit">
         <h1> Sound </h1>
         <h1> Page </h1>
         <h1> Coming </h1>

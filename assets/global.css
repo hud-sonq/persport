@@ -98,6 +98,26 @@ input {
   padding: 4px;
 }
 
+textarea::placeholder {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-primary);
+  font-family: 'bloop';
+  font-size: .7rem;
+  font-display: swap;
+}
+
+textarea {
+  color: var(--text-primary);
+  font-family: 'bloop';
+  font-size: .7rem;
+  font-display: swap;
+  text-align: center;
+  background-color: var(--contrast-primary);
+  border: 2px solid var(--text-primary);
+  padding: 4px;
+}
+
 .split-container {
   display: flex;
   height: 100vh;

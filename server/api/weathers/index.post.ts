@@ -3,7 +3,6 @@ import WeatherSchema from '~/schemas/Weather.schema';
 import { Weather } from '~/server/models/Weather.model';
 import OpenAI from "openai";
 import axios from 'axios';
-import { get } from 'mongoose';
 
 interface RateLimitOptions<Args extends any[] = any[]> {
   /**
@@ -68,7 +67,7 @@ const openai = new OpenAI({
 });
 const owApiKey = config.owSecret;
 
-export default rateLimitWrapper(eventHandler(async (event) => {
+const gptWeather = eventHandler(async (event) => {
   const body = await readBody(event); // will only be a city for now
   Validator.validateSchema(WeatherSchema, body);
   
@@ -81,13 +80,13 @@ export default rateLimitWrapper(eventHandler(async (event) => {
     openWeatherResponse = response.data;
     console.log('WEATHER REQUESTED \n', openWeatherResponse);
   }
-  try {
+
+  try { // to combine openweather with gpt prompt
     await getOpenWeather();
-    const theWeatherCity = openWeatherResponse.name;
     const theWeatherTemp = (openWeatherResponse.main.temp * 1.8 + 32).toFixed(1);
     const theWeatherDesc = openWeatherResponse.weather[0].description;
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "system", content: `The temp in ${body.city} is ${theWeatherTemp} fahrenheit. It's ${theWeatherDesc}. Explain this weather in a goofy southern accent. One sentence max.` }],
+      messages: [{ role: "system", content: `The temp in ${body.city} is ${theWeatherTemp} fahrenheit. It's ${theWeatherDesc}. Explain this weather in a goofy southern accent. One sentence max. Always mention the temp.` }],
       model: "gpt-3.5-turbo-1106",
     });
     gptResponse = completion.choices[0].message.content;
@@ -99,11 +98,13 @@ export default rateLimitWrapper(eventHandler(async (event) => {
   } catch (e) {
     return (e as any).response.data.message;
   }
-}), {
+});
+
+export default rateLimitWrapper(gptWeather, {
   interval: 1000, 
   threshold: 5,
   cb: (info, args) => {
     console.log(`Rate limit reached. Temperature: ${info.temperature}, Wait: ${info.wait}`);
-  },
+    return 'The server is experiencing a high volume of requests. Please try again soon.'
+  }
 });
-

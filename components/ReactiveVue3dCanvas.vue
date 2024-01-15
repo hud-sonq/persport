@@ -15,29 +15,29 @@ export default defineComponent({
 
     const canvas = element.querySelector('canvas') as HTMLCanvasElement;
 
-    // const resizeEventHandle = () => {
-    //   const width = element.clientWidth;
-    //   const height = element.clientHeight;
+    const resizeEventHandle = () => {
+      const width = element.clientWidth;
+      const height = element.clientHeight;
 
-    //   canvas.style.width = width + 'px';
-    //   canvas.style.height = height + 'px';
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
 
-    //   if (!this.renderer) return;
+      if (!this.renderer) return;
 
-    //   this.renderer.setSize(width, height);
-    //   this.camera.aspect = width / height;
-    //   this.camera.updateProjectionMatrix();
-    // };
+      this.renderer.setSize(width, height);
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
+    };
 
-    // element.addEventListener('resize', resizeEventHandle);
+    element.addEventListener('resize', resizeEventHandle);
 
-    // onUnmounted(() => {
-    //   console.log("unmounting");
+    onUnmounted(() => {
+      console.log("unmounting");
 
-    //   element.removeEventListener('resize', resizeEventHandle);
-    // });
+      element.removeEventListener('resize', resizeEventHandle);
+    });
 
-    // resizeEventHandle();
+    resizeEventHandle();
   },
 });
 </script>
