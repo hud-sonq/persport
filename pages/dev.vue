@@ -39,7 +39,6 @@ function goToWeather() {
     rightDev.value.style.display = 'flex';
   }
 }
-
 </script>
   
   

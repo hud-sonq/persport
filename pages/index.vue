@@ -9,10 +9,6 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
-
 <style scoped>
 @media (max-width: 768px) {
   .split-container {

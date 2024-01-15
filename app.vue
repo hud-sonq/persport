@@ -1,44 +1,12 @@
 <template>
   <NavBar />
   <div id="main" ref="main" class="">
-    <NuxtPage />
+    <NuxtPage/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { vue3dLoader } from "vue-3d-loader";
-import { ref, onMounted, watch } from 'vue';
-
-let main = ref<HTMLElement | null>(null);
-
-onMounted(() => {
-  let mainElement = main.value as HTMLElement;
-  mainElement.classList.add('load-engaged');
-  setTimeout(() => {
-    mainElement.classList.remove('load-engaged');
-  }, 1000);
-});
-
-
-function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immediate?: boolean) {
-  let timeout: NodeJS.Timeout | null;
-  return function(this: T) {
-    let context = this,
-      args = Array.from(arguments);
-    let later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    let callNow = immediate && !timeout;
-    clearTimeout(timeout as NodeJS.Timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
 </script>
-
-
-
 
 <style>
 .load-engaged {
@@ -49,15 +17,6 @@ function debounce<T>(func: (this: T, ...args: any[]) => any, wait: number, immed
 #main {
   opacity: 1;
 }
-/* .page-enter-active,
-.page-leave-active {
-  transition: all 0.4s;
-}
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  filter: blur(1rem);
-} */
 
 .page-leave-active {
   animation: pageOut .6s;

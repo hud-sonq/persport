@@ -1,3 +1,4 @@
+
 <template>
     <div id="terminal" ref="terminal" class="active">
       <div class="qr-bottom-left">
@@ -15,7 +16,7 @@
           :width="width"
           :height="height"
           :filePath="filepath"
-          :cameraPosition="{ x: 35, y:0, z: 0}"
+          :cameraPosition="{ x: 35, y: 0, z: 0}"
           :backgroundColor=0
           :backgroundAlpha="0"
           :scale="{x:1, y:1, z:1}"
@@ -35,11 +36,11 @@
 </template>
 
 <script setup lang="ts">
+
 import { vue3dLoader } from "vue-3d-loader";
 
 let terminal = ref<HTMLElement | null>(null);
 let prlxHouse = ref<HTMLElement | null>(null);
-let cooldownTimeout = null;
 const route = useRoute();
 
 let basePath = "../scenes/";
@@ -47,14 +48,14 @@ let filepath = "";
 
 const [width, height] = [ref(0), ref(0)];
 onMounted(() => {
-    width.value = document.querySelector('#terminal')?.parentElement?.clientWidth ?? 512;
-    height.value = document.querySelector('#terminal')?.parentElement?.clientHeight ?? 512;
-    if (route.path === '/') {
-      filepath = basePath + "handcube1.glb";
-    }
-    if (route.path === '/auth/account') {
-      filepath = basePath + "blueball.glb";
-    }
+  width.value = document.querySelector('#terminal')?.parentElement?.clientWidth ?? 512;
+  height.value = document.querySelector('#terminal')?.parentElement?.clientHeight ?? 512;
+  if (route.path === '/') {
+    filepath = basePath + "handcube1.glb";
+  }
+  if (route.path === '/graphics') {
+    filepath = basePath + "cubezone1.glb";
+  }
 });
 
 // 3d loader options
@@ -69,6 +70,7 @@ rotation.value = {
 };
 
 const parallaxTest = (e: { clientX: any; clientY: any; }) => {
+  let cooldownTimeout = null;
   cooldownTimeout = setTimeout(() => {
     const x = e.clientX;
     const w = window.innerWidth/4;

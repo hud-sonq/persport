@@ -2,9 +2,12 @@
   <div class="split-container active">
     <div class="left">
       <div class="click-to-view-container"  @click="viewable = !viewable" v-if="!viewable">
+        <div class="v3d-container">
+          <LeftTerminal />
+        </div>
         <div class="click-to-view">
           <div>
-            <h4>click to view</h4>
+            <h4>click / tap to view</h4>
           </div>
           <div style="padding-left: 8px;">
             <img src="/deco/svg/bang.svg" style="filter: invert(1); height: 16px;">
@@ -107,6 +110,13 @@ const handlePhotoClicked = (photo: any) => {
 </script>
   
 <style scoped>
+.v3d-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
 .deco-top-left {
   position: absolute;
   top: 1%;
@@ -136,7 +146,7 @@ const handlePhotoClicked = (photo: any) => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
 }
@@ -146,6 +156,8 @@ const handlePhotoClicked = (photo: any) => {
   flex-direction: row;
   border: 2px solid var(--ui-primary);
   padding: 8px;
+  margin: 50px;
+  margin-top: 35%;
 }
 .right {
   display: flex;
