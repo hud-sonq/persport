@@ -1,75 +1,326 @@
 <template>
-    <div class="welcome" id="welcome" ref="welcome">
-        <div id="welcomeText" ref="welcomeText">
-            <div id="big" ref="big">
-                <h1>WELCOME</h1>
+    <div class="deco deco-top-left" v-if="!showMessage">
+        <div class="invert">
+            <img :class="{ 'deco-blink': !leftMessageSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMessage()">
+        </div>
+    </div>
+    <div class="deco-top-right">
+        <img style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)" src="/deco/svg/uiline1.svg">
+    </div>
+    <div class="deco-bottom-left">
+        <img style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)" src="/deco/svg/uiline1.svg">
+    </div>
+    <div class="deco deco-bottom-right" v-if="!showForm">
+        <div class="invert">
+            <img :class="{ 'deco-blink': !rightFormSeen, 'greyed-out': rightFormSeen }" style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableForm()">
+        </div>
+    </div>
+    <div class="welcome" id="welcome" ref="welcome" >
+        <div class="welcome-container">
+            <div id="bracketable" ref="bracketable">
+                <div class="bracket bracket-top-left"></div>
+                <div class="bracket bracket-bottom-right"></div>
+                <div id="welcomeText" ref="welcomeText" class="">
+                    <h1 class="stackit-text welcome-h1">WELCOME</h1>
+                </div>
+                <div id="skillBox" ref="skillBox" class="">
+                    <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left skill-link-div">
+                        <div class="g-deco">
+                            <div class="dev-dual">
+                                <div><img src="/deco/svg/dev_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                                <div style="padding-left: 2px; padding-right: 3px;"><span>+</span></div>
+                                <div><img src="/deco/svg/cloud.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                            </div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>DEVELOPMENT</span>
+                            <!-- <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
+                                <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
+                                <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
+                            </div> -->
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right skill-link-div">
+                        <div class="g-deco">
+                            <div><img src="/deco/svg/3d_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>GRAPHICS AND 3D</span>
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink to="/sound" id="skill-bg" class="stackit-bottom-left skill-link-div">
+                        <div class="g-deco">
+                            <div><img src="/deco/svg/sound_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>SOUND</span>
+                        </div>
+                    </NuxtLink>
+                    <NuxtLink to="/resume" id="skill-bg" class="stackit skill-link-div">
+                        <div class="g-deco">
+                            <div><img src="/deco/svg/guy_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
+                        </div>
+                        <div id="skill-itself">
+                            <span>RESUME</span>
+                        </div>
+                    </NuxtLink>
+                </div>
             </div>
         </div>
-        <div id="skillBox" ref="skillBox">
-            <NuxtLink to="/dev" id="skill-bg">
-                <div id="skill-itself">
-                    <h4>DEVELOPMENT</h4>
+    </div>
+    <div v-if="showMessage || showForm" class="motd">
+        <div v-if="showMessage" class="message">
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
+            <LogoSlider />
+            <div class="close-x" @click="enableMessage()">
+                <div style="padding: 2px;">
+                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
                 </div>
-            </NuxtLink>
-            <NuxtLink to="/graphics" id="skill-bg">
-                <div id="skill-itself">
-                    <h4>Graphics & 3D</h4>
+            </div>
+            <div class="message-text-container">
+                <div>
+                    <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I am eager to provide <span style="color: var(--accent-primary);">creative innovation</span> for your website or business!</span>
                 </div>
-            </NuxtLink>
-            <NuxtLink to="/photo-video" id="skill-bg">
-                <div id="skill-itself">
-                    <h4>Photo / Video</h4>
-                </div>
-            </NuxtLink>
-            <NuxtLink to="/sound" id="skill-bg">
-                <div id="skill-itself">
-                    <h4>Sound Design</h4>
-                </div>
-            </NuxtLink>
+            </div>
         </div>
-        <div id="resume" ref="resume">
-            <NuxtLink to="/resume">
-                <p>I just want to see a resume...</p>
-            </NuxtLink>
+        <div v-if="showForm" class="message">
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
+            <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
+            <div class="close-x" @click="enableForm()">
+                <div style="padding-top: 2px;">
+                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+                <div style="padding: 16px; text-align: center; width: 100%;">
+                    <p>Send me a message:</p>
+                    <ContactForm />
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-let welcomeText = ref<HTMLElement | null>(null);
-let skillBox = ref<HTMLElement | null>(null);
-let resume = ref<HTMLElement | null>(null);
-let welcome = ref<HTMLElement | null>(null);
+let leftMessageSeen = ref(false);
+let rightFormSeen = ref(false);
+const welcomeText = ref<HTMLElement | null>(null);
+const skillBox = ref<HTMLElement | null>(null);
+const bracketable = ref<HTMLElement | null>(null);
+if (localStorage.getItem('leftMessageSeen')) {
+    leftMessageSeen.value = true;
+} 
+if (localStorage.getItem('rightFormSeen')) {
+    rightFormSeen.value = true;
+}
+let showMessage = ref<boolean>(false);
+function enableMessage() {
+    showMessage.value = !showMessage.value;
+    if (!localStorage.getItem('leftMessageSeen') || localStorage.getItem('leftMessageSeen') === 'false') {
+        localStorage.setItem('leftMessageSeen', 'true');
+        leftMessageSeen.value = true;
+    }
+}
+let showForm = ref<boolean>(false);
+function enableForm() {
+    showForm.value = !showForm.value;
+    if (!localStorage.getItem('rightFormSeen') || localStorage.getItem('rightFormSeen') === 'false') {
+        localStorage.setItem('rightFormSeen', 'true');
+        rightFormSeen.value = true;
+    }
+}
 
 onMounted(() => {
-    cooldownTimeout = setTimeout(() => {
-        welcomeText.value?.classList.add('active');
-    }, 600);
-    cooldownTimeout = setTimeout(() => {
-        skillBox.value?.classList.add('active');
-    }, 1000);
-    cooldownTimeout = setTimeout(() => {
-        resume.value?.classList.add('active');
-    }, 1800);
-    cooldownTimeout = setTimeout(() => {
-        welcome.value?.classList.add('active');
+    setTimeout(() => {
+        if (bracketable.value) {
+            bracketable.value.classList.add('active');
+        }
+    }, 1300);
+    setTimeout(() => {
+        if (welcomeText.value && skillBox.value) {
+            welcomeText.value.classList.add('active');
+            skillBox.value.classList.add('active');
+        }
     }, 2000);
 });
-
-
-let cooldownTimeout = null;
-
 </script>
 
 
 <style scoped>
+span {
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    span {
+        font-size: .5rem;
+    }
+    h1 {
+        font-size: 1.7rem;
+        text-shadow:
+    .3rem .3rem 0px var(--accent-primary),
+    .6rem .6rem 0px var(--accent-tertiary);
+    }
+    .weather-icon-addition {
+        display: none;
+    }
+    .weather-icon-itself {
+        display: none;
+    }
+    .deco {
+        opacity: 1;
+    }
+    
+}
+
+.bracket-top-left {
+  position: absolute;
+  border-left: 4px solid var(--ui-primary);
+  border-top: 4px solid var(--ui-primary);
+  top: -8%;
+  left: 3%;
+  height: 20px;
+  width: 20px;
+}
+
+.bracket-bottom-right {
+  position: absolute;
+  border-right: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+  bottom: -6%;
+  right: 2%;
+  height: 20px;
+  width: 20px;
+}
+
+.g-deco {
+    position: absolute;
+    display: flex;
+    bottom: 4px;
+    left: 4px;
+    width: 100%;
+    height: 30%;
+    opacity: 1;
+}
+
+.dev-dual {
+    height: 100%;
+    width: 50%;
+    display: flex;
+}
+
+
+#bracketable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.bracket {
+    opacity: 0;
+}
+
+#bracketable.active > .bracket {
+    opacity: 1;
+    transition: opacity 0s ease-in-out;
+    animation: bangblink 1s linear;
+}
+
+.g-deco.active {
+    opacity: 1;
+    transition: opacity 1.8s ease-in-out
+}
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
+    max-width: 90%;
+}
+.message-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+.close-x {
+    cursor: pointer; 
+    position: absolute; 
+    right: 0; 
+    top: 0; 
+    text-align: center; 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: var(--ui-primary);
+}
+.message {
+    background: var(--background-primary); 
+    border: 2px solid var(--ui-primary); 
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+}
+.motd {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+}
+
+.invert {
+    filter: invert(1);
+    width: 50px;
+}
+
+.deco-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    margin: 1%;
+}
+
+.deco-top-right {
+    position: absolute;
+    top: 1%;
+    right: -3%;
+    width: 35%;
+    margin: 1%;
+    transform: rotate(180deg) scaleY(-1);
+}
+
+.deco-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: -3%;
+    width: 35%;
+    margin: 2%;
+    transform: scaleY(-1);
+}
+
+.deco-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1%;
+}
+
+.greyed-out {
+    opacity: .2;
+}
 
 .link {
     text-decoration: none;
     height: inherit;
 }
-
 
 #welcome {
     display: flex;
@@ -77,12 +328,9 @@ let cooldownTimeout = null;
     align-items: center;
     justify-content: center;
     flex: 1;
-    transition: border .6s ease-in-out;
-}
-
-
-#welcome.active {
-    border: 4px solid var(--ui-primary);
+    transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
+    max-width: 90%;
+    width: 50%;
 }
 
 #welcomeText {
@@ -92,8 +340,7 @@ let cooldownTimeout = null;
     overflow: auto;
     justify-content: center;
     opacity: 0;
-    top: 50%;
-    transition: opacity .6s ease-in-out, top .6s ease-in-out;
+    max-width: 100%;
 }
 
 #big {
@@ -103,22 +350,13 @@ let cooldownTimeout = null;
     text-align: center;
     opacity: 1;
     pointer-events: none;
-}
-
-
-#med {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    opacity: 1;
-    pointer-events: none;
+    padding: 12px;
+    max-width: 100%;
 }
 
 #welcomeText.active {
     opacity: 1;
     pointer-events: all;
-    top: 0%;
 }
 
 #skillBox {
@@ -129,6 +367,8 @@ let cooldownTimeout = null;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
+    margin: 5%;
+    width: 90%;
 }
 
 #skillBox.active {
@@ -137,10 +377,9 @@ let cooldownTimeout = null;
     top: 0%;
 }
 
-
 #skill-bg {
     border: 4px solid var(--ui-primary);
-    transition: transform 180ms ease-out, background-color 300ms ease-in-out;
+    transition: transform 180ms ease-out, background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
     transform-style: preserve-3d;
     cursor: pointer;
     margin: 2%;
@@ -153,6 +392,14 @@ let cooldownTimeout = null;
     transform-style: preserve-3d;
     cursor: pointer;
     text-align: center;
+}
+
+.skill-link-div {
+    object-fit: scale-down;
+}
+
+.resume-highlighter {
+    border: 4px solid var(--ui-secondary);
 }
 
 #skill-bg:hover {
@@ -180,5 +427,4 @@ let cooldownTimeout = null;
     opacity: 1;
     transition: opacity 1.8s ease-in-out
 }
-
 </style>

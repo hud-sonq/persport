@@ -1,40 +1,11 @@
 # My portfolio / experience
 
-## Setup shit below
+- ### This site demonstrates my vision for what a nice website / landing page could like.
+- ### It also showcases some of my work. It should serve as evidence of my desire to pursue a career in UX, UI, and full stack development. 
+### Technologies / stack:
 
-Make sure to install the dependencies:
+- # nuxt
+- # mongoDB (mongoose)
+- # vue (html, css, js/ts)
 
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+![GIF](https://raw.githubusercontent.com/hud-sonq/persport/master/public/deco/gif/showcase.gif)
