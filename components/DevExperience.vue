@@ -19,7 +19,7 @@
     <div v-for="index in galleryLength" class="project" :key="index">
       <div class="project-title-area">
         <div class="project-deco-container">
-          <a :href="props.decoHrefs[index-1]" target="_blank"><img class="project-deco" :src="props.decos[index-1]"/></a>
+          <div class="deco-itself"><a :href="props.decoHrefs[index-1]" target="_blank" style="width: fit-content; height: fit-content;"><img class="project-deco" :src="props.decos[index-1]"/></a></div>
         </div>
         <div class="project-title-texts">
           <span class="title">{{props.titles[index-1]}} </span>
@@ -63,20 +63,24 @@ const emits = defineEmits(['go-to-weather']); // this emit is a mobile only feat
 </script>
 
 <style scoped>
-p {
-  margin: 2%;
-  font-weight: bold;
+
+.project-title-texts {
+  display: flex;
+  flex-direction: column;
 }
 p {
+  margin: 2%;
   font-weight: bold;
 }
 .title {
   font-weight: bold;
   font-size: 1.5rem;
+  text-align: left;
 }
 .subtitle {
   font-style: italic;
   font-size: 1rem;
+  text-align: left;
 }
 
 .main-title-github-text {
@@ -117,31 +121,6 @@ p {
 
 }
 
-@media (max-width: 768px) {
-  .title {
-      font-size: 1.2rem;
-    }
-  .subtitle {
-    font-size: .75rem;
-  }
-  p {
-    font-size: .8rem;
-  }
-  .main-title-github-text {
-    display: none;
-  }
-  .main-title-github-container {
-    width: 20px;
-    height: 20px;
-    padding-top: 2%;
-    padding-left: 2%;
-    border-left: 2px solid var(--ui-primary);
-    border-bottom: 2px solid var(--ui-primary);
-  }
-  .wanna-see-more {
-    display: flex;
-  }
-}
 .main-title-container {
   display: flex;
   flex-direction: row;
@@ -152,7 +131,7 @@ p {
 }
 
 .main-title {
-  text-align: center;
+  text-align: left;
   border-left: 2px solid var(--ui-primary);
   border-bottom: 2px solid var(--ui-primary);
   border-right: 2px solid var(--ui-primary);
@@ -166,6 +145,17 @@ p {
 .project-deco-container {
   position: relative;
   left: 0;
+  border: 1px solid var(--ui-primary);
+  border-radius: 5px;
+  margin-right: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.project-deco {
+  height: 32px;
+  width: 32px;
+  padding: 2px;
 }
 .paragraph-start {
   color: red;
@@ -208,14 +198,34 @@ p {
   height: 85%;
 }
 
-.project-deco {
-  height: 38px;
-  margin: 5%;
-  padding-right: 6px;
-}
 
 .image {
   width: 100%; 
   height: 100%;
+}
+@media (max-width: 768px) {
+  .title {
+      font-size: 1rem;
+    }
+  .subtitle {
+    font-size: .75rem;
+  }
+  .main-title-github-text {
+    display: none;
+  }
+  .main-title-github-container {
+    width: 20px;
+    height: 20px;
+    padding-top: 2%;
+    padding-left: 2%;
+    border-left: 2px solid var(--ui-primary);
+    border-bottom: 2px solid var(--ui-primary);
+  }
+  .wanna-see-more {
+    display: flex;
+  }
+  .paragraph {
+    font-size: .8rem;
+  }
 }
 </style>

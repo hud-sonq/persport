@@ -1,19 +1,9 @@
 <template>
-    <div class="deco deco-top-left" v-if="!showMessage">
-        <div class="invert">
-            <img :class="{ 'deco-blink': !leftMessageSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMessage()">
-        </div>
-    </div>
     <div class="deco-top-right">
         <img style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)" src="/deco/svg/uiline1.svg">
     </div>
     <div class="deco-bottom-left">
         <img style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)" src="/deco/svg/uiline1.svg">
-    </div>
-    <div class="deco deco-bottom-right" v-if="!showForm">
-        <div class="invert">
-            <img :class="{ 'deco-blink': !rightFormSeen, 'greyed-out': rightFormSeen }" style="cursor: pointer;" src="/deco/svg/mail1.svg"  @click="enableForm()">
-        </div>
     </div>
     <div class="welcome" id="welcome" ref="welcome" >
         <div class="welcome-container">
@@ -22,6 +12,9 @@
                 <div class="bracket bracket-bottom-right"></div>
                 <div id="welcomeText" ref="welcomeText" class="">
                     <h1 class="stackit-text welcome-h1">WELCOME</h1>
+                    <div class="welcome-bang-container">
+                        <div class="welcome-bang" v-if="!showMessage"><img :class="{ 'deco-blink': !leftMessageSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMessage()"></div>
+                    </div>
                 </div>
                 <div id="skillBox" ref="skillBox" class="">
                     <NuxtLink to="/dev" id="skill-bg" class="stackit-top-left skill-link-div">
@@ -34,10 +27,6 @@
                         </div>
                         <div id="skill-itself">
                             <span>DEVELOPMENT</span>
-                            <!-- <div style="display: flex; flex-direction: column; justify-content: center; height: 32px;">
-                                <span class="weather-icon-addition" style="position: absolute; left: 35%;"> + </span>
-                                <img class="weather-icon-itself" src="/deco/svg/cloud.svg" style="filter: invert(1); height: 100%;">
-                            </div> -->
                         </div>
                     </NuxtLink>
                     <NuxtLink to="/graphics" id="skill-bg" class="stackit-top-right skill-link-div">
@@ -61,41 +50,26 @@
                             <div><img src="/deco/svg/guy_icon.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1)"></div>
                         </div>
                         <div id="skill-itself">
-                            <span>RESUME</span>
+                            <span>ABOUT ME</span>
                         </div>
                     </NuxtLink>
                 </div>
             </div>
         </div>
     </div>
-    <div v-if="showMessage || showForm" class="motd">
+    <div v-if="showMessage" class="motd">
         <div v-if="showMessage" class="message">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
             <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
             <LogoSlider />
             <div class="close-x" @click="enableMessage()">
-                <div style="padding: 2px;">
-                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
+                <div style="position: absolute; right: -6px;">
+                    <img class="close-x-deco" src="/deco/svg/closebox.svg" style="filter: invert(1);">
                 </div>
             </div>
             <div class="message-text-container">
                 <div>
                     <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I am eager to provide <span style="color: var(--accent-primary);">creative innovation</span> for your website or business!</span>
-                </div>
-            </div>
-        </div>
-        <div v-if="showForm" class="message">
-            <img src="/deco/svg/uiline1.svg" style="position: absolute; left: 0; right: 0; top: 2%; height: 4%; filter: invert(1)">
-            <img src="/deco/svg/uiline1.svg" style="position: absolute; right: 0; bottom: 2%; height: 4%; filter: invert(1); transform: rotate(180deg);">
-            <div class="close-x" @click="enableForm()">
-                <div style="padding-top: 2px;">
-                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
-                </div>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
-                <div style="padding: 16px; text-align: center; width: 100%;">
-                    <p>Send me a message:</p>
-                    <ContactForm />
                 </div>
             </div>
         </div>
@@ -122,55 +96,51 @@ function enableMessage() {
         leftMessageSeen.value = true;
     }
 }
-let showForm = ref<boolean>(false);
-function enableForm() {
-    showForm.value = !showForm.value;
-    if (!localStorage.getItem('rightFormSeen') || localStorage.getItem('rightFormSeen') === 'false') {
-        localStorage.setItem('rightFormSeen', 'true');
-        rightFormSeen.value = true;
-    }
-}
+// let showForm = ref<boolean>(false);
+// function enableForm() {
+//     showForm.value = !showForm.value;
+//     if (!localStorage.getItem('rightFormSeen') || localStorage.getItem('rightFormSeen') === 'false') {
+//         localStorage.setItem('rightFormSeen', 'true');
+//         rightFormSeen.value = true;
+//     }
+// }
 
 onMounted(() => {
     setTimeout(() => {
         if (bracketable.value) {
             bracketable.value.classList.add('active');
         }
-    }, 1300);
+    }, 400);
     setTimeout(() => {
         if (welcomeText.value && skillBox.value) {
             welcomeText.value.classList.add('active');
             skillBox.value.classList.add('active');
         }
-    }, 2000);
+    }, 600);
 });
 </script>
 
 
 <style scoped>
+.close-x-deco {
+    height: 32px;
+    width: 32px;
+}
+
 span {
     font-weight: bold;
 }
-@media (max-width: 768px) {
-    span {
-        font-size: .5rem;
-    }
-    h1 {
-        font-size: 1.7rem;
-        text-shadow:
-    .3rem .3rem 0px var(--accent-primary),
-    .6rem .6rem 0px var(--accent-tertiary);
-    }
-    .weather-icon-addition {
-        display: none;
-    }
-    .weather-icon-itself {
-        display: none;
-    }
-    .deco {
-        opacity: 1;
-    }
-    
+.welcome-bang-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 48px;
+    filter: invert(1);
+    padding-left: 12px
+}
+
+.welcome-bang {
+    width: 64px;
 }
 
 .bracket-top-left {
@@ -239,7 +209,8 @@ span {
     justify-content: center;
     flex: 1;
     transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
-    max-width: 90%;
+    width: 100%;
+    height: 100%;
 }
 .message-text-container {
     display: flex;
@@ -252,7 +223,7 @@ span {
     cursor: pointer; 
     position: absolute; 
     right: 0; 
-    top: 0; 
+    top: 1px; 
     text-align: center; 
     font-size: 16px; 
     font-weight: bold; 
@@ -260,8 +231,8 @@ span {
 }
 .message {
     background: var(--background-primary); 
-    border: 2px solid var(--ui-primary); 
-    z-index: 9999;
+    border: 4px solid var(--ui-primary); 
+    z-index: 2;
     height: 100%;
     width: 100%;
 }
@@ -276,17 +247,9 @@ span {
 
 .invert {
     filter: invert(1);
-    width: 50px;
+    width: 48px;
 }
 
-.deco-top-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10%;
-    margin: 1%;
-}
 
 .deco-top-right {
     position: absolute;
@@ -311,10 +274,12 @@ span {
     bottom: 0;
     right: 0;
     margin: 1%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .greyed-out {
-    opacity: .2;
+    opacity: .5;
 }
 
 .link {
@@ -329,18 +294,18 @@ span {
     justify-content: center;
     flex: 1;
     transition: border .6s ease-in-out, text-shadow .3s ease-in-out;
-    max-width: 90%;
-    width: 50%;
+    width: 100%;
+    height: 100%;
 }
 
 #welcomeText {
     position: relative;
     display: flex;
-    flex-flow: column wrap;
     overflow: auto;
     justify-content: center;
     opacity: 0;
     max-width: 100%;
+    height: 64px;
 }
 
 #big {
@@ -361,7 +326,7 @@ span {
 
 #skillBox {
     opacity: 0;
-    transition: opacity .6s ease-in-out, top .6s ease-in-out;
+    transition: opacity .3s ease-in-out, top .6s ease-in-out;
     top: 50%;
     position: relative;
     display: grid;
@@ -398,10 +363,6 @@ span {
     object-fit: scale-down;
 }
 
-.resume-highlighter {
-    border: 4px solid var(--ui-secondary);
-}
-
 #skill-bg:hover {
     background-color: var(--accent-primary);
 }
@@ -418,13 +379,25 @@ span {
 #skillBox > *:nth-child(4):hover {
     transform: perspective(900px) rotateY(-24deg) rotatex(12deg);
 }
-
-#resume {
-    opacity: 0;
-}
-
-#resume.active {
-    opacity: 1;
-    transition: opacity 1.8s ease-in-out
+@media (max-width: 768px) {
+    span {
+        font-size: .5rem;
+    }
+    h1 {
+        font-size: 1.7rem;
+        text-shadow:
+    .3rem .3rem 0px var(--accent-primary),
+    .6rem .6rem 0px var(--accent-tertiary);
+    }
+    .deco {
+        opacity: 1;
+    }
+    .welcome-bang {
+        width: 38px;
+    }
+    .close-x-deco {
+        width: 20px;
+        height: 20px;
+    }
 }
 </style>

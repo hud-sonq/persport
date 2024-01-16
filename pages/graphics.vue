@@ -7,7 +7,7 @@
         </div>
         <div class="click-to-view">
           <div>
-            <h4>click / tap to view</h4>
+            <h4>view gallery</h4>
           </div>
           <div style="padding-left: 8px;">
             <img src="/deco/svg/bang.svg" style="filter: invert(1); height: 16px;">
@@ -174,6 +174,9 @@ const handlePhotoClicked = (photo: any) => {
 @media (max-width: 768px) {
   .right {
     display: none;
+  }
+  .left {
+    margin-bottom: 112px;
   }
   .mobile-tip {
     display: block;

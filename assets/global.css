@@ -1,3 +1,11 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
 :root {
   --background-primary: #000000;
   --background-secondary: #ffffff;
@@ -13,11 +21,17 @@
   --sewanee-purple: #9e57ba;
 }
 
-
 @font-face {
   font-family: 'bloop';
   src: url('/fonts/aex.ttf');
 }
+
+@font-face {
+  font-family: 'test';
+  src: url('/fonts/aex.ttf');
+  font-weight: 1200;
+}
+
 input:focus::placeholder {
   opacity: 30%;
 }
@@ -135,7 +149,6 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3%;
   max-width: 100%;
   overflow-x: hidden;
   transform: scale(.9);
@@ -147,11 +160,10 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3%;
   max-width: 100%;
   overflow-x: hidden;
   border: 4px solid var(--ui-primary);
-  transform: scale(.9)
+  transform: scale(.9);
 }
 
 .stackit {
@@ -204,8 +216,7 @@ textarea {
 
 .stackit:hover .stackit-text {
   text-shadow:
-    .3rem .3rem 0px var(--accent-primary),
-    .6rem .6rem 0px var(--accent-tertiary);
+    .3rem .3rem 0px var(--accent-primary)
 }
 
 .deco {

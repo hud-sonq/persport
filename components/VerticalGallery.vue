@@ -63,11 +63,6 @@ const emits = defineEmits(['click']);
   object-fit: cover;
 }
 
-@media only screen and (min-width: 768px) {
-  .image-gallery {
-    flex-direction: row;
-  }
-}
 
 .image-item {
   position: relative;
@@ -91,5 +86,10 @@ const emits = defineEmits(['click']);
 
 .image-item:hover .overlay {
   opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+  .image-gallery {
+    flex-direction: row;
+  }
 }
 </style>

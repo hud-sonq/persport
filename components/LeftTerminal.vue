@@ -10,6 +10,20 @@
       <div class="deco-bottom-right">
         <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
       </div>
+      <div class="deco-top-right" v-if="!showContactForm" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
+        <img src="/deco/svg/mail1.svg" style="; filter: invert(1);">
+      </div>
+      <div class="form-container" v-if="showContactForm">
+        <div class="form">
+          <div class="close-x" @click="enableForm()">
+                <div style="padding: 2px;">
+                    <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
+                </div>
+          </div>
+          <p>send me a message:</p>
+          <ContactForm/>
+        </div>
+      </div>
       <div class="active house" ref="prlxHouse" @mousemove="parallaxTest" >
         <div>
           <vue3dLoader
@@ -36,22 +50,38 @@
 </template>
 
 <script setup lang="ts">
-
 import { vue3dLoader } from "vue-3d-loader";
 
 let terminal = ref<HTMLElement | null>(null);
 let prlxHouse = ref<HTMLElement | null>(null);
 const route = useRoute();
+let showContactFormDeco = ref<Boolean>(false);
+let showContactForm = ref<boolean>(false);
+let contactFormSeen = ref<boolean>(false);
 
 let basePath = "../scenes/";
 let filepath = "";
 
 const [width, height] = [ref(0), ref(0)];
+
+function enableForm() {
+  showContactForm.value = !showContactForm.value;
+  if (!localStorage.getItem('contactFormSeen') || localStorage.getItem('contactFormSeen') === 'false') {
+      localStorage.setItem('contactFormSeen', 'true');
+      contactFormSeen.value = true;
+  }
+}
 onMounted(() => {
   width.value = document.querySelector('#terminal')?.parentElement?.clientWidth ?? 512;
   height.value = document.querySelector('#terminal')?.parentElement?.clientHeight ?? 512;
+  if (localStorage.getItem('contactFormSeen') === 'true') {
+    contactFormSeen.value = true;
+  }
   if (route.path === '/') {
     filepath = basePath + "handcube1.glb";
+    showContactFormDeco.value = true;
+  } else {
+    showContactFormDeco.value = false;
   }
   if (route.path === '/graphics') {
     filepath = basePath + "cubezone1.glb";
@@ -87,6 +117,37 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 </script>
 
 <style scoped>
+.close-x {
+  cursor: pointer; 
+  position: absolute; 
+  right: 0; 
+  top: 0; 
+  text-align: center; 
+  font-size: 16px; 
+  font-weight: bold; 
+  color: var(--ui-primary);
+  padding: 4px
+}
+
+.form-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+}
+
+.form {
+  background: var(--background-primary); 
+  border: 4px solid var(--ui-primary); 
+  z-index: 2;
+  padding: 32px; 
+  text-align: center;
+  padding: 8px; 
+}
 .house {
   height: 100%;
   width: 100%;
@@ -96,11 +157,12 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   position: absolute;
   top: 0;
   right: 0;
-  height: 130px;
+  margin: 2%;
+  height: 32px;
   display: flex;
   justify-content: center;
-  border: 4px solid var(--ui-primary);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .deco-top-left {
@@ -140,4 +202,7 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   opacity: 1;
 }
 
+.greyed-out {
+  opacity: .5;
+}
 </style>

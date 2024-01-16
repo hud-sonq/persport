@@ -11,10 +11,11 @@ const props = defineProps<{
 
 <style>
 .svg-grid {
-  z-index: -1000;
+  z-index: -1;
   position: fixed;
-  height: 300%;
-  width: 300%;
+  top: -20%;
+  height: 150%;
+  width: 150%;
   background-repeat: repeat;
   background-size: 32px 32px; /* Adjust as needed */
   filter: invert(1);

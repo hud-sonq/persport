@@ -14,5 +14,8 @@
   .split-container {
     flex-direction: column;
   }
+  .right {
+    margin-bottom: 112px;
+  }
 }
 </style>
