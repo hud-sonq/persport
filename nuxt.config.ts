@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         owSecret: '',
         public: {
             apiBase: '',
-          }
+        }
     },
     css: ['~/assets/global.css'],
     app: {

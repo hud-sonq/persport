@@ -15,7 +15,7 @@
     flex-direction: column;
   }
   .right {
-    margin-bottom: 112px;
+    margin-bottom: 100px;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%;">
+    <div style="width: 100%; display: flex;">
         <UForm :state="contactFormState" :schema="MessageSchema" @submit="handleContactFormSubmit">
             <div style="padding-bottom: 6px; padding-top: 6px; width: 100%;">
                 <UFormGroup name="name">

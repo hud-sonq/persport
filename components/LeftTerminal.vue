@@ -11,6 +11,7 @@
         <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
       </div>
       <div class="deco-top-right" v-if="!showContactForm" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
+        <div style="position: absolute; height: 120px; width: 120px; right: 0; top: 0;"><div class="bracket-bottom-left"></div></div>
         <img src="/deco/svg/mail1.svg" style="; filter: invert(1);">
       </div>
       <div class="form-container" v-if="showContactForm">
@@ -117,6 +118,13 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 </script>
 
 <style scoped>
+.bracket-bottom-left {
+  position: absolute;
+  border-left: 5px solid var(--ui-primary);
+  border-bottom: 5px solid var(--ui-primary);
+  height: 10px;
+  width: 10px;
+}
 .close-x {
   cursor: pointer; 
   position: absolute; 
@@ -205,4 +213,5 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 .greyed-out {
   opacity: .5;
 }
+
 </style>

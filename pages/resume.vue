@@ -5,7 +5,22 @@
         <IconWallpaper v-bind="wallpaperProps" />
       </div>
       <div class="right">
-        <div class="resume-container">
+        <div class="click-for-contact" @click="enableContact()">
+          <div class="bracket-bottom-left" v-if="!showContact"></div>
+          <div class="clickable-envelope deco-blink">
+            <img src="/deco/svg/mail1.svg" style="height: 32px; filter: invert(1);" v-if="!showContact"/>
+          </div>
+        </div>
+        <div class="contact" v-if="showContact">
+          <h2>Contact me</h2>
+          <div class="close-x" @click="enableContact()">
+            <div style="position: absolute; right: 0; top: 0; padding: 2px; cursor: pointer;">
+                <img class="close-x-deco" src="/deco/svg/closebox.svg" style="filter: invert(1);">
+            </div>
+          </div>
+          <ContactForm />
+        </div>
+        <div class="resume-container" v-if="!showContact">
           <div class="resume">
             <div class="many-items">
               <div class="bracket-top-left"></div>
@@ -55,13 +70,40 @@ const wallpaperProps = {
   image: '/deco/svg/guy_icon.svg',
   angle: 33
 }
+
+let showContact = ref<boolean>(false);
+function enableContact() {
+  showContact.value = !showContact.value;
+}
 </script>
 
 <style scoped>
+.contact {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+  border: 4px solid var(--ui-primary);
+  padding: 24px;
+  width: fit-content;
+}
+
+.click-for-contact {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px;
+  cursor: pointer;
+}
 .bracket-top-left {
   position: absolute;
-  border-left: 4px solid var(--ui-primary);
-  border-top: 4px solid var(--ui-primary);
+  border-left: 2px solid var(--ui-primary);
+  border-top: 2px solid var(--ui-primary);
   top: -10%;
   left: -2%;
   height: 20px;
@@ -70,8 +112,8 @@ const wallpaperProps = {
 
 .bracket-bottom-right {
   position: absolute;
-  border-right: 4px solid var(--ui-primary);
-  border-bottom: 4px solid var(--ui-primary);
+  border-right: 2px solid var(--ui-primary);
+  border-bottom: 2px solid var(--ui-primary);
   bottom: -6%;
   right: -5%;
   height: 20px;
@@ -80,12 +122,23 @@ const wallpaperProps = {
 
 .bracket-top-right {
   position: absolute;
-  border-right: 4px solid var(--ui-primary);
-  border-top: 4px solid var(--ui-primary);
+  border-right: 2px solid var(--ui-primary);
+  border-top: 2px solid var(--ui-primary);
   top: -50%;
   right: -4%;
   height: 16px;
   width: 16px;
+}
+
+.bracket-bottom-left {
+  position: absolute;
+  border-left: 2px solid var(--ui-primary);
+  border-bottom: 2px solid var(--ui-primary);
+  bottom: -10%;
+  left: -15%;
+  height: 10px;
+  width: 10px;
+
 }
 
 .social-links {
@@ -166,6 +219,9 @@ h4 {
   }
   .bracket-top-left {
     display: none;
+  }
+  .right {
+    margin-bottom: 112px;
   }
 }
 </style>

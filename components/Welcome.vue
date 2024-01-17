@@ -13,7 +13,7 @@
                 <div id="welcomeText" ref="welcomeText" class="">
                     <h1 class="stackit-text welcome-h1">WELCOME</h1>
                     <div class="welcome-bang-container">
-                        <div class="welcome-bang" v-if="!showMessage"><img :class="{ 'deco-blink': !leftMessageSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/bang.svg"  @click="enableMessage()"></div>
+                        <div class="welcome-bang" v-if="!showMessage"><img :class="{ 'deco-blink': !leftMessageSeen, 'greyed-out': leftMessageSeen }" style="cursor: pointer;" src="/deco/svg/bang.svg" class="bang-itself" @click="enableMessage()"></div>
                     </div>
                 </div>
                 <div id="skillBox" ref="skillBox" class="">
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="message-text-container">
-                <div>
+                <div style="padding-top: 12px; padding-bottom: 14px;">
                     <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I am eager to provide <span style="color: var(--accent-primary);">creative innovation</span> for your website or business!</span>
                 </div>
             </div>
@@ -132,23 +132,30 @@ span {
 }
 .welcome-bang-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 48px;
     filter: invert(1);
-    padding-left: 12px
+    margin-left: 12px;
 }
 
 .welcome-bang {
-    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bang-itself {
+    height: 48px;
+    width: 48px;
 }
 
 .bracket-top-left {
   position: absolute;
   border-left: 4px solid var(--ui-primary);
   border-top: 4px solid var(--ui-primary);
-  top: -8%;
-  left: 3%;
+  top: 25%;
+  left: 2%;
   height: 20px;
   width: 20px;
 }
@@ -157,7 +164,7 @@ span {
   position: absolute;
   border-right: 4px solid var(--ui-primary);
   border-bottom: 4px solid var(--ui-primary);
-  bottom: -6%;
+  bottom: 2%;
   right: 2%;
   height: 20px;
   width: 20px;
@@ -381,13 +388,12 @@ span {
 }
 @media (max-width: 768px) {
     span {
-        font-size: .5rem;
+        font-size: .48rem;
     }
     h1 {
         font-size: 1.7rem;
         text-shadow:
     .3rem .3rem 0px var(--accent-primary),
-    .6rem .6rem 0px var(--accent-tertiary);
     }
     .deco {
         opacity: 1;
@@ -398,6 +404,13 @@ span {
     .close-x-deco {
         width: 20px;
         height: 20px;
+    }
+    .bang-itself {
+        width: 30px;
+        height: 30px;
+    }
+    .welcome-bang-container {
+        margin-right: 0;
     }
 }
 </style>

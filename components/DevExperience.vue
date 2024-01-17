@@ -80,7 +80,7 @@ p {
 .subtitle {
   font-style: italic;
   font-size: 1rem;
-  text-align: left;
+  text-align: center;
 }
 
 .main-title-github-text {
@@ -131,7 +131,7 @@ p {
 }
 
 .main-title {
-  text-align: left;
+  text-align: center;
   border-left: 2px solid var(--ui-primary);
   border-bottom: 2px solid var(--ui-primary);
   border-right: 2px solid var(--ui-primary);

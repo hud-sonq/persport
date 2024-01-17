@@ -27,5 +27,8 @@ const wallpaperProps = {
   .left {
     display: none;
   }
+  .right {
+    margin-bottom: 112px;
+  }
 }
 </style>

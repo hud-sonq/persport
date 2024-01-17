@@ -55,7 +55,6 @@ function goToWeather() {
     margin-bottom: 112px;
     padding-right: 5px;
     max-width: 90%;
-    border-right: none;
   }
 }
 </style>
