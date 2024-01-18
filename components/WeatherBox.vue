@@ -144,9 +144,7 @@ async function fetchWeatherGptDescription(event: FormSubmitEvent<z.output<typeof
 }
 
 @media(max-width: 768px) {
-  .weather-box-container {
-    background-color: var(--contrast-primary);
-  }
+
 
   .weather-box {
     width: 85%;

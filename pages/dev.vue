@@ -37,6 +37,7 @@ function goToWeather() {
   }
   if (rightDev.value) {
     rightDev.value.style.display = 'flex';
+    rightDev.value.style.marginBottom = '112px';
   }
 }
 </script>

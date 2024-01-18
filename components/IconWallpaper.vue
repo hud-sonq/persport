@@ -15,7 +15,7 @@ const props = defineProps<{
   position: fixed;
   top: -20%;
   height: 150%;
-  width: 150%;
+  width: 200%;
   background-repeat: repeat;
   background-size: 32px 32px; /* Adjust as needed */
   filter: invert(1);
