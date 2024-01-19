@@ -12,6 +12,8 @@ export default defineNuxtConfig({
     runtimeConfig: {
         openaiSecret: '',
         mongoURI: '',
+        discordWebhook: '',
+        discordToken: '',
         authSecret: '',
         owSecret: '',
         public: {

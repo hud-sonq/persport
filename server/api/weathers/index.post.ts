@@ -4,12 +4,16 @@ import { Weather } from '~/server/models/Weather.model';
 import OpenAI from "openai";
 import axios from 'axios';
 import { rateLimitWrapper } from '~/utils/rateLimitWrapper';
+import { WebhookClient } from 'discord.js';
 
 const config = useRuntimeConfig();
 const openai = new OpenAI({
   apiKey: config.openaiSecret,
 });
 const owApiKey = config.owSecret;
+const url = config.discordWebhook; //discord integration (won't be public to anyone but me)
+const token = config.discordToken; //discord integration (won't be public to anyone but me)
+const webhookClient = new WebhookClient({ url, token });
 
 const gptWeather = async (event: any) => {
   const body = await readBody(event); // will only be a city for now
@@ -17,6 +21,7 @@ const gptWeather = async (event: any) => {
   
   let gptResponse;
   let openWeatherResponse: any;
+  let messageStringSendable = `Someone made a weather request for ${body.city}!`;
   
   const getOpenWeather = async () => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${body.city}&units=metric&appid=${owApiKey}`;
@@ -37,7 +42,8 @@ const gptWeather = async (event: any) => {
     const weather = await Weather.create({
       ...body,
       description: gptResponse
-    })
+    });
+    webhookClient.send(messageStringSendable); //discord integration (won't be public to anyone but me)
     return gptResponse;
   } catch (e) {
     return (e as any).response.data.message;
