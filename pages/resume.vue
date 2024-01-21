@@ -29,7 +29,7 @@
                 <h1> About </h1>
               </div>
               <div class="item">
-                <h4>- <a class="sw" href="https://new.sewanee.edu/" target="_blank">sewanee</a> c'23 | 3.11 gpa </h4>
+                <h4>- <a class="sw" href="https://new.sewanee.edu/" target="_blank">sewanee</a> c'23 | Music and CS </h4>
               </div>
               <div class="item">
                 <h4>- <a class="ku" href="https://summer.korea.ac.kr/summer/index.do" target="_blank">KU ISC</a> 2022 | AI and 한글 </h4>

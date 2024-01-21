@@ -72,7 +72,7 @@
             </div>
             <div class="message-text-container">
                 <div style="padding-top: 12px; padding-bottom: 14px;">
-                    <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I am eager to provide <span style="color: var(--accent-primary);">creative innovation</span> for your website or business!</span>
+                    <span>Hey there, I'm <span style="color: red;">Hudson</span>. The purpose of this website is to <span style="color: red;">demonstrate my abilities.</span> I enjoy <span style="color: var(--accent-primary);">art</span> and <span style="color: var(--accent-primary);">UX/UI design!</span></span>
                 </div>
             </div>
         </div>

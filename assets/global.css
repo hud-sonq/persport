@@ -22,13 +22,13 @@ html, body {
 }
 
 @font-face {
-  font-family: 'bloop';
+  font-family: 'aex';
   src: url('/fonts/aex.ttf');
 }
 
 @font-face {
-  font-family: 'test';
-  src: url('/fonts/aex.ttf');
+  font-family: 'vinston';
+  src: url('/fonts/Vinston.ttf');
   font-weight: 1200;
 }
 
@@ -37,7 +37,7 @@ input:focus::placeholder {
 }
 
 span {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: 1.2rem;
   margin: auto;
@@ -45,7 +45,7 @@ span {
 }
 
 p {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: 1.2rem;
   margin: auto;
@@ -53,7 +53,7 @@ p {
 }
 
 h1 {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: 3.4rem;
   margin: auto;
@@ -61,7 +61,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: 1.8rem;
   margin: auto;
@@ -69,7 +69,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: 1.6rem;
   margin: auto;
@@ -77,7 +77,7 @@ h3 {
 }
 
 h4 {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: 1.2rem;
   margin: auto;
@@ -85,7 +85,7 @@ h4 {
 }
 
 h5 {
-  font-family: 'bloop';
+  font-family: 'aex';
   color: var(--text-primary);
   font-size: .5rem;
   margin: auto;
@@ -96,14 +96,14 @@ input::placeholder {
   text-align: center;
   font-style: italic;
   color: var(--text-primary);
-  font-family: 'bloop';
+  font-family: 'aex';
   font-size: .7rem;
   font-display: swap;
 }
 
 input {
   color: var(--text-primary);
-  font-family: 'bloop';
+  font-family: 'aex';
   font-size: .7rem;
   font-display: swap;
   text-align: center;
@@ -116,14 +116,14 @@ textarea::placeholder {
   text-align: center;
   font-style: italic;
   color: var(--text-primary);
-  font-family: 'bloop';
+  font-family: 'aex';
   font-size: .7rem;
   font-display: swap;
 }
 
 textarea {
   color: var(--text-primary);
-  font-family: 'bloop';
+  font-family: 'aex';
   font-size: .7rem;
   font-display: swap;
   text-align: center;

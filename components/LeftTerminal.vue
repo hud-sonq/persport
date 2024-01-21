@@ -2,7 +2,10 @@
 <template>
     <div id="terminal" ref="terminal" class="active">
       <div class="qr-bottom-left">
-        <img src="/deco/png/linktree.png" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
+        <div style="display: flex; width: 100px; height: 32px;">
+          <div style="margin-right: 8px;"><a href="https://linktr.ee/hudsonjq" target="_blank"><img src="/deco/png/linktree.png" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);"></a></div>
+          <div style="position: relative"><a href="https://www.instagram.com/tetraflow_/" target="_blank"><img src="/logos/svg/ig.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);"></a></div>
+        </div>
       </div>
       <div class="deco-top-left">
         <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
@@ -10,7 +13,7 @@
       <div class="deco-bottom-right">
         <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
       </div>
-      <div class="deco-top-right" v-if="!showContactForm" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
+      <div class="deco-top-right" v-if="showContactFormDeco" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
         <img src="/deco/svg/mail1.svg" style="; filter: invert(1);">
       </div>
       <div class="form-container" v-if="showContactForm">
@@ -55,7 +58,7 @@ import { vue3dLoader } from "vue-3d-loader";
 let terminal = ref<HTMLElement | null>(null);
 let prlxHouse = ref<HTMLElement | null>(null);
 const route = useRoute();
-let showContactFormDeco = ref<Boolean>(false);
+let showContactFormDeco = ref<Boolean>(true);
 let showContactForm = ref<boolean>(false);
 let contactFormSeen = ref<boolean>(false);
 

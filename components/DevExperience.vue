@@ -1,7 +1,7 @@
 <template>
   <div class="main-title-container">
     <div class="main-title">
-      <p>Projects / Experience</p>
+      <span>Projects / Experience</span>
     </div>
     <div class="main-title-github-container">
       <div class="main-title-github-svg">
@@ -71,6 +71,7 @@ const emits = defineEmits(['go-to-weather']); // this emit is a mobile only feat
 p {
   margin: 2%;
   font-weight: bold;
+  font-family: vinston;
 }
 .title {
   font-weight: bold;
@@ -135,6 +136,7 @@ p {
   border-left: 2px solid var(--ui-primary);
   border-bottom: 2px solid var(--ui-primary);
   border-right: 2px solid var(--ui-primary);
+  padding: 8px;
 }
 
 
