@@ -7,8 +7,6 @@ import { WebhookClient } from 'discord.js';
 const config = useRuntimeConfig();
 const url = config.discordWebhook; //discord integration (won't be public to anyone but me)
 const token = config.discordToken; //discord integration (won't be public to anyone but me)
-console.log('url', url);
-console.log('token', token);
 const webhookClient = new WebhookClient({ url, token });
 
 const messagePoster = async (event: any) => {

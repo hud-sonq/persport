@@ -46,7 +46,13 @@ const gptWeather = async (event: any) => {
     webhookClient.send(messageStringSendable); //discord integration (won't be public to anyone but me)
     return gptResponse;
   } catch (e) {
-    return (e as any).response.data.message;
+    if((e as any).response.data.message) {
+      return (e as any).response.data.message;
+    } else {
+      webhookClient.send('Unexpected error at Weather, look into logs.'); //discord integration (won't be public to anyone but me)
+      console.log('Unexpected error at Weather', e);
+      return 'Something went wrong. This will be looked into.';
+    }
   }
 };
 

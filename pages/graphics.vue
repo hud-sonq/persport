@@ -54,6 +54,7 @@
 <script setup lang="ts">
 const props = {
   leftImages: [
+    "/2dgallery/compressed/customize.jpg",
     "/2dgallery/compressed/embryosis.png",
     "/2dgallery/compressed/destructivecold-min.png",
     "/2dgallery/compressed/greenalpaca.png",
@@ -65,6 +66,7 @@ const props = {
     "/2dgallery/compressed/trials-min.png"
   ],
   leftImagesTitles: [
+    "CUSTOMIZE",
     "EMBRYOSIS",
     "DESTRUCTIVE COLD",
     "GREEN ALPACA LOGO",
@@ -76,11 +78,12 @@ const props = {
     "TRACK COVER 2"
   ],
   rightImages: [
+    "/2dgallery/compressed/kpgif.gif",
+  "/2dgallery/compressed/customize_v.jpg",
   "/2dgallery/compressed/init-min.jpg",
   "/2dgallery/compressed/offgrid-min.jpg",
   "/2dgallery/compressed/spacehobbies-min.jpg",
   "/2dgallery/compressed/ako-min.png",
-  "/2dgallery/compressed/kpgif.gif",
   "/2dgallery/compressed/sc1-min.png",
   "/2dgallery/compressed/0085.png",
   "/2dgallery/compressed/cubedup.png",
@@ -88,17 +91,18 @@ const props = {
   "/2dgallery/compressed/kpbanner.png",
   ],
   rightImagesTitles: [
+    "KOIPOND.XYZ GIF",
+    "CUSTOMIZE 2",
     "INIT",
     "OFF GRID!",
     "SPACE HOBBIES!",
     "SPOTIFY ARTIST BANNER",
-    "KOIPOND.XYZ GIF",
     "TRIO",
     "SPACE CANDY",
     "PREP",
     "SEWANEE COMPUTING SOCIETY",
     "KOIPOND.XYZ BANNER"
-  ], 
+  ],
 }
 
 const viewable = ref(false);

@@ -1,10 +1,17 @@
 
 <template>
     <div id="terminal" ref="terminal" class="active">
-      <div class="qr-bottom-left">
-        <div style="display: flex; width: 100px; height: 32px;">
-          <div style="margin-right: 8px;"><a href="https://linktr.ee/hudsonjq" target="_blank"><img src="/deco/png/linktree.png" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);"></a></div>
-          <div style="position: relative"><a href="https://www.instagram.com/tetraflow_/" target="_blank"><img src="/logos/svg/ig.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);"></a></div>
+      <div class="deco-bottom-left-container" v-if="showSocialsLinks">
+        <div class="bracket-top-right"></div>
+        <div class="deco-bottom-left">
+          <a href="https://linktr.ee/hudsonjq" target="_blank">
+            <img src="/deco/svg/linktree.svg">
+          </a>
+        </div>
+        <div class="deco-bottom-left">
+          <a href="https://github.com/hud-sonq" target="_blank">
+            <img src="/logos/svg/gh_square.svg">
+          </a>
         </div>
       </div>
       <div class="deco-top-left">
@@ -14,6 +21,7 @@
         <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
       </div>
       <div class="deco-top-right" v-if="showContactFormDeco" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
+        <div class="bracket-bottom-left"></div>
         <img src="/deco/svg/mail1.svg" style="; filter: invert(1);">
       </div>
       <div class="form-container" v-if="showContactForm">
@@ -61,6 +69,7 @@ const route = useRoute();
 let showContactFormDeco = ref<Boolean>(true);
 let showContactForm = ref<boolean>(false);
 let contactFormSeen = ref<boolean>(false);
+let showSocialsLinks = ref<boolean>(true);
 
 let basePath = "../scenes/";
 let filepath = "";
@@ -83,8 +92,10 @@ onMounted(() => {
   if (route.path === '/') {
     filepath = basePath + "handcube1.glb";
     showContactFormDeco.value = true;
+    showSocialsLinks.value = true;
   } else {
     showContactFormDeco.value = false;
+    showSocialsLinks.value = false;
   }
   if (route.path === '/graphics') {
     filepath = basePath + "cubezone1.glb";
@@ -120,13 +131,6 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 </script>
 
 <style scoped>
-.bracket-bottom-left {
-  position: absolute;
-  border-left: 5px solid var(--ui-primary);
-  border-bottom: 5px solid var(--ui-primary);
-  height: 10px;
-  width: 10px;
-}
 .close-x {
   cursor: pointer; 
   position: absolute; 
@@ -171,7 +175,6 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   height: 30px;
   display: flex;
   justify-content: center;
-  overflow: hidden;
   cursor: pointer;
 }
 
@@ -183,12 +186,22 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   margin: 1%;
 }
 
-.qr-bottom-left {
+.deco-bottom-left-container {
   position: absolute;
   bottom: 0;
   left: 0;
-  margin: 2%;
-  width: 8%;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.deco-bottom-left {
+  height: 33px;
+  width: 33px;
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
 }
 
 .deco-bottom-right {
@@ -214,6 +227,26 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 
 .greyed-out {
   opacity: .5;
+}
+
+.bracket-top-right {
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  border-right: 4px solid var(--ui-primary);
+  border-top: 4px solid var(--ui-primary);
+  width: 16px;
+  height: 16px;
+}
+
+.bracket-bottom-left {
+  position: absolute;
+  bottom: -30%;
+  left: -25%;
+  border-left: 4px solid var(--ui-primary);
+  border-bottom: 4px solid var(--ui-primary);
+  width: 16px;
+  height: 16px;
 }
 
 </style>

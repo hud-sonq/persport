@@ -11,25 +11,25 @@
                   <UInput type="city" v-model="state.city" placeholder="ENTER A CITY" />
               </UFormGroup>
           </div>
-          <button type="submit" class="go-button" block>
+          <button type="submit" class="go-button" block v-if="!isLoading">
               <span>GO</span>
-          </button>
-          <div v-if="isLoading" style="display: inline; filter: invert(1);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="10" height="10" x="1" y="1" fill="currentColor" rx="1"><animate id="svgSpinnersBlocksShuffle20" fill="freeze" attributeName="x" begin="0;svgSpinnersBlocksShuffle27.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle21" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle24.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle22" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle25.end" dur="0.2s" values="13;1"></animate><animate id="svgSpinnersBlocksShuffle23" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle26.end" dur="0.2s" values="13;1"></animate></rect><rect width="10" height="10" x="1" y="13" fill="currentColor" rx="1"><animate id="svgSpinnersBlocksShuffle24" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle20.end" dur="0.2s" values="13;1"></animate><animate id="svgSpinnersBlocksShuffle25" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle21.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle26" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle22.end" dur="0.2s" values="1;13"></animate><animate id="svgSpinnersBlocksShuffle27" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle23.end" dur="0.2s" values="13;1"></animate></rect></svg>
-          </div>
+            </button>
+            <div v-if="isLoading" style="display: inline; height: 32px;">
+              <img src="/deco/svg/animated/loadingSpinner.svg">
+            </div>
         </UForm>
       </div>
       <h5 v-if="!weatherData && !errorMessage" style="font-style: italic;">ChatGPT is going to give you accurate weather in a southern accent.</h5>
       <div class="weather-result" v-if="weatherData">
         <h4>{{ weatherData }}</h4>
         <h5 style="font-style: italic; padding-bottom: 6px; padding-top: 6px;">Raw weather info provided by OpenWeather API</h5>
-        <button class="go-button" @click="weatherData = null">GO AGAIN</button>
+        <button class="go-button" @click="weatherData = null"><h4>GO AGAIN</h4></button>
       </div>
-      <div class="weather-error" v-if="errorMessage && !state.city">
+      <div class="weather-error" v-if="errorMessage">
         <h4>{{ errorMessage }}</h4>
       </div>
     </div>
-    <div class="valid-entries-ex" v-if="errorMessage || postWasError">
+    <div class="valid-entries-ex" v-if="errorMessage">
       <div>
         <h3 style="color: var(--error-primary)">some valid entries to try:</h3>
         <h4 style="color: var(--error-primary)">- atlanta</h4>
@@ -54,7 +54,6 @@ const state = reactive({
 const weatherData = ref();
 let isLoading = ref(false);
 let errorMessage = ref<string>('');
-let postWasError = ref(false);
 
 async function fetchWeatherGptDescription(event: FormSubmitEvent<z.output<typeof WeatherSchema>>) {
   try {
