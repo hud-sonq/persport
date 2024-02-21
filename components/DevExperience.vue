@@ -18,16 +18,13 @@
   <div class="all-projects-container">
     <div v-for="index in galleryLength" class="project" :key="index">
       <div class="project-title-area">
-        <div class="project-deco-container">
-          <div class="deco-itself"><a :href="props.decoHrefs[index-1]" target="_blank" style="width: fit-content; height: fit-content;"><img class="project-deco" :src="props.decos[index-1]"/></a></div>
-        </div>
         <div class="project-title-texts">
-          <span class="title">{{props.titles[index-1]}} </span>
-          <h4 class="subtitle">{{props.subtitles[index-1]}}</h4>
+          <div><h3 style="color: black;">{{props.titles[index-1]}} </h3></div>
+          <div><h4 style="color: black;">{{props.subtitles[index-1]}}</h4></div>
         </div>
       </div>
       <div class="paragraph">
-        <p class="paragraph"><span class="paragraph-start">{{props.paragraphStarts[index-1]}}</span>{{props.paragraphs[index-1]}}</p>
+        <p style="color: black">{{props.paragraphs[index-1]}}</p>
       </div>
       <div id="project-image">
         <img class="image" :src="props.images[index-1]" alt=""/>
@@ -65,9 +62,20 @@ const emits = defineEmits(['go-to-weather']); // this emit is a mobile only feat
 <style scoped>
 
 .project-title-texts {
+  position: relative;
+  width: 100%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 2px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  background-color: white;
+  box-shadow: -4px 4px var(--accent-primary);
 }
+
 p {
   margin: 2%;
   font-weight: bold;
@@ -159,6 +167,18 @@ p {
   width: 32px;
   padding: 2px;
 }
+
+.paragraph {
+  background-color: white;
+  padding-left: 0px;
+  color: black;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  box-shadow: 4px 4px  var(--accent-primary);
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
 .paragraph-start {
   color: red;
   font-weight: bold;
@@ -188,46 +208,35 @@ p {
 }
 
 .project {
-  padding: 4%;
-  margin: 3%;
-  background-color: var(--accent-primary);
-  border: 4px solid var(--ui-primary);
+  padding: 6%;
+  border-bottom: 2px solid var(--ui-primary);
+  width: 75%;
+  margin-bottom: 24px;
 }
 
 .all-projects-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 85%;
+  gap: 32px;
 }
-
-
 .image {
   width: 100%; 
   height: 100%;
+  border: 4px solid white;
+  box-shadow: -4px 4px  var(--accent-primary);
+  margin-left: -4px;
 }
 @media (max-width: 768px) {
-  .title {
-      font-size: 1rem;
-    }
-  .subtitle {
-    font-size: .75rem;
-  }
-  .main-title-github-text {
-    display: none;
-  }
   .main-title-github-container {
-    width: 20px;
-    height: 20px;
-    padding-top: 2%;
-    padding-left: 2%;
-    border-left: 2px solid var(--ui-primary);
-    border-bottom: 2px solid var(--ui-primary);
+    display: none;
   }
   .wanna-see-more {
     display: flex;
   }
-  .paragraph {
-    font-size: .8rem;
+  .project {
+    width: 69%;
   }
 }
 </style>
