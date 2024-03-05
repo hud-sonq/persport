@@ -78,7 +78,8 @@ const props = {
     "TRACK COVER 2"
   ],
   rightImages: [
-    "/2dgallery/compressed/kpgif.gif",
+  "/2dgallery/compressed/guidance.png",
+  "/2dgallery/compressed/kpgif.gif",
   "/2dgallery/compressed/customize_v.jpg",
   "/2dgallery/compressed/init-min.jpg",
   "/2dgallery/compressed/offgrid-min.jpg",
@@ -91,6 +92,7 @@ const props = {
   "/2dgallery/compressed/kpbanner.png",
   ],
   rightImagesTitles: [
+    "GUIDANCE",
     "KOIPOND.XYZ GIF",
     "CUSTOMIZE 2",
     "INIT",
