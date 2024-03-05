@@ -54,6 +54,7 @@
 <script setup lang="ts">
 const props = {
   leftImages: [
+    "/2dgallery/compressed/performance.png ",
     "/2dgallery/compressed/customize.jpg",
     "/2dgallery/compressed/embryosis.png",
     "/2dgallery/compressed/destructivecold-min.png",
@@ -66,6 +67,7 @@ const props = {
     "/2dgallery/compressed/trials-min.png"
   ],
   leftImagesTitles: [
+    "PERFORMANCE",
     "CUSTOMIZE",
     "EMBRYOSIS",
     "DESTRUCTIVE COLD",
