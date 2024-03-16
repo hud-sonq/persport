@@ -27,7 +27,6 @@
   animation: pageOut .6s reverse;
 }
 
-
 @keyframes pageOut {
   0% {
     transform: scale(1);
@@ -87,7 +86,6 @@
   }
 }
 
-
 #main.load-engaged {
   opacity: 0;
 }
@@ -103,7 +101,6 @@
   border: 4px solid white;
   opacity: 1;
 }
-
 
 body {
   background-color: var(--background-primary);

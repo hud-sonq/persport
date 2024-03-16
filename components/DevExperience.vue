@@ -19,12 +19,17 @@
     <div v-for="index in galleryLength" class="project" :key="index">
       <div class="project-title-area">
         <div class="project-title-texts">
+          <div class="clickable-project">
+            <a :href="props.decoHrefs[index-1]" target="_blank">
+              <img src="/deco/svg/openInNew.svg">
+            </a>
+          </div>
           <div><h3 style="color: black;">{{props.titles[index-1]}} </h3></div>
           <div><h4 style="color: black;">{{props.subtitles[index-1]}}</h4></div>
         </div>
       </div>
       <div class="paragraph">
-        <p style="color: black">{{props.paragraphs[index-1]}}</p>
+        <span style="color: black; font-family: vinston; margin: 2%"><span style="text-decoration: underline; font-family: vinston; color: black; ">{{props.paragraphStarts[index-1]}}</span>{{props.paragraphs[index-1]}}</span>
       </div>
       <div id="project-image">
         <img class="image" :src="props.images[index-1]" alt=""/>
@@ -60,6 +65,15 @@ const emits = defineEmits(['go-to-weather']); // this emit is a mobile only feat
 </script>
 
 <style scoped>
+.clickable-project {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .project-title-texts {
   position: relative;
@@ -127,7 +141,6 @@ p {
   align-items: center;
   padding: 5%;
   border: 4px solid var(--ui-primary);
-
 }
 
 .main-title-container {
@@ -175,7 +188,7 @@ p {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  box-shadow: 4px 4px  var(--accent-primary);
+  box-shadow: -4px 4px  var(--accent-primary);
   margin-bottom: 16px;
   margin-top: 16px;
 }
@@ -209,9 +222,8 @@ p {
 
 .project {
   padding: 6%;
-  border-bottom: 2px solid var(--ui-primary);
-  width: 75%;
   margin-bottom: 24px;
+  min-width: 85%;
 }
 
 .all-projects-container {
@@ -228,6 +240,7 @@ p {
   box-shadow: -4px 4px  var(--accent-primary);
   margin-left: -4px;
 }
+
 @media (max-width: 768px) {
   .main-title-github-container {
     display: none;

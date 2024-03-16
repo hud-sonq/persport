@@ -10,8 +10,13 @@
         </div>
         <div class="deco-bottom-left">
           <a href="https://github.com/hud-sonq" target="_blank">
-            <img src="/logos/svg/gh_square.svg">
+            <img src="/logos/svg/gh_square.svg" style="height: 35px;">
           </a>
+        </div>
+        <div class="deco-bottom-left">
+          <div v-if="showContactFormDeco" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
+            <img src="/deco/svg/mail1.svg" style="filter: invert(1); width: 32px; position: absolute; top: 12px;">
+          </div>
         </div>
       </div>
       <div class="deco-top-left">
@@ -19,10 +24,6 @@
       </div>
       <div class="deco-bottom-right">
         <img src="/deco/svg/uiline1.svg" style="height: 100%; width: 100%; object-fit: contain; filter: invert(1);">
-      </div>
-      <div class="deco-top-right" v-if="showContactFormDeco" @click="enableForm()" :class="{'deco-blink': !contactFormSeen, 'greyed-out': contactFormSeen}">
-        <div class="bracket-bottom-left"></div>
-        <img src="/deco/svg/mail1.svg" style="; filter: invert(1);">
       </div>
       <div class="form-container" v-if="showContactForm">
         <div class="form">
@@ -190,8 +191,8 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100px;
-  height: 50px;
+  width: 150px;
+  height: 48px;
   display: flex;
   justify-content: space-around;
   align-items: center;

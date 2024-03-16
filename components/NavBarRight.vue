@@ -1,33 +1,4 @@
 <template>
-  <!-- <div class="mobile-v">
-      <div id="navbar" class="">
-          <div class="navbar-item">
-              <NuxtLink to="/" class="link">
-                  <img src="/deco/svg/home.svg" style="height: 80%; filter: invert(1)">
-              </NuxtLink>
-          </div>
-          <div class="navbar-item">
-              <NuxtLink to="/dev" class="link">
-                <img src="/deco/svg/dev_icon.svg" style="height: 80%; filter: invert(1)">
-              </NuxtLink>
-          </div>
-          <div class="navbar-item">
-              <NuxtLink to="/graphics" class="link">
-                <img src="/deco/svg/3d_icon.svg" style="height: 80%; filter: invert(1)">
-              </NuxtLink>
-          </div>
-          <div class="navbar-item">
-              <NuxtLink to="/resume" class="link">
-                <img src="/deco/svg/guy_icon.svg" style="height: 80%; filter: invert(1)">
-              </NuxtLink>
-          </div>
-          <div class="navbar-item">
-              <NuxtLink to="/sound" class="link">
-                <img src="/deco/svg/sound_icon.svg" style="height: 80%; filter: invert(1)">
-              </NuxtLink>
-          </div>
-      </div>
-  </div> TOP IMPLEMENTATION --> 
   <div id="navbar">
     <div class="navbar-item">
       <NuxtLink to="/dev" class="link">
@@ -83,10 +54,13 @@
   transition: all 0.2s ease-in-out;
   border-bottom: 1px solid var(--ui-primary);
   border-left: 1px solid var(--ui-primary);
-  border-top: 1px solid var(--ui-primary);
   padding: 4px;
   height: 44px;
   background-color: black;
+}
+
+#navbar .navbar-item:first-child {
+  border-top: 1px solid var(--ui-primary);
 }
 
 .link {
