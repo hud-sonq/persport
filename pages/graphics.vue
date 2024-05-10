@@ -54,32 +54,37 @@
 <script setup lang="ts">
 const props = {
   leftImages: [
+    "/deco/png/galpaca_campaign.png",
+    "/2dgallery/compressed/results_covered.png ",
+    "/2dgallery/compressed/gravitron_empty.png ",
     "/2dgallery/compressed/performance.png ",
     "/2dgallery/compressed/customize.jpg",
-    "/2dgallery/compressed/embryosis.png",
     "/2dgallery/compressed/destructivecold-min.png",
     "/2dgallery/compressed/greenalpaca.png",
     "/2dgallery/compressed/iphone1-min.png",
-    "/2dgallery/compressed/water-min.jpg",
     "/2dgallery/compressed/break2-min.jpg",
     "/2dgallery/compressed/koipondxyz.png",
-    "/2dgallery/compressed/entrance-min.png",
-    "/2dgallery/compressed/trials-min.png"
+    "/2dgallery/compressed/gravitron_covered.png",
+    "/2dgallery/compressed/cubedup.png",
+    "/2dgallery/compressed/kpbanner.png",
   ],
   leftImagesTitles: [
+    "GREEN ALPACA BANNER",
+    "RESULTS 1",
+    "GRAVITRON 2",
     "PERFORMANCE",
     "CUSTOMIZE",
-    "EMBRYOSIS",
     "DESTRUCTIVE COLD",
     "GREEN ALPACA LOGO",
     "IPHONE WALLPAPER 1",
-    "SHALLOW WATERS",
     "BREAK!",
     "KOIPOND.XYZ OLD LOGO",
-    "TRACK COVER 1",
-    "TRACK COVER 2"
+    "GRAVITRON",
+    "PREP",
+    "KOIPOND.XYZ BANNER"
   ],
   rightImages: [
+    "/deco/png/acnt_synopsis.png",
     "/2dgallery/compressed/pre-boot-w-nthercyte.png",
     "/2dgallery/compressed/guidance.png",
     "/2dgallery/compressed/kpgif.gif",
@@ -87,13 +92,11 @@ const props = {
     "/2dgallery/compressed/offgrid-min.jpg",
     "/2dgallery/compressed/spacehobbies-min.jpg",
     "/2dgallery/compressed/ako-min.png",
-    "/2dgallery/compressed/sc1-min.png",
     "/2dgallery/compressed/0085.png",
-    "/2dgallery/compressed/cubedup.png",
-    "/2dgallery/compressed/scs.png",
-    "/2dgallery/compressed/kpbanner.png",
+    "/2dgallery/compressed/scs.png"
   ],
   rightImagesTitles: [
+    "ACCOUNTONOMICS BANNER",
     "PRE-BOOT w/ NTHERCYTE",
     "GUIDANCE",
     "KOIPOND.XYZ GIF",
@@ -101,11 +104,8 @@ const props = {
     "OFF GRID!",
     "SPACE HOBBIES!",
     "SPOTIFY ARTIST BANNER",
-    "TRIO",
     "SPACE CANDY",
-    "PREP",
-    "SEWANEE COMPUTING SOCIETY",
-    "KOIPOND.XYZ BANNER"
+    "SEWANEE COMPUTING SOCIETY"
   ],
 }
 

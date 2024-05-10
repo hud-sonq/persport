@@ -32,7 +32,7 @@
                     <img src="/deco/svg/closebox.svg" style="filter: invert(1);">
                 </div>
           </div>
-          <p>send me a message:</p>
+          <p style="padding-right: 12px;">send me a message:</p>
           <ContactForm/>
         </div>
       </div>
@@ -135,13 +135,12 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
 .close-x {
   cursor: pointer; 
   position: absolute; 
-  right: 0; 
-  top: 0; 
+  right: -15px; 
+  top: 2px; 
   text-align: center; 
   font-size: 16px; 
   font-weight: bold; 
   color: var(--ui-primary);
-  padding: 4px
 }
 
 .form-container {
@@ -153,6 +152,7 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   left: 50%;
   transform: translate(-50%, -50%);
   width: fit-content;
+  max-width: 250px;
 }
 
 .form {
@@ -162,6 +162,10 @@ const parallaxTest = (e: { clientX: any; clientY: any; }) => {
   padding: 32px; 
   text-align: center;
   padding: 8px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .house {
   height: 100%;
